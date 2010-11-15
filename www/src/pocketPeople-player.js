@@ -1,16 +1,12 @@
 /*
 
 TODO: NEXT PRIORITIES:
-v0.1.0
-	- Solve the ASYNC loading problem
+v0.1.1
 	- Game Player UI
 		- Show Current Character with its icon
 		- Start New game with Character Selection
 		- Exit/Quit
 		- button to mute all soundes
-
-v0.1.1
-	- Game state persistence in HTML5
 	- Continue game (game list showing basic state)
 		- High res icons characters
 		- High res icons for boards
@@ -59,6 +55,13 @@ v0.8.0
 	Game Server (for persisting custom levels)
 
 v0.9.0
+
+RELEASE HISTORY:
+
+v0.1.0
+	- Game state persistence in HTML5
+	- Solve the ASYNC loading problem
+
 
 
 Todo: Scripting Scenarios/Actions:
@@ -162,6 +165,7 @@ Todo: Scripting Scenarios/Actions:
 
 	PP.Player = new JS.Class({
 		settings: {},
+		defaultStateData: null,
 		width: 960,
 		height: 540,
 		world: null,
@@ -174,8 +178,14 @@ Todo: Scripting Scenarios/Actions:
 		controller: null,
 		timeline: null,
 		storage: null,
+		readyIndicators: null,
 		initialize: function(options) {
 			$.extend(this.settings, options);
+			this.readyIndicators = {
+				"storage": false,
+				"worldData": false,
+				"soundManager": false
+			};
 			this.initStorage();
 			this.initSoundManager();
 			this.loadWorld(this.settings.world);
@@ -189,6 +199,7 @@ Todo: Scripting Scenarios/Actions:
 					return $.jStorage.set(key, value);
 				}
 			};
+			this.nowReady("storage").startIfReady();
 		},
 		initController: function () {
 			this.controller = new PP.Controller(this.world, this.timeline);
@@ -204,7 +215,6 @@ Todo: Scripting Scenarios/Actions:
 			player.controller.observer.subscribe("run", function(commandId, args) {
 				player.controllerOnRun(commandId, args);
 			});
-
 		},
 		controllerOnGoToLocation: function (result) {
 			var location = result.location;
@@ -215,10 +225,18 @@ Todo: Scripting Scenarios/Actions:
 			this.save();
 		},
 		initSoundManager: function() {
-			soundManager.url = '/libs/soundmanager/swf/';
-			soundManager.flashVersion = 9;
-			soundManager.useFlashBlock = false;
-			soundManager.debugMode = false;
+			var self = this;
+			if (soundManager) {
+				soundManager.url = '/libs/soundmanager/swf/';
+				soundManager.flashVersion = 9;
+				soundManager.useFlashBlock = false;
+				soundManager.debugMode = false;
+				soundManager.onready(function(){
+					self.nowReady("soundManager").startIfReady();
+				});
+			} else {
+				console.error("Sound manager not loaded!");
+			}
 		},
 		urlMapper: {
 			world: function(id) {
@@ -231,11 +249,25 @@ Todo: Scripting Scenarios/Actions:
 				return "Sets/" + setId + "/" + path;
 			}
 		},
+		nowReady: function(id) {
+			this.readyIndicators[id] = true;
+			return this;
+		},
+		isReady: function() {
+			for (var key in this.readyIndicators) {
+				if (!this.readyIndicators[key]) return false;
+			}
+			return true;
+		},
+		startIfReady: function (id) {
+//			console.log("Start if ready", this.readyIndicators, this.isReady());
+			if (this.isReady()) this.start()
+		},
 		/**
 		 * Initialize the main processing instance on a canvas object
 		 * and attach the event to handle window resizing.
 		 */
-		start: function(defaultStateData) {
+		start: function() {
 			// Init the canvas
 			var defaultLocation,
 				sourceCode,
@@ -247,7 +279,7 @@ Todo: Scripting Scenarios/Actions:
 
 			this.timeline = new PP.Timeline(this.world);
 			this.initController();
-			this.loadFromLocalStorage(defaultStateData);
+			this.loadFromLocalStorage(this.defaultState);
 			// Utility function that resize the canvas to the current window size.
 			// Add event handler to tesize the canvas when window is resized
 			window.addEventListener("resize", function(e) {
@@ -285,9 +317,13 @@ Todo: Scripting Scenarios/Actions:
 				self.loadSets();
 			});
 		},
+		setsToLoad: 0,
 		loadSets: function() {
 			var self = this;
 			//console.log("loading: ", self.world.settings.sets);
+			$(self.world.settings.sets).each(function() {
+				self.setsToLoad = self.setsToLoad + 1;
+			});
 			$(self.world.settings.sets).each(function() {
 				var set,
 					id = this+"", // Convert back to a simple string
@@ -301,6 +337,10 @@ Todo: Scripting Scenarios/Actions:
 					self.world.boards.update(set.boards);
 					self.world.marks.update(set.marks);
 					self.world.characters.update(set.characters);
+					self.setsToLoad = self.setsToLoad - 1;
+					if (self.setsToLoad <= 0) {
+						self.nowReady("worldData").startIfReady();
+					}
 				});
 			});
 		},
@@ -324,8 +364,8 @@ Todo: Scripting Scenarios/Actions:
 					autoPlay: true,
 					multiShot: false,
 					loops: 999,
-//					volume: 80
-					volume: 0
+					volume: 80
+//					volume: 0
 				});
 			}
 

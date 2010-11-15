@@ -1,14 +1,3 @@
-/*
-
-todo:
-- instantiate boads collections
-- instantiate marks collections
-
-refatoring:
-- path object should be a class
-
- */
-
 (function($){
 
 
