@@ -57,8 +57,9 @@
 					"isDefault": true,
 					"title": "Stand next to the sinks",
 					"type": "character",
-					"x": 0.7,
-					"y": 0.5
+					"x": 0.64,
+					"y": 0.72,
+					"z": 0.6
 				},
 				"toParkingLot" : {
 					"title": "Go to the parking lot",
@@ -77,9 +78,8 @@
 				"washHands" : {
 					"title": "Wash your hands",
 					"type": "action",
-					"x": 0.64,
-					"y": 0.72,
-					"z": 0.6
+					"x": 0.7,
+					"y": 0.5
 				}
 			}
 		},

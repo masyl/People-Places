@@ -59,19 +59,6 @@ Notes:
 	- Some board sets can be inspired by imaginary and/or invented places (hell, paradise, 6th dimension, john malchovich head, ant hole, never-never land)
 
 
-Board
-	- id
-	- title
-	- description
-	- marks (collection of Marks)
-	- imageBackground
-	- icon
-	- scale (for calculating trajectory length, object sizes)
-	- hasExitOnBorderTop
-	- hasExitOnBorderBottom
-	- hasExitOnBorderLeft
-	- hasExitOnBorderRight
-
 Marks
 	- id
 	- x, y, z

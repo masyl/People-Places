@@ -20,10 +20,11 @@ v0.1.2
 
 
 v0.1.3
-	- Support for "First Person" boards
 	- Support for Aerial or Satelite boards
 	- Boards for the world and major regions
+
 v0.1.4
+	- Support for "First Person" boards with sample (sink counter in bathroom, with soap)
 
 v0.1.5
 
@@ -38,6 +39,7 @@ v0.3.0
 v0.4.0
 	- Transaction log
 	- Transaction Scheduler
+	- Navigation history (with player UI)
 
 v0.5.0
 	- NPCs and Dialogs
@@ -52,6 +54,12 @@ v0.6.0
 v0.7.0
 	- ui: board: soundtrack: volume button (like on video plyers
 
+v0.8.0
+	World/Sets Editor
+	Game Server (for persisting custom levels)
+
+v0.9.0
+
 
 Todo: Scripting Scenarios/Actions:
 	- Play a sound
@@ -63,14 +71,6 @@ Todo: Scripting Scenarios/Actions:
 	- Change the boards soundtrack
 	- Gain access to a new mark on a board
 	-
-
-
-todo: refatoring:
-- utility method for new PocketPeople.Utils.Location(this.world.defaultStartPath, this.world);
-
-Todo: Good Ideas but not Primary:
-- Navigation history (with back button)
-
 
  */
 
@@ -105,7 +105,7 @@ Todo: Good Ideas but not Primary:
 
 			commands.goToLocation = function(args) {
 				var location;
-				location = new Utils.Location(args.path, world);
+				location = new PP.Location(args.path, world);
 				timeline.current.location = location;
 				return {
 					location: location
@@ -133,18 +133,30 @@ Todo: Good Ideas but not Primary:
 	PP.Timeline = new JS.Class({
 		current: null, // The latest game state
 		history: null, // The transaction history
-		initialize: function (settings) {
+		world: null,
+		initialize: function (world) {
+			this.world = world,
 			this.current = {
 				time: new Date(),
 				character: "",
 				location: null
-			}
+			};
+			return this;
 		},
-		load: function () {
-
+		load: function (data) {
+			console.info("Loading: ", data);
+			this.current.location = new PP.Location(data.locationPath, this.world);
+			this.current.character = this.world.characters.get(data.character);
+			return this;
 		},
 		save: function () {
-
+			var data;
+			data = {
+				locationPath: this.current.location.path,
+				character: this.current.character.id
+			};
+			console.info("Saving: ", data);
+			return data;
 		}
 	});
 
@@ -161,10 +173,22 @@ Todo: Good Ideas but not Primary:
 		},
 		controller: null,
 		timeline: null,
+		storage: null,
 		initialize: function(options) {
 			$.extend(this.settings, options);
+			this.initStorage();
 			this.initSoundManager();
 			this.loadWorld(this.settings.world);
+		},
+		initStorage: function() {
+			this.storage = {
+				get: function (key) {
+					return $.jStorage.get(key);
+				},
+				set: function (key, value) {
+					return $.jStorage.set(key, value);
+				}
+			};
 		},
 		initController: function () {
 			this.controller = new PP.Controller(this.world, this.timeline);
@@ -174,18 +198,21 @@ Todo: Good Ideas but not Primary:
 					player[playerMethod].call(player, result);
 				});
 			}
-			subscribe("goToLocation", "onGoToLocation");
+			subscribe("goToLocation", "controllerOnGoToLocation");
 
 			/* Generic hook for all transactions/commands */
 			player.controller.observer.subscribe("run", function(commandId, args) {
-				console.info("run: ", commandId, args);
+				player.controllerOnRun(commandId, args);
 			});
 
 		},
-		onGoToLocation: function (result) {
+		controllerOnGoToLocation: function (result) {
 			var location = result.location;
 			this.showBoard(location);
 			this.showCharacter(location);
+		},
+		controllerOnRun: function (commandId, args) {
+			this.save();
 		},
 		initSoundManager: function() {
 			soundManager.url = '/libs/soundmanager/swf/';
@@ -208,44 +235,40 @@ Todo: Good Ideas but not Primary:
 		 * Initialize the main processing instance on a canvas object
 		 * and attach the event to handle window resizing.
 		 */
-		start: function(stateData) {
+		start: function(defaultStateData) {
 			// Init the canvas
 			var defaultLocation,
 				sourceCode,
 				self = this;
 
+			//todo refactor: stage size
+				this.ui.paper = Raphael("stage", 960, 540);
+				this.resizeCanvas();
+
 			this.timeline = new PP.Timeline(this.world);
 			this.initController();
-
-			this.load(stateData);
-			this.ui.paper = Raphael("stage", 960, 540);
-			this.resizeCanvas();
+			this.loadFromLocalStorage(defaultStateData);
 			// Utility function that resize the canvas to the current window size.
 			// Add event handler to tesize the canvas when window is resized
 			window.addEventListener("resize", function(e) {
 				self.resizeCanvas();
 			}, false);
-			//console.log("Starting World: ", this.world);
-			defaultLocation = this.currentLocation ||new Utils.Location(this.world.defaultStartPath, this.world);
 
 			this.controller.run("goToLocation", {
-				path: defaultLocation.path
+				path: this.timeline.current.location.path
 			});
 
 		},
 		load: function(data) {
-			this.currentLocation = new Utils.Location(data.locationPath, this.world);
-			this.currentCharacter = data.character.id;
+			this.timeline.load(data);
+		},
+		loadFromLocalStorage: function(defaultData) {
+			var data;
+			data = this.storage.get("pocketPeople.state");
+			this.load(data || defaultData);
 		},
 		save: function() {
-			var data;
-			data = {
-				locationPath: this.currentLocation.path,
-				character: {
-					id: this.currentCharacter
-				}
-			};
-			return data;
+			this.storage.set("pocketPeople.state", this.timeline.save());
 		},
 		resizeCanvas: function () {
 			this.width = window.innerWidth;
@@ -301,7 +324,8 @@ Todo: Good Ideas but not Primary:
 					autoPlay: true,
 					multiShot: false,
 					loops: 999,
-					volume: 80
+//					volume: 80
+					volume: 0
 				});
 			}
 
@@ -383,7 +407,11 @@ Todo: Good Ideas but not Primary:
 				imgPose;
 			if (ui.characterSet) ui.characterSet.remove();
 			var characterSet = ui.characterSet = p.set();
-			var character = self.world.characters.get(this.currentCharacter);
+			var character = this.timeline.current.character;
+			if (!character) {
+				console.error("character definition not found for :", this.timeline.current.character);
+				return false;
+			}
 			var pose = character.poses.get("standing");
 			imgPoseURL = this.urlMapper.image(pose.image, location.setId);
 			//console.log("showCharacter ", character, imgPoseURL);

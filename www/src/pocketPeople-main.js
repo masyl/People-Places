@@ -83,7 +83,7 @@ refatoring:
 		}
 	});
 
-	PocketPeople.Utils.Location = new JS.Class({
+	PocketPeople.Location = new JS.Class({
 		world: null,
 		path: "",
 		setId: "",

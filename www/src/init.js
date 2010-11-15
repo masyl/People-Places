@@ -8,9 +8,7 @@
 	$("body").one("click", function(){
 		player.start({
 			locationPath: "stadium/forest#",
-			character: {
-				id: "bob"
-			}
+			character: "bob"
 		});
 	});
 
