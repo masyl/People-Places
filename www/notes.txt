@@ -1,0 +1,26 @@
+
+
+TimeLeft = TimeBalance + (currentTime - timeBalanceTimestamp)
+
+PP
+	.Character
+		.timeBalance
+		.timeBalanceTimestamp
+		.currentRoute
+
+	.Route
+		.segments (collection)
+			.board
+			.x1
+			.y1
+			.target1
+			.x2
+			.y2
+			.target2
+		.currentSegment
+		.startTime
+
+	route, path, segments :
+		.calculateCost();
+		.calculateTime();
+		.validate();

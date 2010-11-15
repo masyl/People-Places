@@ -1,0 +1,137 @@
+{
+	"id": "stadium",
+	"title": "Stadium",
+	"seed": "stadium",
+	"objects": {
+		"gnome": {
+			"title": "Typical Garden gnome",
+			"image": "gnome.png"
+		}
+	},
+	"characters": {
+		"bob": {
+			"name": "Bob",
+			"fullname": "Robert M. Patterson",
+			"poses": {
+				"standing": {
+					"image": "bob.png"
+				}
+			}
+		}
+	},
+	"boards": {
+		"locker": {
+			"title": "Locker room",
+			"description": "Description goes here...",
+			"backgroundImage": "locker.jpg",
+			"soundtrack": "gym-locker.mp3",
+			"icon": null,
+			"scale": 0,
+			"marks": {
+				"default" : {
+					"isDefault": true,
+					"title": "Stand next to the garbage can",
+					"type": "character",
+					"x": 0.35,
+					"y": 0.94,
+					"z": 0.82
+				},
+				"bathroom" : {
+					"title": "Go to the bathroom",
+					"type": "destination",
+					"x": 0.6,
+					"y": 0.5,
+					"destination": "bathroom"
+				}
+			}
+		},
+		"bathroom": {
+			"title": "Bathroom of the locker room",
+			"description": "Description goes here...",
+			"backgroundImage": "bathroom.jpg",
+			"soundtrack": "public-bathroom.mp3",
+			"icon": null,
+			"scale": 0,
+			"marks": {
+				"default" : {
+					"isDefault": true,
+					"title": "Stand next to the sinks",
+					"type": "character",
+					"x": 0.7,
+					"y": 0.5
+				},
+				"toParkingLot" : {
+					"title": "Go to the parking lot",
+					"type": "destination",
+					"x": 0.45,
+					"y": 0.35,
+					"destination": "parkinglot"
+				},
+				"toLocker" : {
+					"title": "Go to the locker room",
+					"type": "destination",
+					"x": 0.35,
+					"y": 0.85,
+					"destination": "locker"
+				},
+				"washHands" : {
+					"title": "Wash your hands",
+					"type": "action",
+					"x": 0.64,
+					"y": 0.72,
+					"z": 0.6
+				}
+			}
+		},
+		"forest": {
+			"title": "Nice Forest",
+			"description": "Description goes here...",
+			"backgroundImage": "forest.jpg",
+			"soundtrack": "forest_birds.mp3",
+			"icon": null,
+			"scale": 0,
+			"marks": {
+				"default" : {
+					"isDefault": true,
+					"title": "Standing around",
+					"type": "character",
+					"x": 0.64,
+					"y": 0.72,
+					"z": 0.6
+				},
+				"locker" : {
+					"title": "Go to the locker room",
+					"type": "destination",
+					"x": 0.45,
+					"y": 0.35,
+					"destination": "locker"
+				}
+			}
+		},
+		"parkinglot": {
+			"title": "Parking Lot",
+			"description": "Description goes here...",
+			"backgroundImage": "parking-lot.jpg",
+			"soundtrack": "parking-garage.mp3",
+			"icon": null,
+			"scale": 0,
+			"marks": {
+				"default" : {
+					"isDefault": true,
+					"title": "Standing around",
+					"type": "character",
+					"x": 0.6,
+					"y": 0.8,
+					"z": 0.6
+				},
+				"toForest" : {
+					"title": "Go to the forest",
+					"type": "destination",
+					"x": 0.45,
+					"y": 0.35,
+					"destination": "forest"
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,98 @@
+
+Base Game Scenario
+
+	The user is asked to complete missions that require him to move his
+	character accross various interconnected locations, fetching and
+	delivering items, gathering clues, reaching checkpoints, etc.
+
+	As the user progress in his missions, the range of locations he can
+	travel expands location by location.
+
+	The user move from one location to another by tracing paths with his fingers
+	or mouse from point A to B to C to D, etc. At each steps, the route
+	spends accumulated time until the user reach "current time" and he then has
+	to wait for the trajectory to complete in real-time, or until more time is
+	accumulated.
+
+	The time needed for a route depends on the relative scale of each game board
+	on which the user traces hi path and how direct or sinous the paths are. Some
+	boards might includes constraints or incentives to make it challenging for the
+	user to make a direct and economic route.
+
+	For example, tracing through 12 local boards in a mall might require 20 minutes,
+	while tracing through 5 screen to travel from NYC to Texas will take 9 hours.
+
+	The speed at which a user does the tracing could also be taken in account when
+	calculating the cost of the route: Faster tracing could earn the user a cheaper
+	route, thus rewarding agility and memory skills aquired through practice.
+
+	As a user learns through geographic memory and muscle memory, he can trace
+	complete routes faster and faster, requiring the UI to be instanteneous.
+
+	Also, the user could gain items and power-ups to further optimize the time he
+	his granted every day.
+
+Time Management
+
+	Time is one of the main game currency and constraint in the game. Time allowance
+	is based on the real-life 24h clock, with a certain ammount which the user can
+	accumulate between game sessions.
+
+	... more to spec here....
+
+
+General Requirements
+	- Navigation between boards must be:
+		- Next to instanteneous.
+		- Touch friendly
+		- Fluid
+		- Game-like
+
+
+Notes:
+	- Maps and Places inherit from Board (As in game-board)
+	- While boards might feel hierarchical, they are not. They are simly linked.
+	- When diplaying the UI, each POI type will have a distinct icon
+	- Scenes should be HD with safe-area rules for scaling down to 1024x768 and for mark placements
+	- border exits are communicated visually with a jagged screen edge or a similare effect
+	- Boards are inspired by real-life locations, but they are not true real places with coordinates to be mapped on planet earth,
+	- Some board sets can be inspired by imaginary and/or invented places (hell, paradise, 6th dimension, john malchovich head, ant hole, never-never land)
+
+
+Board
+	- id
+	- title
+	- description
+	- marks (collection of Marks)
+	- imageBackground
+	- icon
+	- scale (for calculating trajectory length, object sizes)
+	- hasExitOnBorderTop
+	- hasExitOnBorderBottom
+	- hasExitOnBorderLeft
+	- hasExitOnBorderRight
+
+Marks
+	- id
+	- x, y, z
+	- type (destination, character, object)
+	- isDefault
+	- isDefaultIfFromBoard
+	- goToBoard (for exit/destination marks)
+	- destinationType (airport, building, house, park, etc...)
+
+Rules for Board Background Image
+	- Resolution (full HD)
+	- Safe area for flexible image ratios (croping and edge carving for border exits)
+	- Safe area for placing marks
+	- Safe area for fade-in/out UI elements (menus, status, stats, etc)
+
+
+
+IDEAS POSPONED LATER
+	- Object marks
+	- Character marks (with specific poses)
+	- Multiple layers for overlapping scene elements
+	- Unlocking POIs (with options for secret POIs, imageOn, imageOff, invisibleIfNotFound)
+	- Boards with multiple states depending on factors (time, game state, sensors)
+

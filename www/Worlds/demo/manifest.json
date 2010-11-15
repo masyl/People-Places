@@ -1,0 +1,7 @@
+{
+	"id": "demo",
+	"title": "Demo",
+	"seed": "demo",
+	"sets": ["stadium"],
+	"defaultStartPath": "stadium/locker#default"
+}
