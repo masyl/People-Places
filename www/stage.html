@@ -1,147 +1,20 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<head>
+		<meta content='text/html; charset=utf-8' http-equiv='content-type' />
 		<link rel="stylesheet" href="src/style.css"/>
 	</head>
 	<body>
-		<canvas id="stage" class="stage"></canvas>
-		<script src="libs/processing-js-0.9.7/processing-0.9.7.js"></script>
-		<script type="application/processing" id="PocketPeopleUI_Main">
-			Stage stage;
-
-			float pathX[] = new float[0];
-			float pathY[] = new float[0];
-			int pathCount = 0;
-
-			void setup() {
-				stage = new Stage();
-				//frameRate(5);
-				smooth();
-				noStroke();
-			}
-
-			void draw() {
-				background(0);
-				stage.display();
-				drawCheckpoints();
-			}
-
-			void resize(width, height) {
-				//console.log(height);
-				size(width, height);
-				stage.resize(width, height);
-			}
-			void addCheckpoint (x, y) {
-				pathX[pathCount] = x;
-				pathY[pathCount] = y;
-				pathCount = pathCount + 1;
-				console.log(pathX, pathY);
-			}
-			void drawCheckpoints () {
-				stroke(255);
-				if (pathCount > 1) {
-					for(int i=1; pathCount > i; i++) {
-						line(pathX[i-1], pathY[i-1], pathX[i], pathY[i]);
-					}
-					line(pathX[pathCount-1], pathY[pathCount-1], mouseX, mouseY);
-				}
-			}
-
-			void mousePressed() {
-				console.log(mouseX, mouseY);
-				addCheckpoint(mouseX, mouseY);
-			};
-
-			class Stage {
-				float xpos;
-				float ypos;
-				int stageWidth, stageHeight;
-				Item item;
-				PImage scene;
-
-				Stage() {
-					scene = loadImage("dreams/canyons/jardin-quetaine.jpg");
-					resize();
-					placeItems();
-				}
-
-				void placeItems() {
-					xpos = width / 2;
-					ypos = height / 2;
-					item = new Item();
-					item.update(0.5, 0.5, 0.3);
-				}
-
-				void resize() {
-				}
-
-				void drawScene() {
-					int sceneWidth;
-					int sceneHeight;
-					int sceneX;
-					int sceneY;
-					float sceneRelativeSize;
-					float stageRatio;
-					float sceneRatio;
-					// Note: Ratios should only be calculated on resize (but after image is done loading)
-					sceneRatio = scene.width / scene.height;
-					stageRatio = width / height;
-					if (sceneRatio > stageRatio) {
-						sceneRelativeSize = width / scene.width;
-						sceneWidth = width;
-						sceneHeight = scene.height * sceneRelativeSize;
-						sceneX = 0;
-						sceneY = (height - sceneHeight) / 2;
-						//console.log(sceneRelativeSize, sceneWidth, sceneHeight);
-					} else {
-						sceneRelativeSize = height / scene.height;
-						sceneHeight = height;
-						sceneWidth = scene.width * sceneRelativeSize;
-						sceneY = 0;
-						sceneX = (width - sceneWidth) / 2;
-						//console.log(sceneRelativeSize, sceneWidth, sceneHeight);
-					}
-					image(scene, sceneX, sceneY, sceneWidth, sceneHeight);
-//					console.log(sceneRatio, stageRatio, scene.width, scene.height);
-				}
-				void display() {
-					drawScene();
-					item.display();
-				}
-			}
-
-			class Item {
-
-				float x;
-				float y;
-				float z;
-				PImage img;
-
-				Item() {
-					img = loadImage("dreams/canyons/gnome.png");
-				}
-
-				void update(_x, _y, _z) {
-					x = _x;
-					y = _y;
-					z = _z;
-				}
-
-				void display() {
-					float ratio;
-					float posX;
-					float posY;
-					ratio = 0.1;
-					posX = width * x - (img.width * z / 2),
-					posY = height * y - (img.height * z / 2);
-//			console.log(posY, height, y, img.height, z);
-					image(img, posX, posY, img.width * z, img.height * z);
-					image(img, posX, posY, img.width * z, img.height * z);
-				}
-			}
-
-		</script>
-		<script src="src/pocketPeople-main.js"></script>
-		<script src="src/init.js"></script>
+		<div id="stage" class="stage"></div>
+		<div id="soundtrackPlayer"></div>
+		<div id="debug"></div>
+		<script language="JavaScript" type="text/javascript" src="libs/JS.Class/src/core.js"></script>
+		<script language="JavaScript" type="text/javascript" src="libs/JS.Class/src/stdlib.js"></script>
+		<script language="JavaScript" type="text/javascript" src="libs/jquery/jquery-1.4.3.min.js"></script>
+		<script language="JavaScript" type="text/javascript" src="libs/raphael/raphael.js"></script>
+		<script language="JavaScript" type="text/javascript" src="libs/soundmanager/script/soundmanager2.js"></script>
+		<script language="JavaScript" type="text/javascript" src="src/pocketPeople-main.js"></script>
+		<script language="JavaScript" type="text/javascript" src="src/pocketPeople-player.js"></script>
+		<script language="JavaScript" type="text/javascript" src="src/init.js"></script>
 	</body>
 </html>
