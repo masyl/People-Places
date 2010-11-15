@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="4991b046-94b6-47f2-a3ff-a963a838bfd3" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/src/style.css" afterPath="$PROJECT_DIR$/www/src/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/src/init.js" afterPath="$PROJECT_DIR$/www/src/init.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/src/pocketPeople-player.js" afterPath="$PROJECT_DIR$/www/src/pocketPeople-player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/src/pocketPeople-main.js" afterPath="$PROJECT_DIR$/www/src/pocketPeople-main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/stage.html" afterPath="$PROJECT_DIR$/www/stage.html" />
     </list>
     <ignored path="pocketgolem.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,7 +32,7 @@
       <file leaf-file-name="stage.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/stage.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="25" selection-start="1049" selection-end="1049" vertical-scroll-proportion="-10.523809">
+            <state line="15" column="9" selection-start="618" selection-end="618" vertical-scroll-proportion="-9.285714">
               <folding />
             </state>
           </provider>
@@ -41,7 +41,7 @@
       <file leaf-file-name="pocketPeople-main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/src/pocketPeople-main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="176" column="21" selection-start="4578" selection-end="4578" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -50,7 +50,16 @@
       <file leaf-file-name="pocketPeople-player.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/src/pocketPeople-player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="60" column="0" selection-start="1381" selection-end="1381" vertical-scroll-proportion="0.13914374">
+            <state line="6" column="0" selection-start="34" selection-end="108" vertical-scroll-proportion="0.11729323">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/src/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="37" column="18" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -85,11 +94,12 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/www/libs/jStore/demo/index.html" />
-        <option value="$PROJECT_DIR$/www/stage.html" />
         <option value="$PROJECT_DIR$/www/libs/jStorage/jStorage.js" />
         <option value="$PROJECT_DIR$/www/Sets/stadium/manifest.json" />
         <option value="$PROJECT_DIR$/www/src/pocketPeople-main.js" />
         <option value="$PROJECT_DIR$/www/src/init.js" />
+        <option value="$PROJECT_DIR$/www/src/style.css" />
+        <option value="$PROJECT_DIR$/www/stage.html" />
         <option value="$PROJECT_DIR$/www/src/pocketPeople-player.js" />
       </list>
     </option>
@@ -361,7 +371,7 @@
     <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added persistence of game data via HTML5 LocalStorage" />
+    <option name="LAST_COMMIT_MESSAGE" value="loading and starting is now automatic and asynchronous" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -375,6 +385,7 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="Added persistence of game data via HTML5 LocalStorage" />
+    <MESSAGE value="loading and starting is now automatic and asynchronous" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -394,13 +405,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/pocketPeople-main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/Sets/stadium/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="9" selection-start="310" selection-end="310" vertical-scroll-proportion="0.0">
@@ -415,9 +419,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/stage.html">
+    <entry file="file://$PROJECT_DIR$/www/src/pocketPeople-main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="25" selection-start="1049" selection-end="1049" vertical-scroll-proportion="-10.523809">
+        <state line="176" column="21" selection-start="4578" selection-end="4578" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
@@ -429,9 +433,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="18" selection-start="410" selection-end="410" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/stage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="9" selection-start="618" selection-end="618" vertical-scroll-proportion="-9.285714">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/src/pocketPeople-player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="0" selection-start="1381" selection-end="1381" vertical-scroll-proportion="0.13914374">
+        <state line="6" column="0" selection-start="34" selection-end="108" vertical-scroll-proportion="0.11729323">
           <folding />
         </state>
       </provider>

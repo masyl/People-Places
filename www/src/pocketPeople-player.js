@@ -2,6 +2,8 @@
 
 TODO: NEXT PRIORITIES:
 v0.1.1
+	+ added Meta tags for iOS devices
+	+ Tweaked UI and interactions for iOS
 	- Game Player UI
 		- Show Current Character with its icon
 		- Start New game with Character Selection
@@ -76,6 +78,11 @@ Todo: Scripting Scenarios/Actions:
 	-
 
  */
+ var IsiPhone = navigator.userAgent.indexOf("iPhone") != -1 ;
+ var IsiPod = navigator.userAgent.indexOf("iPod") != -1 ;
+ var IsiPad = navigator.userAgent.indexOf("iPad") != -1 ;
+
+ var IsiPhoneOS = IsiPhone || IsiPad || IsiPod ; 
 
 (function($, PP){
 
@@ -158,14 +165,14 @@ Todo: Scripting Scenarios/Actions:
 				locationPath: this.current.location.path,
 				character: this.current.character.id
 			};
-			console.info("Saving: ", data);
+			//console.info("Saving: ", data);
 			return data;
 		}
 	});
 
 	PP.Player = new JS.Class({
 		settings: {},
-		defaultStateData: null,
+		defaultState: null,
 		width: 960,
 		height: 540,
 		world: null,
@@ -180,6 +187,7 @@ Todo: Scripting Scenarios/Actions:
 		storage: null,
 		readyIndicators: null,
 		initialize: function(options) {
+			this.defaultState = options.defaultState;
 			$.extend(this.settings, options);
 			this.readyIndicators = {
 				"storage": false,
@@ -407,25 +415,32 @@ Todo: Scripting Scenarios/Actions:
 			location.board.marks.forEachValue(function(mark) {
 				//console.log("Placing mark", mark);
 				var iconURL, imgMark;
+				var OSSizeRatio = 1;
+				if (IsiPhoneOS) OSSizeRatio = 1.5;
 				if (mark.type === "destination") {
 					iconURL = "images/icon-arrow.png";
-					imgMark = p.image(iconURL, 960*mark.x-20, 540*mark.y-20, 40, 40);
+					imgMark = p.image(iconURL, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
 				} else if (mark.type === "character") {
 					iconURL = "images/icon-character.png";
-					imgMark = p.image(iconURL, 960*mark.x-20, 540*mark.y-40, 40, 40);
+					imgMark = p.image(iconURL, 960*mark.x-20*OSSizeRatio, 540*mark.y-40*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
 				} else {
 					iconURL = "images/icon-questionMark.png";
-					imgMark = p.image(iconURL, 960*mark.x-20, 540*mark.y-20, 40, 40);
+					imgMark = p.image(iconURL, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
 				}
 				imgMark.attr({
-					"cursor": "pointer",
-					"opacity": 0.5
+					"cursor": "pointer"
 				});
-				imgMark.mouseover(function(e){
-					this.animate({
-						"opacity" : 1
-					}, 200);
-				});
+				if (!IsiPhoneOS) {
+					imgMark.mouseover(function(e){
+						this.animate({
+							"opacity" : 1
+						}, 200);
+					});
+					imgMark.attr({
+						"cursor": "pointer",
+						"opacity": 0.5
+					});
+				}
 				imgMark.click(function(e){
 					var path = location.setId + "/" + mark.destination;
 					self.controller.run("goToLocation", {path: path});
@@ -462,8 +477,30 @@ Todo: Scripting Scenarios/Actions:
 			var x = 960 * mark.x - (width / 2);
 			var y = 540 * mark.y - height;
 			imgPose = p
-				.image(imgPoseURL, x, y, width, height);
+				.image(imgPoseURL, x, y, width, height)
+				.attr({
+					"cursor": "pointer"
+				});
 			characterSet.push(imgPose);
+			characterSet.click(function (){
+				console.log("yata!");
+			});
+
+			var start = function () {
+				// storing original coordinates
+				this.ox = this.attr("x");
+				this.oy = this.attr("y");
+				this.attr({opacity: .8});
+			},
+			move = function (dx, dy) {
+				// move will be called with dx and dy
+				this.attr({x: this.ox + dx, y: this.oy + dy});
+			},
+			up = function () {
+				// restoring state
+				this.attr({opacity: 1});
+			};
+			imgPose.drag(move, start, up);
 		}
 	});
 
