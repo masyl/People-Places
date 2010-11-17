@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="4991b046-94b6-47f2-a3ff-a963a838bfd3" name="Default" comment="">
+    <list default="true" readonly="true" id="4991b046-94b6-47f2-a3ff-a963a838bfd3" name="Default" comment="+ click on the boards background will trigger the highlight on/off&#10;">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/www/images/path-fadeOut.png" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/images/highlight.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/src/pocketPeople-player.js" afterPath="$PROJECT_DIR$/www/src/pocketPeople-player.js" />
     </list>
@@ -39,7 +41,7 @@
       <file leaf-file-name="pocketPeople-player.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/src/pocketPeople-player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="312" selection-end="380" vertical-scroll-proportion="0.21052632">
+            <state line="10" column="0" selection-start="332" selection-end="406" vertical-scroll-proportion="0.21052632">
               <folding />
             </state>
           </provider>
@@ -391,7 +393,7 @@
     <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="- Now showing the board icons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added missing images and assets" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -409,6 +411,8 @@
     <MESSAGE value="+ added Meta tags for iOS devices&#10;+ Tweaked UI and interactions for iOS&#10;" />
     <MESSAGE value="+ Unobstrucsive version of markers as a small color dot, and the bigger icon is used only on mouse hover.&#10;+ UI for highlighting markers before using them&#10;" />
     <MESSAGE value="- Now showing the board icons" />
+    <MESSAGE value="+ click on the boards background will trigger the highlight on/off&#10;" />
+    <MESSAGE value="Added missing images and assets" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -464,7 +468,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/src/pocketPeople-player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="312" selection-end="380" vertical-scroll-proportion="0.21052632">
+        <state line="10" column="0" selection-start="332" selection-end="406" vertical-scroll-proportion="0.21052632">
           <folding />
         </state>
       </provider>

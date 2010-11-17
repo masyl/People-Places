@@ -7,15 +7,15 @@ v0.1.1
 	+ Unobstrucsive version of markers as a small color dot, and the bigger icon is used only on mouse hover.
 	+ UI for highlighting markers before using them
 	+ click on the boards background will trigger the highlight on/off
-	- Only show detailed UI when in highligh mode (location, title bar, etc)
-	- Ability to move to a specific character mark
+	+ Only show detailed UI when in highligh mode (location, title bar, etc)
+	- UI: Show the marks title when hovering
 	- Bug: draw Characters under mark... otherwise not clickable... and draw arrow under character
-	- Bug: old actionArrow accumulate in the canvas background...
 	- Bug: When a character occupies a mark, the mark icon doesnt disapear
 
 v0.1.2
-	- UI: Show the marks title when hovering
+	- Ability to move to a specific character mark
 	- UI: Arrow icons to point thoward more directions and a way to specifiy which orientation to display
+	- Refactor: Put all static images into config... dont hardcode
 
 v0.1.3
 	- Game Player UI
@@ -283,13 +283,8 @@ Todo: Scripting Scenarios/Actions:
 				b = ui.board,
 				board,
 				imgBackground,
-				imgHighlight,
 				bgSet,
-				title,
-				titleBar,
-				boardObj = location.board,
-				icon,
-				iconImage;
+				boardObj = location.board;
 
 			if (boardObj.soundtrack) {
 				soundManager.destroySound("soundtrack");
@@ -309,7 +304,6 @@ Todo: Scripting Scenarios/Actions:
 			ui.board = ui.board || p.set();
 			if (ui.background) {
 				ui.background.remove();
-				ui.highlight.remove();
 			}
 			bgSet = p.set();
 			//todo: use width/height from player object
@@ -323,54 +317,22 @@ Todo: Scripting Scenarios/Actions:
 					"opacity": 0
 				});
 			ui.background = imgBackground;
-			ui.highlight = imgHighlight;
 
 			// Add an empty mouseover for iOS
-			imgBackground.mouseover(function(){
+			imgBackground.mouseover(function () {
 			});
 
-			imgBackground.click(function(){
-				ui.highlight.animate({
-					opacity: 1
-				}, 200).show();
+			imgBackground.click(function () {
+				ui.statusBar.show();
+				ui.highlight.show();
 			});
-			imgHighlight.click(function(){
-				ui.highlight.animate({
-					opacity: 0
-				}, 200,function() {
-					this.hide();
-				});
-			});
-
-			titleBar = p
-				.rect(0, 0, 960, 60, 0)
-				.attr({
-					fill: "#000",
-					opacity: 0.7
-				});
-			icon = p
-				.image(this.urlMapper.image(boardObj.icon, location.setId), 8, 8, 44, 44);
-			title = p
-				.text(60, 22, location.title())
-				.attr({
-					"fill": "#fff",
-					"font-size": "20px",
-					"text-anchor": "start"
-				});
-			subTitle = p
-				.text(60, 42, boardObj.description)
-				.attr({
-					"fill": "#bbb",
-					"font-size": "14px",
-					"text-anchor": "start"
-				});
 
 			bgSet.push(imgBackground);
 			bgSet.push(imgHighlight);
-			bgSet.push(title);
-			bgSet.push(titleBar);
 
 			this.showMarks(location);
+			this.initStatusBar(boardObj, location);
+			this.initHighlight();
 			this.initActionArrow(); // must be after "showMarks"
 		},
 		showMarks: function (location) {
@@ -410,10 +372,8 @@ Todo: Scripting Scenarios/Actions:
 					this.attr({
 						src: iconURL
 					});
+					ui.statusBar.show();
 					ui.actionArrow.place(player.characterMark, mark, iconOffsetX, iconOffsetY, 0, -200).show();
-				});
-				imgMark.attr({
-					"cursor": "pointer"
 				});
 				imgMark.mouseout(function(e){
 					this.attr({
@@ -421,6 +381,12 @@ Todo: Scripting Scenarios/Actions:
 					});
 					self.hoveredMark = null;
 					ui.actionArrow.hide();
+					if (!ui.highlight.visible) {
+						ui.statusBar.hide();
+					}
+				});
+				imgMark.attr({
+					"cursor": "pointer"
 				});
 				imgMark.click(function(e){
 					var path = location.setId + "/" + mark.destination;
@@ -428,6 +394,135 @@ Todo: Scripting Scenarios/Actions:
 				});
 				marks.push(imgMark);
 			});
+		},
+		initStatusBar: function (board, location) {
+			var self = this,
+				ui = this.ui,
+				p = ui.paper,
+				b = ui.board;
+			StatusBar = new JS.Class({
+				ui: null,
+				initialize: function () {
+					this.ui = {
+						set: p.set()
+					};
+					var set = this.ui.set,
+						background,
+						icon,
+						title,
+						subTitle;
+
+					background = p
+						.image("images/statusBar-Background.png", 0, 0, 960, 111, 0);
+					icon = p
+						.image(self.urlMapper.image(board.icon, location.setId), 8, 8, 44, 44);
+					title = p
+						.text(60, 22, location.title())
+						.attr({
+							"fill": "#fff",
+							"font-size": "20px",
+							"text-anchor": "start"
+						});
+					description = p
+						.text(60, 42, board.description)
+						.attr({
+							"fill": "#bbb",
+							"font-size": "14px",
+							"text-anchor": "start"
+						});
+
+					set.push(background);
+					set.push(icon);
+					set.push(title);
+					set.push(description);
+
+					set.hide().toFront();
+
+					return this;
+				},
+				show: function () {
+					if (!this.visible) {
+						this.ui.set
+							.attr({
+								opacity: 0
+							})
+							.show()
+							.animate({
+								opacity: 1
+							}, 300);
+						this.visible = true;
+					}
+					return this;
+				},
+				hide: function () {
+					this.ui.set.hide();
+					this.visible = false;
+					return this;
+				},
+				destroy: function () {
+					this.ui.set.remove();
+				}
+			});
+			if (ui.statusBar) {
+				ui.statusBar.destroy();
+				ui.statusBar = null;
+			}
+			self.ui.statusBar = new StatusBar({});
+		},
+		initHighlight: function (board, location) {
+			var player = this,
+				ui = this.ui,
+				p = ui.paper,
+				b = ui.board;
+			Highlight = new JS.Class({
+				ui: null,
+				initialize: function () {
+					this.ui = {
+						set: p.set()
+					};
+					var self = this,
+						set = this.ui.set,
+						background;
+					background = p
+						.image("images/highlight.png", 0, 0, 960, 540, 0)
+						.hide();
+					background.click(function () {
+						self.hide();
+						player.ui.statusBar.hide();
+					});
+					set.hide();
+					background.insertAfter(player.ui.background);
+					set.push(background);
+					return this;
+				},
+				show: function () {
+					if (!this.visible) {
+						this.ui.set
+							.attr({
+								opacity: 0
+							})
+							.show()
+							.animate({
+								opacity: 1
+							}, 300);
+						this.visible = true;
+					}
+					return this;
+				},
+				hide: function () {
+					this.ui.set.hide();
+					this.visible = false;
+					return this;
+				},
+				destroy: function () {
+					this.ui.set.remove();
+				}
+			});
+			if (ui.highlight) {
+				ui.highlight.destroy();
+				ui.highlight = null;
+			}
+			player.ui.highlight = new Highlight({});
 		},
 		/**
 		 * placeActionArrow
