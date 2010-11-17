@@ -1,6 +1,7 @@
 /*
 
-TODO: NEXT PRIORITIES:
+PocketPeople Roadmap
+
 v0.1.1
 	+ added Meta tags for iOS devices
 	+ Tweaked UI and interactions for iOS
@@ -8,6 +9,7 @@ v0.1.1
 	+ UI for highlighting markers before using them
 	+ click on the boards background will trigger the highlight on/off
 	+ Only show detailed UI when in highligh mode (location, title bar, etc)
+	- Mute button
 	- UI: Show the marks title when hovering
 	- Bug: draw Characters under mark... otherwise not clickable... and draw arrow under character
 	- Bug: When a character occupies a mark, the mark icon doesnt disapear
@@ -311,12 +313,6 @@ Todo: Scripting Scenarios/Actions:
 			imgBackground = p
 				.image(this.urlMapper.image(boardObj.backgroundImage, location.setId), 0, 0, 960, 540)
 				.toFront();
-			imgHighlight = p
-				.image("./images/path-fadeOut.png", 0, 0, 960, 540)
-				.hide()
-				.attr({
-					"opacity": 0
-				});
 			ui.background = imgBackground;
 
 			// Add an empty mouseover for iOS
@@ -329,7 +325,6 @@ Todo: Scripting Scenarios/Actions:
 			});
 
 			bgSet.push(imgBackground);
-			bgSet.push(imgHighlight);
 
 			this.showMarks(location);
 			this.initStatusBar(boardObj, location);
