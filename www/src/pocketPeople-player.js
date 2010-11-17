@@ -11,6 +11,7 @@ v0.1.1
 	- UI: Show the marks title when hovering
 	- Bug: draw Characters under mark... otherwise not clickable... and draw arrow under character
 	- Bug: When a character occupies a mark, the mark icon doesnt disapear
+	- Add mock console
 
 v0.1.2
 	- Ability to move to a specific character mark
@@ -349,7 +350,7 @@ Todo: Scripting Scenarios/Actions:
 				var OSSizeRatio = 1,
 					iconOffsetX = 0,
 					iconOffsetY = 0;
-				if (IsiPhoneOS) OSSizeRatio = 1.5;
+				if (IsiPhone || IsiPod) OSSizeRatio = 1.5;
 				if (mark.type === "destination") {
 					iconURL = "images/icon-arrow.png";
 					iconURLSmall = "images/icon-arrow-dot.png";
