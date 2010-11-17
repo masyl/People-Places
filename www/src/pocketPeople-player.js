@@ -7,7 +7,7 @@ v0.1.1
 	+ Unobstrucsive version of markers as a small color dot, and the bigger icon is used only on mouse hover.
 	+ UI for highlighting markers before using them
 	- Ability to move to a specific character mark
-	- click on the boards background will trigger the highlight on/off
+	+ click on the boards background will trigger the highlight on/off
 	- Only show detailed UI when in highligh mode
 	- UI: Show the marks title when hovering
 	- UI: Arrow icons to point thoward more directions and a way to specifiy which orientation to display
@@ -327,6 +327,19 @@ Todo: Scripting Scenarios/Actions:
 			imgBackground.mouseover(function(){
 			});
 
+			imgBackground.click(function(){
+				ui.highlight.animate({
+					opacity: 1
+				}, 200).show();
+			});
+			imgHighlight.click(function(){
+				ui.highlight.animate({
+					opacity: 0
+				}, 200,function() {
+					this.hide();
+				});
+			});
+
 			titleBar = p
 				.rect(0, 0, 960, 60, 0)
 				.attr({
@@ -464,20 +477,10 @@ Todo: Scripting Scenarios/Actions:
 					return this;
 				},
 				show: function () {
-					/*
-					ui.highlight.animate({
-						opacity: 1
-					}, 200).show();
-					*/
 					this.ui.set.show();
 					return this;
 				},
 				hide: function () {
-					/*
-					ui.highlight.animate({
-						opacity: 0
-					}, 200).hide();
-					*/
 					this.ui.set.hide();
 					return this;
 				},
