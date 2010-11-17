@@ -285,7 +285,9 @@ Todo: Scripting Scenarios/Actions:
 				bgSet,
 				title,
 				titleBar,
-				boardObj = location.board;
+				boardObj = location.board,
+				icon,
+				iconImage;
 
 			if (boardObj.soundtrack) {
 				soundManager.destroySound("soundtrack");
@@ -326,16 +328,25 @@ Todo: Scripting Scenarios/Actions:
 			});
 
 			titleBar = p
-				.rect(20, 20, 330, 40, 10)
+				.rect(0, 0, 960, 60, 0)
 				.attr({
 					fill: "#000",
-					opacity: 0.5
+					opacity: 0.7
 				});
+			icon = p
+				.image(this.urlMapper.image(boardObj.icon, location.setId), 8, 8, 44, 44);
 			title = p
-				.text(35, 40, location.title())
+				.text(60, 22, location.title())
 				.attr({
 					"fill": "#fff",
 					"font-size": "20px",
+					"text-anchor": "start"
+				});
+			subTitle = p
+				.text(60, 42, boardObj.description)
+				.attr({
+					"fill": "#bbb",
+					"font-size": "14px",
 					"text-anchor": "start"
 				});
 

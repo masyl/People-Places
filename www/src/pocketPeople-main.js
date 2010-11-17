@@ -169,6 +169,8 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		settings: {},
 		id: null,
 		title: "",
+		description: "",
+		icon: "",
 		marks: null,
 		backgroundImage: "",
 		soundtrack: "",
@@ -177,7 +179,9 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			this.marks = new JS.Hash();
 			$.extend(this.settings, settings);
 			this.id = id;
-			this.title = settings.title;
+			this.title = settings.title || null;
+			this.description = settings.description || null;
+			this.icon = settings.icon || null;
 			this.backgroundImage = settings.backgroundImage;
 			this.soundtrack = settings.soundtrack;
 			$.each(this.settings.marks, function (markId) {
