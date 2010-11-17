@@ -17,6 +17,15 @@
 					"image": "bob.png"
 				}
 			}
+		},
+		"remi": {
+			"name": "Rémi",
+			"fullname": "Rémi Dion",
+			"poses": {
+				"standing": {
+					"image": "remi.png"
+				}
+			}
 		}
 	},
 	"boards": {
@@ -116,19 +125,51 @@
 			"icon": null,
 			"scale": 0,
 			"marks": {
-				"default" : {
+				"farBack" : {
 					"isDefault": true,
 					"title": "Standing around",
 					"type": "character",
 					"x": 0.6,
 					"y": 0.8,
-					"z": 0.6
+					"z": 0.8
+				},
+				"default" : {
+					"title": "Far back",
+					"type": "character",
+					"x": 0.23,
+					"y": 0.5,
+					"z": 0.3
+				},
+				"toForest" : {
+					"title": "Go to the Nurun",
+					"type": "destination",
+					"x": 0.45,
+					"y": 0.35,
+					"destination": "nurun-flasheux"
+				}
+			}
+		},
+		"nurun-flasheux": {
+			"title": "Cubicule des flasheux",
+			"description": "Description goes here...",
+			"backgroundImage": "nurun-flasheux.jpg",
+			"soundtrack": "parking-garage.mp3",
+			"icon": null,
+			"scale": 0,
+			"marks": {
+				"default" : {
+					"isDefault": true,
+					"title": "Standing around",
+					"type": "character",
+					"x": 0.66,
+					"y": 1.1,
+					"z": 1.4
 				},
 				"toForest" : {
 					"title": "Go to the forest",
 					"type": "destination",
-					"x": 0.45,
-					"y": 0.35,
+					"x": 0.9,
+					"y": 0.55,
 					"destination": "forest"
 				}
 			}

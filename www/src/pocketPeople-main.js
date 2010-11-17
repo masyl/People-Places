@@ -1,13 +1,22 @@
+
+//todo: refactor
+function BlockMove(event) {
+	event.preventDefault() ;
+}
+//todo: see if Modernizr can do this instead
+IsiPhone = navigator.userAgent.indexOf("iPhone") != -1;
+IsiPod = navigator.userAgent.indexOf("iPod") != -1;
+IsiPad = navigator.userAgent.indexOf("iPad") != -1;
+IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
+
 (function($){
 
+	var PP = {};
+	this.PocketPeople = PP;
 
+	var utils = PP.Utils = {};
 
-	var PocketPeople = {};
-	this.PocketPeople = PocketPeople;
-
-	var utils = PocketPeople.Utils = {};
-
-	PocketPeople.Observer = new JS.Class({
+	PP.Observer = new JS.Class({
 		// the topic/subscription hash
 		cache: null,
 		initialize: function () {
@@ -72,7 +81,7 @@
 		}
 	});
 
-	PocketPeople.Location = new JS.Class({
+	PP.Location = new JS.Class({
 		world: null,
 		path: "",
 		setId: "",
@@ -107,7 +116,7 @@
 		}
 	});
 
-	PocketPeople.World = new JS.Class({
+	PP.World = new JS.Class({
 		settings: {},
 		id: null,
 		title: "",
@@ -126,7 +135,7 @@
 		}
 	});
 
-	PocketPeople.Set = new JS.Class({
+	PP.Set = new JS.Class({
 		settings: {},
 		id: null,
 		title: "",
@@ -144,19 +153,19 @@
 			this.title = settings.title;
 			this.seed = settings.seed;
 			$.each(this.settings.boards, function (id) {
-				var board = new PocketPeople.Board(id, this);
+				var board = new PP.Board(id, this);
 				self.boards.store(board.id, board);
 				self.marks.update(board.marks);
 
 			});
 			$.each(this.settings.characters, function (id) {
-				var character = new PocketPeople.Character(id, this);
+				var character = new PP.Character(id, this);
 				self.characters.store(character.id, character);
 			});
 		}
 	});
 
-	PocketPeople.Board = new JS.Class({
+	PP.Board = new JS.Class({
 		settings: {},
 		id: null,
 		title: "",
@@ -172,14 +181,14 @@
 			this.backgroundImage = settings.backgroundImage;
 			this.soundtrack = settings.soundtrack;
 			$.each(this.settings.marks, function (markId) {
-				var mark = new PocketPeople.Mark(markId, this);
+				var mark = new PP.Mark(markId, this);
 				self.marks.store(markId, mark);
 				//console.log(self.marks.size, id, markId, mark, self.marks);
 			});
 		}
 	});
 
-	PocketPeople.Mark = new JS.Class({
+	PP.Mark = new JS.Class({
 		settings: {},
 		id: null,
 		title: "",
@@ -200,7 +209,7 @@
 		}
 	});
 
-	PocketPeople.Object = new JS.Class({
+	PP.Object = new JS.Class({
 		settings: {},
 		id: null,
 		title: "",
@@ -212,7 +221,7 @@
 	});
 
 
-	PocketPeople.Character = new JS.Class({
+	PP.Character = new JS.Class({
 		settings: {},
 		id: null,
 		name: "",
@@ -226,13 +235,13 @@
 			this.name = settings.name;
 			this.fullname = settings.fullname;
 			$.each(this.settings.poses, function (poseId) {
-				var pose = new PocketPeople.Pose(poseId, this);
+				var pose = new PP.Pose(poseId, this);
 				self.poses.store(poseId, pose);
 			});
 		}
 	});
 
-	PocketPeople.Pose = new JS.Class({
+	PP.Pose = new JS.Class({
 		settings: {},
 		id: null,
 		image: "",
@@ -240,6 +249,88 @@
 			$.extend(this.settings, settings);
 			this.id = id;
 			this.image = settings.image;
+		}
+	});
+
+	/**
+	 * The Player is responsible for running games classes/logic
+	 * and ui in a specific context. And loading resources accoridng to
+	 * the nature of the player. Different players might load
+	 * the same game logic in a different way (local/ajax/etc)
+	 */
+
+	PP.Controller = new JS.Class({
+		world: null,
+		timeline: null,
+		commands: null,
+		observer: null,
+		initialize: function (_world, _timeline) {
+			var controller,
+				world,
+				timeline,
+				commands,
+				observer;
+
+			this.controller = controller = this;
+			this.world = world = _world;
+			this.timeline = timeline = _timeline;
+			this.commands = commands = {};
+			this.observer = observer = new PP.Observer();
+
+			commands.goToLocation = function(args) {
+				var location;
+				location = new PP.Location(args.path, world);
+				timeline.current.location = location;
+				return {
+					location: location
+				}
+			};
+			//console.log("New controller created", this.world, this.timeline);
+		},
+		run: function (commandId, args) {
+			var command,
+				value;
+			command = this.commands[commandId];
+			if (command) {
+				value = command(args) || {};
+				this.controller.observer.publish("goToLocation", [value]);
+				this.controller.observer.publish("run", [commandId, args]);
+			}
+			return this;
+		}
+	});
+
+	/**
+	 * The Timeline is the current state of the game and
+	 * the log of transaction that have created this state
+	 */
+	PP.Timeline = new JS.Class({
+		current: null, // The latest game state
+		history: null, // The transaction history
+		world: null,
+		initialize: function (world) {
+			this.world = world,
+			this.current = {
+				time: new Date(),
+				character: "",
+				location: null
+			};
+			return this;
+		},
+		load: function (data) {
+			console.info("Loading: ", data);
+			this.current.location = new PP.Location(data.locationPath, this.world);
+			this.current.character = this.world.characters.get(data.character);
+			return this;
+		},
+		save: function () {
+			var data;
+			data = {
+				locationPath: this.current.location.path,
+				character: this.current.character.id
+			};
+			//console.info("Saving: ", data);
+			return data;
 		}
 	});
 

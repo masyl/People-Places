@@ -4,6 +4,18 @@ TODO: NEXT PRIORITIES:
 v0.1.1
 	+ added Meta tags for iOS devices
 	+ Tweaked UI and interactions for iOS
+	+ Unobstrucsive version of markers as a small color dot, and the bigger icon is used only on mouse hover.
+	+ UI for highlighting markers before using them
+	- Ability to move to a specific character mark
+	- click on the boards background will trigger the highlight on/off
+	- Only show detailed UI when in highligh mode
+	- UI: Show the marks title when hovering
+	- UI: Arrow icons to point thoward more directions and a way to specifiy which orientation to display
+	- Bug: draw Characters under mark... otherwise not clickable... and draw arrow under character
+	- Bug: old actionArrow accumulate in the canvas background...
+	- Bug: When a character occupies a mark, the mark icon doesnt disapear
+
+v0.1.2
 	- Game Player UI
 		- Show Current Character with its icon
 		- Start New game with Character Selection
@@ -13,26 +25,19 @@ v0.1.1
 		- High res icons characters
 		- High res icons for boards
 
-v0.1.2
-	- Bug: When a character occupies a mark, the mark icon doesnt disapear
-
 
 v0.1.3
-	- Support for Aerial or Satelite boards
-	- Boards for the world and major regions
-
-v0.1.4
-	- Support for "First Person" boards with sample (sink counter in bathroom, with soap)
-
-v0.1.5
-
-v0.2.0
 	- Game Events Scripting Engine
 	- Objects and Inventory
 	- Popup for gratifications (objects, etc)
 
 v0.3.0
 	- Time management and movement cost calculation
+
+v0.2.0
+	- Support for Aerial or Satelite boards
+	- Boards for the world and major regions
+	- Support for "First Person" boards with sample (sink counter in bathroom, with soap)
 
 v0.4.0
 	- Transaction log
@@ -43,8 +48,6 @@ v0.5.0
 	- NPCs and Dialogs
 		- Darken/HIghligh when clicking on the board background or when having dialogs
 			(this also shows more UI.. character, mark titles, board title, stats, time...)
-	- Game UI: Show the marks title when hovering
-	- Game UI: Arrow icons to point thoward more directions and a way to specifiy which orientation to display
 
 v0.6.0
 	- Missions/Objectives/Achievements
@@ -78,97 +81,12 @@ Todo: Scripting Scenarios/Actions:
 	-
 
  */
- var IsiPhone = navigator.userAgent.indexOf("iPhone") != -1 ;
- var IsiPod = navigator.userAgent.indexOf("iPod") != -1 ;
- var IsiPad = navigator.userAgent.indexOf("iPad") != -1 ;
-
- var IsiPhoneOS = IsiPhone || IsiPad || IsiPod ; 
 
 (function($, PP){
 
 	var Utils = PP.Utils;
 
-	/**
-	 * The Player is responsible for running games classes/logic
-	 * and ui in a specific context. And loading resources accoridng to
-	 * the nature of the player. Different players might load
-	 * the same game logic in a different way (local/ajax/etc)
-	 */
 
-	PP.Controller = new JS.Class({
-		world: null,
-		timeline: null,
-		commands: null,
-		observer: null,
-		initialize: function (_world, _timeline) {
-			var controller,
-				world,
-				timeline,
-				commands,
-				observer;
-
-			this.controller = controller = this;
-			this.world = world = _world;
-			this.timeline = timeline = _timeline;
-			this.commands = commands = {};
-			this.observer = observer = new PocketPeople.Observer();
-
-			commands.goToLocation = function(args) {
-				var location;
-				location = new PP.Location(args.path, world);
-				timeline.current.location = location;
-				return {
-					location: location
-				}
-			};
-			//console.log("New controller created", this.world, this.timeline);
-		},
-		run: function (commandId, args) {
-			var command,
-				value;
-			command = this.commands[commandId];
-			if (command) {
-				value = command(args) || {};
-				this.controller.observer.publish("goToLocation", [value]);
-				this.controller.observer.publish("run", [commandId, args]);
-			}
-			return this;
-		}
-	});
-
-	/**
-	 * The Timeline is the current state of the game and
-	 * the log of transaction that have created this state
-	 */
-	PP.Timeline = new JS.Class({
-		current: null, // The latest game state
-		history: null, // The transaction history
-		world: null,
-		initialize: function (world) {
-			this.world = world,
-			this.current = {
-				time: new Date(),
-				character: "",
-				location: null
-			};
-			return this;
-		},
-		load: function (data) {
-			console.info("Loading: ", data);
-			this.current.location = new PP.Location(data.locationPath, this.world);
-			this.current.character = this.world.characters.get(data.character);
-			return this;
-		},
-		save: function () {
-			var data;
-			data = {
-				locationPath: this.current.location.path,
-				character: this.current.character.id
-			};
-			//console.info("Saving: ", data);
-			return data;
-		}
-	});
 
 	PP.Player = new JS.Class({
 		settings: {},
@@ -186,6 +104,8 @@ Todo: Scripting Scenarios/Actions:
 		timeline: null,
 		storage: null,
 		readyIndicators: null,
+		hoveredMark: null,
+		characterMark: null,
 		initialize: function(options) {
 			this.defaultState = options.defaultState;
 			$.extend(this.settings, options);
@@ -282,7 +202,7 @@ Todo: Scripting Scenarios/Actions:
 				self = this;
 
 			//todo refactor: stage size
-				this.ui.paper = Raphael("stage", 960, 540);
+				this.ui.paper = Raphael("stage", player.width, player.height);
 				this.resizeCanvas();
 
 			this.timeline = new PP.Timeline(this.world);
@@ -314,6 +234,8 @@ Todo: Scripting Scenarios/Actions:
 			this.width = window.innerWidth;
 			this.height = window.innerHeight;
 			this.ui.paper.setSize(this.width, this.height);
+			/* dont hardcode selector here */
+			this.ui.offsetLeft = $("#stage")[0].offsetLeft;
 		},
 		loadWorld: function (id) {
 			//console.log("loadWorld: ", url);
@@ -353,11 +275,13 @@ Todo: Scripting Scenarios/Actions:
 			});
 		},
 		showBoard: function (location) {
-			var ui = this.ui,
+			var player = this,
+				ui = this.ui,
 				p = ui.paper,
 				b = ui.board,
 				board,
 				imgBackground,
+				imgHighlight,
 				bgSet,
 				title,
 				titleBar,
@@ -379,11 +303,27 @@ Todo: Scripting Scenarios/Actions:
 
 			// todo: set size dynamically
 			ui.board = ui.board || p.set();
-			if (ui.background) ui.background.remove();
+			if (ui.background) {
+				ui.background.remove();
+				ui.highlight.remove();
+			}
 			bgSet = p.set();
+			//todo: use width/height from player object
 			imgBackground = p
 				.image(this.urlMapper.image(boardObj.backgroundImage, location.setId), 0, 0, 960, 540)
 				.toFront();
+			imgHighlight = p
+				.image("./images/path-fadeOut.png", 0, 0, 960, 540)
+				.hide()
+				.attr({
+					"opacity": 0
+				});
+			ui.background = imgBackground;
+			ui.highlight = imgHighlight;
+
+			// Add an empty mouseover for iOS
+			imgBackground.mouseover(function(){
+			});
 
 			titleBar = p
 				.rect(20, 20, 330, 40, 10)
@@ -400,9 +340,12 @@ Todo: Scripting Scenarios/Actions:
 				});
 
 			bgSet.push(imgBackground);
+			bgSet.push(imgHighlight);
 			bgSet.push(title);
 			bgSet.push(titleBar);
+
 			this.showMarks(location);
+			this.initActionArrow(); // must be after "showMarks"
 		},
 		showMarks: function (location) {
 			var self = this,
@@ -414,44 +357,151 @@ Todo: Scripting Scenarios/Actions:
 			//console.log(location.board, location.board.marks);
 			location.board.marks.forEachValue(function(mark) {
 				//console.log("Placing mark", mark);
-				var iconURL, imgMark;
-				var OSSizeRatio = 1;
+				var iconURL, iconURLSmall, imgMark;
+				var OSSizeRatio = 1,
+					iconOffsetX = 0,
+					iconOffsetY = 0;
 				if (IsiPhoneOS) OSSizeRatio = 1.5;
 				if (mark.type === "destination") {
 					iconURL = "images/icon-arrow.png";
-					imgMark = p.image(iconURL, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+					iconURLSmall = "images/icon-arrow-dot.png";
+					imgMark = p.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
 				} else if (mark.type === "character") {
 					iconURL = "images/icon-character.png";
-					imgMark = p.image(iconURL, 960*mark.x-20*OSSizeRatio, 540*mark.y-40*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+					iconURLSmall = "images/icon-character-small.png";
+					iconOffsetY = -20;
+					imgMark = p.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-40*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
 				} else {
 					iconURL = "images/icon-questionMark.png";
-					imgMark = p.image(iconURL, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+					iconURLSmall = "images/icon-questionMark-dot.png";
+					imgMark = p.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
 				}
 				imgMark.attr({
 					"cursor": "pointer"
 				});
-				if (!IsiPhoneOS) {
-					imgMark.mouseover(function(e){
-						this.animate({
-							"opacity" : 1
-						}, 200);
+				imgMark.mouseover(function(e){
+					self.hoveredMark = mark;
+					this.attr({
+						src: iconURL
 					});
-					imgMark.attr({
-						"cursor": "pointer",
-						"opacity": 0.5
+					ui.actionArrow.place(player.characterMark, mark, iconOffsetX, iconOffsetY, 0, -200).show();
+				});
+				imgMark.attr({
+					"cursor": "pointer"
+				});
+				imgMark.mouseout(function(e){
+					this.attr({
+						src: iconURLSmall
 					});
-				}
+					self.hoveredMark = null;
+					ui.actionArrow.hide();
+				});
 				imgMark.click(function(e){
 					var path = location.setId + "/" + mark.destination;
 					self.controller.run("goToLocation", {path: path});
 				});
-				imgMark.mouseout(function(e){
-					this.animate({
-						"opacity" : 0.5
-					}, 400);
-				});
 				marks.push(imgMark);
 			});
+		},
+		/**
+		 * placeActionArrow
+		 * @param sourceMark The mark where the player is positionned
+		 * @param targetMark The mark on which the action is focused
+		 *
+		 * Calling this method with no params, will hide the arrow
+		 */
+		initActionArrow: function () {
+			var self = this,
+				ui = this.ui,
+				p = ui.paper,
+				b = ui.board;
+			ActionArrow = new JS.Class({
+				ui: null,
+				shadowOffset: 5,
+				initialize: function () {
+					this.ui = {
+						set: p.set()
+					};
+					var set = this.ui.set,
+						path = "M0 0L0 0",
+						arrow,
+						shadow,
+						tip;
+					arrow = this.ui.arrow = p.path(path).hide();
+					shadow = this.ui.shadow = p.path(path).hide();
+					tip = this.ui.tip = p.image("images/icon-selected.png", 0, 0, 100, 100).hide();
+					set.push(arrow);
+					set.push(shadow);
+					set.push(tip);
+
+					// storing original coordinates
+					arrow.insertBefore(ui.marks);
+					shadow.insertBefore(arrow);
+					tip.insertAfter(arrow);
+
+					arrow.attr({
+						stroke: "#fff",
+						"stroke-linecap": "round",
+						"stroke-width": 10
+					});
+					shadow.attr({
+						stroke: "#000",
+						"opacity": 0.4,
+						"stroke-linecap": "round",
+						"stroke-width": 12
+					});
+					return this;
+				},
+				show: function () {
+					/*
+					ui.highlight.animate({
+						opacity: 1
+					}, 200).show();
+					*/
+					this.ui.set.show();
+					return this;
+				},
+				hide: function () {
+					/*
+					ui.highlight.animate({
+						opacity: 0
+					}, 200).hide();
+					*/
+					this.ui.set.hide();
+					return this;
+				},
+				place: function (sourceMark, targetMark,  iconOffsetX, iconOffsetY, sourceOffsetX, sourceOffsetY) {
+					var x = 0,
+						y = 0,
+						x2 = 0,
+						y2 = 0,
+						path,
+						pathShadow;
+					if (sourceMark && targetMark) {
+						x = targetMark.x * 960 + (iconOffsetX);
+						y = targetMark.y * 540 + (iconOffsetY);
+						x2 = sourceMark.x * 960 + (sourceOffsetX * sourceMark.z);
+						y2 = sourceMark.y * 540 + (sourceOffsetY * sourceMark.z);
+						path = "M" + x + " " + y + "L" + x2 + " " + y2;
+						pathShadow = "M" + x + " " + (y+this.shadowOffset) + "L" + x2 + " " + (y2+this.shadowOffset);
+						this.ui.arrow.attr({ path: path });
+						this.ui.shadow.attr({ path: pathShadow });
+						this.ui.tip.attr({
+							x: x - 50,
+							y: y - 50
+						});
+					}
+					return this;
+				},
+				destroy: function () {
+					this.ui.set.remove();
+				}
+			});
+			if (ui.actionArrow) {
+				ui.actionArrow.destroy();
+				ui.actionArrow = null;
+			}
+			self.ui.actionArrow = new ActionArrow({});
 		},
 		showCharacter: function (location) {
 			var self = this,
@@ -471,6 +521,7 @@ Todo: Scripting Scenarios/Actions:
 			imgPoseURL = this.urlMapper.image(pose.image, location.setId);
 			//console.log("showCharacter ", character, imgPoseURL);
 			var mark = location.mark;
+			this.characterMark = mark;
 			//console.log(location, mark);
 			var height = 400 * mark.z;
 			var width = 200 * mark.z;
@@ -482,25 +533,6 @@ Todo: Scripting Scenarios/Actions:
 					"cursor": "pointer"
 				});
 			characterSet.push(imgPose);
-			characterSet.click(function (){
-				console.log("yata!");
-			});
-
-			var start = function () {
-				// storing original coordinates
-				this.ox = this.attr("x");
-				this.oy = this.attr("y");
-				this.attr({opacity: .8});
-			},
-			move = function (dx, dy) {
-				// move will be called with dx and dy
-				this.attr({x: this.ox + dx, y: this.oy + dy});
-			},
-			up = function () {
-				// restoring state
-				this.attr({opacity: 1});
-			};
-			imgPose.drag(move, start, up);
 		}
 	});
 
