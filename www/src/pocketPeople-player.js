@@ -6,16 +6,18 @@ v0.1.1
 	+ Tweaked UI and interactions for iOS
 	+ Unobstrucsive version of markers as a small color dot, and the bigger icon is used only on mouse hover.
 	+ UI for highlighting markers before using them
-	- Ability to move to a specific character mark
 	+ click on the boards background will trigger the highlight on/off
-	- Only show detailed UI when in highligh mode
-	- UI: Show the marks title when hovering
-	- UI: Arrow icons to point thoward more directions and a way to specifiy which orientation to display
+	- Only show detailed UI when in highligh mode (location, title bar, etc)
+	- Ability to move to a specific character mark
 	- Bug: draw Characters under mark... otherwise not clickable... and draw arrow under character
 	- Bug: old actionArrow accumulate in the canvas background...
 	- Bug: When a character occupies a mark, the mark icon doesnt disapear
 
 v0.1.2
+	- UI: Show the marks title when hovering
+	- UI: Arrow icons to point thoward more directions and a way to specifiy which orientation to display
+
+v0.1.3
 	- Game Player UI
 		- Show Current Character with its icon
 		- Start New game with Character Selection
@@ -26,7 +28,7 @@ v0.1.2
 		- High res icons for boards
 
 
-v0.1.3
+v0.1.4
 	- Game Events Scripting Engine
 	- Objects and Inventory
 	- Popup for gratifications (objects, etc)
