@@ -1,0 +1,6 @@
+
+RELEASE HISTORY:
+
+v0.1.0
+	- Game state persistence in HTML5
+	- Solve the ASYNC loading problem

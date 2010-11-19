@@ -121,7 +121,7 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		id: null,
 		title: "",
 		seed: "",
-		defaultStartPath: "",
+		defaultState: "",
 		sets: new JS.Hash(),
 		boards: new JS.Hash(),
 		marks: new JS.Hash(),
@@ -131,7 +131,7 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			this.id = settings.id;
 			this.title = settings.title;
 			this.seed = settings.seed;
-			this.defaultStartPath = settings.defaultStartPath;
+			this.defaultState = settings.defaultState;
 		}
 	});
 
@@ -323,8 +323,8 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		},
 		load: function (data) {
 			console.info("Loading: ", data);
-			this.current.location = new PP.Location(data.locationPath, this.world);
-			this.current.character = this.world.characters.get(data.character);
+			if (data.locationPath) this.current.location = new PP.Location(data.locationPath, this.world);
+			if (data.character) this.current.character = this.world.characters.get(data.character);
 			return this;
 		},
 		save: function () {

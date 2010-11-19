@@ -1,0 +1,88 @@
+/*
+
+NOW DOING:
+	FINISH REFACTORING ALL CLASSES
+
+P&P ROADMAP
+
+v0.1.1
+	+ added Meta tags for iOS devices
+	+ Tweaked UI and interactions for iOS
+	+ Unobstrucsive version of markers as a small color dot, and the bigger icon is used only on mouse hover.
+	+ UI for highlighting markers before using them
+	+ click on the boards background will trigger the highlight on/off
+	+ Only show detailed UI when in highligh mode (location, title bar, etc)
+	+ View system for showing in-game navigation
+	+ New welcome screen with logo
+	+ New options screen
+	+ New pause screen
+	+ Mute button
+	- UI: Show the marks title/action when hovering
+
+v0.1.2
+	- Ability to move to a specific character mark
+	- UI: Arrow icons to point thoward more directions and a way to specifiy which orientation to display
+	- Refactor: Put all static images into config... dont hardcode
+	- Refactor: The character should be an class object
+		- Bug: Characters: When a character occupies a mark, the mark icon doesnt disapear
+		- Bug: Characters: Draw Characters under mark... otherwise not clickable... and draw arrow under character
+
+v0.1.3
+	- Game Player UI
+		- Show Current Character with its icon
+		- Start New game with Character Selection
+		- Exit/Quit
+		- button to mute all soundes
+	- Continue game (game list showing basic state)
+		- High res icons characters
+		- High res icons for boards
+
+
+v0.1.4
+	- Game Events Scripting Engine
+	- Objects and Inventory
+	- Popup for gratifications (objects, etc)
+
+v0.3.0
+	- Time management and movement cost calculation
+
+v0.2.0
+	- Rename all code/documentation to P&P instead of PocketPeople
+	- Support for Aerial or Satelite boards
+	- Boards for the world and major regions
+	- Support for "First Person" boards with sample (sink counter in bathroom, with soap)
+
+v0.4.0
+	- Transaction log
+	- Transaction Scheduler
+	- Navigation history (with player UI)
+
+v0.5.0
+	- NPCs and Dialogs
+		- Darken/HIghligh when clicking on the board background or when having dialogs
+			(this also shows more UI.. character, mark titles, board title, stats, time...)
+
+v0.6.0
+	- Missions/Objectives/Achievements
+
+v0.7.0
+	- ui: board: soundtrack: volume button (like on video plyers
+
+v0.8.0
+	World/Sets Editor
+	Game Server (for persisting custom levels)
+
+v0.9.0
+
+Todo: Scripting Scenarios/Actions:
+	- Play a sound
+	- Obtain/Spend an item
+	- Gain knowledge of something
+	- Move time forward
+	- Set/Increment/Decrement game state variable
+	- Change the boards background image
+	- Change the boards soundtrack
+	- Gain access to a new mark on a board
+	-
+
+ */

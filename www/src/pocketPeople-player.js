@@ -1,91 +1,3 @@
-/*
-
-PocketPeople Roadmap
-
-v0.1.1
-	+ added Meta tags for iOS devices
-	+ Tweaked UI and interactions for iOS
-	+ Unobstrucsive version of markers as a small color dot, and the bigger icon is used only on mouse hover.
-	+ UI for highlighting markers before using them
-	+ click on the boards background will trigger the highlight on/off
-	+ Only show detailed UI when in highligh mode (location, title bar, etc)
-	- Mute button
-	- UI: Show the marks title when hovering
-	- Bug: draw Characters under mark... otherwise not clickable... and draw arrow under character
-	- Bug: When a character occupies a mark, the mark icon doesnt disapear
-	- Add mock console
-
-v0.1.2
-	- Ability to move to a specific character mark
-	- UI: Arrow icons to point thoward more directions and a way to specifiy which orientation to display
-	- Refactor: Put all static images into config... dont hardcode
-
-v0.1.3
-	- Game Player UI
-		- Show Current Character with its icon
-		- Start New game with Character Selection
-		- Exit/Quit
-		- button to mute all soundes
-	- Continue game (game list showing basic state)
-		- High res icons characters
-		- High res icons for boards
-
-
-v0.1.4
-	- Game Events Scripting Engine
-	- Objects and Inventory
-	- Popup for gratifications (objects, etc)
-
-v0.3.0
-	- Time management and movement cost calculation
-
-v0.2.0
-	- Support for Aerial or Satelite boards
-	- Boards for the world and major regions
-	- Support for "First Person" boards with sample (sink counter in bathroom, with soap)
-
-v0.4.0
-	- Transaction log
-	- Transaction Scheduler
-	- Navigation history (with player UI)
-
-v0.5.0
-	- NPCs and Dialogs
-		- Darken/HIghligh when clicking on the board background or when having dialogs
-			(this also shows more UI.. character, mark titles, board title, stats, time...)
-
-v0.6.0
-	- Missions/Objectives/Achievements
-
-v0.7.0
-	- ui: board: soundtrack: volume button (like on video plyers
-
-v0.8.0
-	World/Sets Editor
-	Game Server (for persisting custom levels)
-
-v0.9.0
-
-RELEASE HISTORY:
-
-v0.1.0
-	- Game state persistence in HTML5
-	- Solve the ASYNC loading problem
-
-
-
-Todo: Scripting Scenarios/Actions:
-	- Play a sound
-	- Obtain/Spend an item
-	- Gain knowledge of something
-	- Move time forward
-	- Set/Increment/Decrement game state variable
-	- Change the boards background image
-	- Change the boards soundtrack
-	- Gain access to a new mark on a board
-	-
-
- */
 
 (function($, PP){
 
@@ -94,17 +6,13 @@ Todo: Scripting Scenarios/Actions:
 
 
 	PP.Player = new JS.Class({
-		settings: {},
-		defaultState: null,
+		defaultSettings: {},
+		settings: null,
+		views: null,
 		width: 960,
 		height: 540,
 		world: null,
 		soundtrack: null,
-		currentLocation: null, // Is a path object
-		currentCharacter: "",
-		ui: {
-			board: null
-		},
 		controller: null,
 		timeline: null,
 		storage: null,
@@ -112,13 +20,22 @@ Todo: Scripting Scenarios/Actions:
 		hoveredMark: null,
 		characterMark: null,
 		initialize: function(options) {
-			this.defaultState = options.defaultState;
-			$.extend(this.settings, options);
+			this.settings = $.extend({}, this.defaultSettings, options);
 			this.readyIndicators = {
 				"storage": false,
 				"worldData": false,
 				"soundManager": false
 			};
+			this.views = {
+				board: new PP.BoardView("boardView", this),
+				options: new PP.OptionsView("optionsView", this),
+				pause: new PP.PauseView("pauseView", this),
+				welcome: new PP.WelcomeView("welcomeView", this)
+			};
+			this.views.options.hide();
+			this.views.pause.hide();
+			this.views.board.show();
+			this.views.welcome.show();
 			this.initStorage();
 			this.initSoundManager();
 			this.loadWorld(this.settings.world);
@@ -126,10 +43,10 @@ Todo: Scripting Scenarios/Actions:
 		initStorage: function() {
 			this.storage = {
 				get: function (key) {
-					return $.jStorage.get(key);
+					return (key) ? $.jStorage.get(key) : null;
 				},
 				set: function (key, value) {
-					return $.jStorage.set(key, value);
+					return (key) ? $.jStorage.set(key, value) : null;
 				}
 			};
 			this.nowReady("storage").startIfReady();
@@ -137,25 +54,17 @@ Todo: Scripting Scenarios/Actions:
 		initController: function () {
 			this.controller = new PP.Controller(this.world, this.timeline);
 			var player = this;
-			function subscribe (commandId, playerMethod) {
+			function subscribe (commandId) {
 				player.controller.observer.subscribe(commandId, function(result) {
-					player[playerMethod].call(player, result);
+					player.controllerHooks[commandId].call(player, result);
 				});
 			}
-			subscribe("goToLocation", "controllerOnGoToLocation");
+			subscribe("goToLocation");
 
 			/* Generic hook for all transactions/commands */
 			player.controller.observer.subscribe("run", function(commandId, args) {
-				player.controllerOnRun(commandId, args);
+				player.controllerHooks.OnRun.call(player, commandId, args);
 			});
-		},
-		controllerOnGoToLocation: function (result) {
-			var location = result.location;
-			this.showBoard(location);
-			this.showCharacter(location);
-		},
-		controllerOnRun: function (commandId, args) {
-			this.save();
 		},
 		initSoundManager: function() {
 			var self = this;
@@ -169,6 +78,18 @@ Todo: Scripting Scenarios/Actions:
 				});
 			} else {
 				console.error("Sound manager not loaded!");
+			}
+		},
+		/**
+		 * All methods under controllerHooks will be called with "player" as the context
+		 */
+		controllerHooks: {
+			OnRun: function (commandId, args) {
+				this.save();
+			},
+			goToLocation: function (result) {
+				var location = result.location;
+				this.views.board.setLocation(location);
 			}
 		},
 		urlMapper: {
@@ -196,51 +117,35 @@ Todo: Scripting Scenarios/Actions:
 //			console.log("Start if ready", this.readyIndicators, this.isReady());
 			if (this.isReady()) this.start()
 		},
-		/**
-		 * Initialize the main processing instance on a canvas object
-		 * and attach the event to handle window resizing.
-		 */
 		start: function() {
 			// Init the canvas
 			var defaultLocation,
 				sourceCode,
 				self = this;
-
-			//todo refactor: stage size
-				this.ui.paper = Raphael("stage", player.width, player.height);
-				this.resizeCanvas();
-
 			this.timeline = new PP.Timeline(this.world);
 			this.initController();
-			this.loadFromLocalStorage(this.defaultState);
-			// Utility function that resize the canvas to the current window size.
-			// Add event handler to tesize the canvas when window is resized
-			window.addEventListener("resize", function(e) {
-				self.resizeCanvas();
-			}, false);
-
-			this.controller.run("goToLocation", {
-				path: this.timeline.current.location.path
-			});
-
+			this.loadFromLocalStorage(this.world.defaultState);
+			if (this.timeline.current.location) {
+				this.controller.run("goToLocation", {
+					path: this.timeline.current.location.path
+				});
+			} else {
+				alert("Oups, no location to start from!");
+			}
 		},
 		load: function(data) {
 			this.timeline.load(data);
 		},
-		loadFromLocalStorage: function(defaultData) {
-			var data;
-			data = this.storage.get("pocketPeople.state");
-			this.load(data || defaultData);
+		loadFromLocalStorage: function(defaultState) {
+			var storedState,
+				state;
+			storedState = this.storage.get("pocketPeople.state");
+			state = $.extend({}, defaultState, storedState);
+			console.log("state: ", state);
+			this.load(state);
 		},
 		save: function() {
 			this.storage.set("pocketPeople.state", this.timeline.save());
-		},
-		resizeCanvas: function () {
-			this.width = window.innerWidth;
-			this.height = window.innerHeight;
-			this.ui.paper.setSize(this.width, this.height);
-			/* dont hardcode selector here */
-			this.ui.offsetLeft = $("#stage")[0].offsetLeft;
 		},
 		loadWorld: function (id) {
 			//console.log("loadWorld: ", url);
@@ -278,125 +183,269 @@ Todo: Scripting Scenarios/Actions:
 					}
 				});
 			});
+		}
+
+	});
+
+	PP.View = new JS.Class({
+		player: null,
+		ui: null,
+		paper: null,
+		root: null,
+		set: null,
+		initialize: function (rootId, player) {
+			this.player = player;
+			this.paper = Raphael(rootId, player.width, player.height);
+			this.set = this.paper.set();
+			this.root = $("#" + rootId);
+			this.buildUI();
+			return this;
 		},
-		showBoard: function (location) {
-			var player = this,
-				ui = this.ui,
-				p = ui.paper,
-				b = ui.board,
+		buildUI: function() {
+			/* to be overriden */
+		},
+		show: function () {
+			this.root.fadeIn(250);
+		},
+		hide: function () {
+			this.root.fadeOut(350);
+		}
+	});
+	PP.OptionsView = new JS.Class(PP.View, {
+		buildUI: function () {
+			var view = this,
+				player = this.player,
+				paper = this.paper;
+
+			paper.rect(0, 0, 960, 540, 0).attr({
+				opacity: 0.8,
+				fill: "#000"
+			});
+
+			this.set.title = paper
+				.text(480, 80, "Options")
+				.attr({
+					"fill": "#fff",
+					"font-size": "40px",
+					"text-anchor": "middle"
+				});
+
+			this.set.btnStartOver = paper
+				.text(480, 150, "Start Over")
+				.attr({
+					"fill": "#bbb",
+					"font-size": "30px",
+					"text-anchor": "middle",
+					"cursor": "pointer"
+				})
+				.mouseover(function(){
+					this.attr("fill", "#ffff66");
+				})
+				.mouseout(function(){
+					this.attr("fill", "#bbb");
+				})
+				.click(function(){
+					player.storage.set("pocketPeople.state", {});
+					window.location = window.location;
+					view.hide();
+				});
+
+			this.set.btnBack = paper
+				.text(480, 200, "Back")
+				.attr({
+					"fill": "#bbb",
+					"font-size": "30px",
+					"text-anchor": "middle",
+					"cursor": "pointer"
+				})
+				.mouseover(function(){
+					this.attr("fill", "#ffff66");
+				})
+				.mouseout(function(){
+					this.attr("fill", "#bbb");
+				})
+				.click(function(){
+					view.hide();
+					player.views.pause.show();
+				});
+
+		}
+	});
+	PP.WelcomeView = new JS.Class(PP.View, {
+		buildUI: function () {
+			var view = this,
+				player = this.player,
+				paper = this.paper;
+
+			paper.rect(0, 0, 960, 540, 0).attr({
+				opacity: 0.8,
+				fill: "#000"
+			});
+
+			this.set.title = paper
+				.text(640, 110, "People & Places")
+				.attr({
+					"fill": "#fff",
+					"font-size": "24px",
+					"text-anchor": "middle"
+				});
+			this.set.subTitle = paper
+				.text(640, 140, '"The Demo Episode"')
+				.attr({
+					"fill": "#fff",
+					"font-size": "36px",
+					"text-anchor": "middle"
+				});
+
+			this.set.btnStartPlaying = paper
+				.text(640, 200, "Start playing")
+				.attr({
+					"fill": "#bbb",
+					"font-size": "30px",
+					"text-anchor": "middle",
+					"cursor": "pointer"
+				})
+				.mouseover(function(){
+					this.attr("fill", "#ffff66");
+				})
+				.mouseout(function(){
+					this.attr("fill", "#bbb");
+				})
+				.click(function(){
+					view.hide();
+				});
+
+			this.set.btnOptions = paper
+				.text(640, 250, "Options")
+				.attr({
+					"fill": "#bbb",
+					"font-size": "30px",
+					"text-anchor": "middle",
+					"cursor": "pointer"
+				})
+				.mouseover(function(){
+					this.attr("fill", "#ffff66");
+				})
+				.mouseout(function(){
+					this.attr("fill", "#bbb");
+				})
+				.click(function(){
+					view.hide();
+					player.views.options.show();
+				});
+
+			this.set.logo = paper
+				.image("images/logo-medium.png", 200, 80, 301, 352)
+				.attr({
+					"cursor": "pointer"
+				})
+				.mouseover(function(){
+					this.animate({"scale": 1.05}, 300, ">");
+				})
+				.mouseout(function(){
+					this.animate({"scale": 1}, 300, ">");
+				})
+
+		}
+	});
+	PP.BoardView = new JS.Class(PP.View, {
+		buildUI: function () {
+			this.initBackground();
+			//this.initStatusBar(boardObj, location);
+			//this.initHighlight();
+			//this.initActionArrow(); // must be after "showMarks"
+ 		},
+		setLocation: function (location) {
+			this.location = location;
+			this.startSoundtrack();
+			this.showBackground();
+			this.showMarks();
+			this.showCharacter()
+		},
+		startSoundtrack: function () {
+			var board = this.location.board;
+			if (board.soundtrack) {
+				soundManager.destroySound("soundtrack");
+				// todo: USE URL MAPPER HERE... THIS WILL CASE A BUG
+				soundManager.createSound({
+					id: 'soundtrack',
+					url: '/Sets/stadium/' + board.soundtrack,
+					autoLoad: true,
+					autoPlay: true,
+					multiShot: false,
+					loops: 999,
+					volume: 100
+				});
+			}
+		},
+		initBackground: function () {
+			var paper = this.paper,
+				player = this.player,
+				set = this.set,
 				board,
 				imgBackground,
 				bgSet,
 				boardObj = location.board;
 
-			if (boardObj.soundtrack) {
-				soundManager.destroySound("soundtrack");
-				soundManager.createSound({
-					id: 'soundtrack',
-					url: '/Sets/stadium/' + boardObj.soundtrack,
-					autoLoad: true,
-					autoPlay: true,
-					multiShot: false,
-					loops: 999,
-					volume: 80
-//					volume: 0
-				});
-			}
-
 			// todo: set size dynamically
-			ui.board = ui.board || p.set();
-			if (ui.background) {
-				ui.background.remove();
+			set.board = set.board || paper.set();
+			if (set.background) {
+				set.background.remove();
 			}
-			bgSet = p.set();
 			//todo: use width/height from player object
-			imgBackground = p
-				.image(this.urlMapper.image(boardObj.backgroundImage, location.setId), 0, 0, 960, 540)
+			set.background = paper
+				.image("", 0, 0, 960, 540)
 				.toFront();
-			ui.background = imgBackground;
+
+			// Create pause button if doesnt already exist
+			set.pause = set.pause || paper
+				.image("images/pause.png", 900, 480, 52, 52)
+				.attr({
+					cursor: "pointer"
+				})
+				.click(function(){
+					player.views.pause.show();
+				});
+			set.pause.toFront();
+			console.log(set.pause);
+
+			var btnMute,
+				imgVolumeHigh = "images/volume-high.png",
+				imgVolumeMuted = "images/volume-muted.png";
+
+			btnMute = this.set.mute = paper.image(imgVolumeHigh, 833, 483, 50, 50)
+				.attr({
+					cursor: "pointer"
+				});
+			btnMute.click(function() {
+				if (player.muted) {
+					soundManager.unmute();
+					player.muted = false;
+					btnMute.attr({ src: imgVolumeHigh });
+				} else {
+					soundManager.mute();
+					player.muted = true;
+					btnMute.attr({ src: imgVolumeMuted });
+				}
+			});
 
 			// Add an empty mouseover for iOS
-			imgBackground.mouseover(function () {
+			set.background.mouseover(function () {
 			});
 
-			imgBackground.click(function () {
-				ui.statusBar.show();
-				ui.highlight.show();
+			set.background.click(function () {
+				set.statusBar.show();
+				set.highlight.show();
 			});
 
-			bgSet.push(imgBackground);
-
-			this.showMarks(location);
-			this.initStatusBar(boardObj, location);
-			this.initHighlight();
-			this.initActionArrow(); // must be after "showMarks"
-		},
-		showMarks: function (location) {
-			var self = this,
-				ui = this.ui,
-				p = ui.paper,
-				b = ui.board;
-			if (ui.marks) ui.marks.remove();
-			var marks = ui.marks = p.set();
-			//console.log(location.board, location.board.marks);
-			location.board.marks.forEachValue(function(mark) {
-				//console.log("Placing mark", mark);
-				var iconURL, iconURLSmall, imgMark;
-				var OSSizeRatio = 1,
-					iconOffsetX = 0,
-					iconOffsetY = 0;
-				if (IsiPhone || IsiPod) OSSizeRatio = 1.5;
-				if (mark.type === "destination") {
-					iconURL = "images/icon-arrow.png";
-					iconURLSmall = "images/icon-arrow-dot.png";
-					imgMark = p.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
-				} else if (mark.type === "character") {
-					iconURL = "images/icon-character.png";
-					iconURLSmall = "images/icon-character-small.png";
-					iconOffsetY = -20;
-					imgMark = p.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-40*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
-				} else {
-					iconURL = "images/icon-questionMark.png";
-					iconURLSmall = "images/icon-questionMark-dot.png";
-					imgMark = p.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
-				}
-				imgMark.attr({
-					"cursor": "pointer"
-				});
-				imgMark.mouseover(function(e){
-					self.hoveredMark = mark;
-					this.attr({
-						src: iconURL
-					});
-					ui.statusBar.show();
-					ui.actionArrow.place(player.characterMark, mark, iconOffsetX, iconOffsetY, 0, -200).show();
-				});
-				imgMark.mouseout(function(e){
-					this.attr({
-						src: iconURLSmall
-					});
-					self.hoveredMark = null;
-					ui.actionArrow.hide();
-					if (!ui.highlight.visible) {
-						ui.statusBar.hide();
-					}
-				});
-				imgMark.attr({
-					"cursor": "pointer"
-				});
-				imgMark.click(function(e){
-					var path = location.setId + "/" + mark.destination;
-					self.controller.run("goToLocation", {path: path});
-				});
-				marks.push(imgMark);
-			});
 		},
 		initStatusBar: function (board, location) {
 			var self = this,
 				ui = this.ui,
 				p = ui.paper,
-				b = ui.board;
-			StatusBar = new JS.Class({
+				b = ui.board,
+				description;
+			var StatusBar = new JS.Class({
 				ui: null,
 				initialize: function () {
 					this.ui = {
@@ -470,7 +519,7 @@ Todo: Scripting Scenarios/Actions:
 				ui = this.ui,
 				p = ui.paper,
 				b = ui.board;
-			Highlight = new JS.Class({
+			var Highlight = new JS.Class({
 				ui: null,
 				initialize: function () {
 					this.ui = {
@@ -532,7 +581,7 @@ Todo: Scripting Scenarios/Actions:
 				ui = this.ui,
 				p = ui.paper,
 				b = ui.board;
-			ActionArrow = new JS.Class({
+			var ActionArrow = new JS.Class({
 				ui: null,
 				shadowOffset: 5,
 				initialize: function () {
@@ -610,36 +659,157 @@ Todo: Scripting Scenarios/Actions:
 			}
 			self.ui.actionArrow = new ActionArrow({});
 		},
-		showCharacter: function (location) {
-			var self = this,
-				ui = this.ui,
-				p = ui.paper,
-				b = ui.board,
+		showBackground: function () {
+			var board = this.location.board,
+				path = this.player.urlMapper.image(board.backgroundImage, this.location.setId);
+			this.set.background.attr({
+				src: path
+			});
+		},
+		showMarks: function () {
+			var location = this.location,
+				self = this,
+				set = this.set,
+				p = this.paper;
+			if (set.marks) set.marks.remove();
+			var marks = set.marks = p.set();
+			//console.log(location.board, location.board.marks);
+			location.board.marks.forEachValue(function(mark) {
+				//console.log("Placing mark", mark);
+				var iconURL, iconURLSmall, imgMark;
+				var OSSizeRatio = 1,
+					iconOffsetX = 0,
+					iconOffsetY = 0;
+				if (IsiPhone || IsiPod) OSSizeRatio = 1.5;
+				if (mark.type === "destination") {
+					iconURL = "images/icon-arrow.png";
+					iconURLSmall = "images/icon-arrow-dot.png";
+					imgMark = p.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+				} else if (mark.type === "character") {
+					iconURL = "images/icon-character.png";
+					iconURLSmall = "images/icon-character-small.png";
+					iconOffsetY = -20;
+					imgMark = p.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-40*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+				} else {
+					iconURL = "images/icon-questionMark.png";
+					iconURLSmall = "images/icon-questionMark-dot.png";
+					imgMark = p.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+				}
+				imgMark.attr({
+					"cursor": "pointer"
+				});
+				imgMark.mouseover(function(e){
+					self.hoveredMark = mark;
+					this.attr({
+						src: iconURL
+					});
+					set.statusBar.show();
+					set.actionArrow.place(player.characterMark, mark, iconOffsetX, iconOffsetY, 0, -200).show();
+				});
+				imgMark.mouseout(function(e){
+					this.attr({
+						src: iconURLSmall
+					});
+					self.hoveredMark = null;
+					set.actionArrow.hide();
+					if (!set.highlight.visible) {
+						set.statusBar.hide();
+					}
+				});
+				imgMark.attr({
+					"cursor": "pointer"
+				});
+				imgMark.click(function(e){
+					var path = location.setId + "/" + mark.destination;
+					self.controller.run("goToLocation", {path: path});
+				});
+				marks.push(imgMark);
+			});
+		},
+		showCharacter: function () {
+			var location = this.location,
+				self = this,
+				set = this.set,
+				p = this.paper,
 				imgPoseURL,
 				imgPose;
-			if (ui.characterSet) ui.characterSet.remove();
-			var characterSet = ui.characterSet = p.set();
-			var character = this.timeline.current.character;
+			var character = player.timeline.current.character;
 			if (!character) {
 				console.error("character definition not found for :", this.timeline.current.character);
 				return false;
 			}
 			var pose = character.poses.get("standing");
-			imgPoseURL = this.urlMapper.image(pose.image, location.setId);
+			imgPoseURL = player.urlMapper.image(pose.image, location.setId);
 			//console.log("showCharacter ", character, imgPoseURL);
 			var mark = location.mark;
-			this.characterMark = mark;
-			//console.log(location, mark);
+			player.characterMark = mark;
 			var height = 400 * mark.z;
 			var width = 200 * mark.z;
 			var x = 960 * mark.x - (width / 2);
 			var y = 540 * mark.y - height;
-			imgPose = p
+			this.set.imgPose = p
 				.image(imgPoseURL, x, y, width, height)
 				.attr({
 					"cursor": "pointer"
 				});
-			characterSet.push(imgPose);
+		}
+	});
+
+	PP.PauseView = new JS.Class(PP.View, {
+		buildUI: function () {
+			var view = this,
+				player = this.player,
+				paper = this.paper,
+				btnOptions,
+				btnStartOver,
+				btnResume;
+			paper.rect(0, 0, 960, 540, 0).attr({
+				opacity: 0.8,
+				fill: "#000"
+			});
+
+			this.set.title = paper
+				.text(480, 80, "PocketPeople")
+				.attr({
+					"fill": "#fff",
+					"font-size": "40px",
+					"text-anchor": "middle"
+				});
+			btnOptions = this.set.btnOptions = paper
+				.text(480, 150, "Options")
+				.attr({
+					"fill": "#bbb",
+					"font-size": "30px",
+					"text-anchor": "middle",
+					"cursor": "pointer"
+				})
+				.mouseover(function(){
+					this.attr("fill", "#ffff66");
+				})
+				.mouseout(function(){
+					this.attr("fill", "#bbb");
+				})
+				.click(function(){
+					view.hide();
+					player.views.options.show();
+				});
+			btnResume = this.set.title = paper
+				.text(480, 200, "Resume")
+				.attr({
+					"fill": "#bbb",
+					"font-size": "30px",
+					"text-anchor": "middle",
+					"cursor": "pointer"
+				})
+				.mouseover(function(){
+					this.attr("fill", "#ffff66");
+				})
+				.mouseout(function(){
+					this.attr("fill", "#bbb");
+				})
+				.click(function(){
+					view.hide();
+				});
 		}
 	});
 

@@ -3,5 +3,8 @@
 	"title": "Demo",
 	"seed": "demo",
 	"sets": ["stadium"],
-	"defaultStartPath": "stadium/locker#default"
+	"defaultState": {
+		"locationPath": "stadium/forest#",
+		"character": "remi"
+	}
 }
