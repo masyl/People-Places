@@ -244,15 +244,21 @@
 		set: null,
 		view: null,
 		initialize: function (view) {
-//			this.callSuper();
+			this.callSuper();
 			this.view = view;
 			this.player = view.player;
 			this.paper = view.paper;
 			this.set = this.paper.set();
-			this.buildUI();
+			this.initUI();
+			if (!IsiPhoneOS) {
+				this.initKeyboard();
+			}
 			return this;
 		},
-		buildUI: function() {
+		initKeyboard: function () {
+			/* to be overriden */
+		},
+		initUI: function () {
 			/* to be overriden */
 		},
 		show: function () {
@@ -281,7 +287,7 @@
 	});
 
 	PP.StatusBar = new JS.Class(PP.PaperObject, {
-		buildUI: function () {
+		initUI: function () {
 			var set = this.set,
 				paper = this.paper;
 			set.background = paper
@@ -298,7 +304,7 @@
 			set.description = paper
 				.text(60, 42, "")
 				.attr({
-					"fill": "#bbb",
+					"fill": "#fff",
 					"font-size": "14px",
 					"text-anchor": "start"
 				});
@@ -324,7 +330,7 @@
 	});
 
 	PP.Highlight = new JS.Class(PP.PaperObject, {
-		buildUI: function () {
+		initUI: function () {
 			var self = this,
 				set = this.set,
 				paper = this.paper;
@@ -342,6 +348,80 @@
 		}
 	});
 
+	PP.ActionArrow = new JS.Class(PP.PaperObject, {
+		ui: null,
+		shadowOffset: 5,
+		initUI: function () {
+			var self = this,
+				set = this.set,
+				paper = this.paper,
+				path = "M0 0L0 0",
+				arrow,
+				shadow,
+				tip;
+			arrow = set.arrow = paper
+				.path(path)
+				.hide()
+				.insertAfter(this.view.highlight.set.background)
+				.attr({
+					stroke: "#fff",
+					"stroke-linecap": "round",
+					"stroke-width": 10
+				});
+
+			shadow = set.shadow = paper
+				.path(path)
+				.hide()
+				.insertBefore(arrow)
+				.attr({
+					stroke: "#000",
+					"opacity": 0.4,
+					"stroke-linecap": "round",
+					"stroke-width": 12
+				});
+
+			tip = set.tip = paper
+				.image("images/icon-selected.png", 0, 0, 100, 100)
+				.hide()
+				.insertAfter(arrow);
+
+			set.push(arrow);
+			set.push(shadow);
+			set.push(tip);
+			return this;
+		},
+		place: function (sourceMark, targetMark,  targetOffsetX, targetOffsetY, sourceOffsetX, sourceOffsetY, onPlacedCallback) {
+			var set = this.set,
+				x = 0,
+				y = 0,
+				x2 = 0,
+				y2 = 0,
+				path,
+				pathShadow;
+			if (sourceMark && targetMark) {
+				x = targetMark.x * 960 + (targetOffsetX * targetMark.z || 1);
+				y = targetMark.y * 540 + (targetOffsetY * targetMark.z || 1);
+				x2 = sourceMark.x * 960 + (sourceOffsetX * sourceMark.z);
+				y2 = sourceMark.y * 540 + (sourceOffsetY * sourceMark.z);
+				path = "M" + x + " " + y + "L" + x2 + " " + y2;
+				pathShadow = "M" + x + " " + (y+this.shadowOffset) + "L" + x2 + " " + (y2+this.shadowOffset);
+				set.arrow.animate({
+					path: path
+				}, 200);
+				set.shadow.animate({
+					path: pathShadow
+				}, 200);
+				set.tip.animate({
+					x: x - 50,
+					y: y - 50
+				}, 200, function() {
+					if (onPlacedCallback) onPlacedCallback();
+				});
+			}
+			return this;
+		}
+	});
+
 	PP.View = new JS.Class({
 		player: null,
 		paper: null,
@@ -353,10 +433,10 @@
 			this.paper = Raphael(rootId, player.width, player.height);
 			this.set = this.paper.set();
 			this.root = $("#" + rootId);
-			this.buildUI();
+			this.initUI();
 			return this;
 		},
-		buildUI: function() {
+		initUI: function() {
 			/* to be overriden */
 			return this;
 		},
@@ -372,7 +452,7 @@
 		}
 	});
 	PP.OptionsView = new JS.Class(PP.View, {
-		buildUI: function () {
+		initUI: function () {
 			var view = this,
 				player = this.player,
 				paper = this.paper;
@@ -393,7 +473,7 @@
 			this.set.btnStartOver = paper
 				.text(480, 150, "Start Over")
 				.attr({
-					"fill": "#bbb",
+					"fill": "#fff",
 					"font-size": "30px",
 					"text-anchor": "middle",
 					"cursor": "pointer"
@@ -406,7 +486,7 @@
 				})
 				.mouseout(function(){
 					this.attr({
-						"fill": "#bbb",
+						"fill": "#fff",
 						"font-size": "30px"
 					});
 				})
@@ -419,7 +499,7 @@
 			this.set.btnBack = paper
 				.text(480, 200, "Back")
 				.attr({
-					"fill": "#bbb",
+					"fill": "#fff",
 					"font-size": "30px",
 					"text-anchor": "middle",
 					"cursor": "pointer"
@@ -432,7 +512,7 @@
 				})
 				.mouseout(function(){
 					this.attr({
-						"fill": "#bbb",
+						"fill": "#fff",
 						"font-size": "30px"
 					});
 				})
@@ -444,35 +524,55 @@
 		}
 	});
 	PP.WelcomeView = new JS.Class(PP.View, {
-		buildUI: function () {
+		initUI: function () {
 			var view = this,
 				player = this.player,
 				paper = this.paper;
 
-			paper.rect(0, 0, 960, 540, 0).attr({
-				opacity: 0.8,
-				fill: "#000"
-			});
+			this.set.background = paper.image("images/welcome.jpg", 0, 0, 960, 540, 0);
 
+			var title = "People & Places"
+			this.set.titleShadow = paper
+				.text(640, 113, title)
+				.attr({
+					"fill": "#000",
+					"font-size": "24px",
+					"text-anchor": "middle"
+				});
 			this.set.title = paper
-				.text(640, 110, "People & Places")
+				.text(640, 110, title)
 				.attr({
 					"fill": "#fff",
 					"font-size": "24px",
 					"text-anchor": "middle"
 				});
+			var subTitle = '"The Demo Episode"'
+			this.set.subTitleShadow = paper
+				.text(640, 144, subTitle)
+				.attr({
+					"fill": "#000",
+					"font-size": "36px",
+					"text-anchor": "middle"
+				});
 			this.set.subTitle = paper
-				.text(640, 140, '"The Demo Episode"')
+				.text(640, 140, subTitle)
 				.attr({
 					"fill": "#fff",
 					"font-size": "36px",
 					"text-anchor": "middle"
 				});
 
+			this.set.menuBackground = paper
+					.rect(470, 200, 340, 150, 10)
+					.attr({
+						"fill": "#000",
+						"opacity": 0.5
+					});
+
 			this.set.btnStartPlaying = paper
-				.text(640, 200, "Start playing")
+				.text(640, 240, "Start playing")
 				.attr({
-					"fill": "#bbb",
+					"fill": "#fff",
 					"font-size": "30px",
 					"text-anchor": "middle",
 					"cursor": "pointer"
@@ -485,7 +585,7 @@
 				})
 				.mouseout(function(){
 					this.attr({
-						"fill": "#bbb",
+						"fill": "#fff",
 						"font-size": "30px"
 					});
 				})
@@ -494,9 +594,9 @@
 				});
 
 			this.set.btnOptions = paper
-				.text(640, 250, "Options")
+				.text(640, 290, "Options")
 				.attr({
-					"fill": "#bbb",
+					"fill": "#fff",
 					"font-size": "30px",
 					"text-anchor": "middle",
 					"cursor": "pointer"
@@ -509,7 +609,7 @@
 				})
 				.mouseout(function(){
 					this.attr({
-						"fill": "#bbb",
+						"fill": "#fff",
 						"font-size": "30px"
 					});
 				})
@@ -519,15 +619,15 @@
 				});
 
 			this.set.logo = paper
-				.image("images/logo-medium.png", 200, 80, 301, 352)
+				.image("images/logo-medium.png", 140, 90, 301, 352)
 				.attr({
 					"cursor": "pointer"
 				})
 				.mouseover(function(){
-					this.animate({"scale": 1.05}, 300, ">");
+					this.animate({"scale": 1.05}, 150, ">");
 				})
 				.mouseout(function(){
-					this.animate({"scale": 1}, 300, ">");
+					this.animate({"scale": 1}, 150, ">");
 				})
 
 		}
@@ -535,13 +635,15 @@
 	PP.BoardView = new JS.Class(PP.View, {
 		statusBar: null,
 		highlight: null,
-		buildUI: function () {
+		initUI: function () {
 			var self = this;
 			this.initBackground();
 			this.statusBar = new PP.StatusBar(this);
 			this.highlight = new PP.Highlight(this);
-//			this.actionArrow = new PP.ActionArrow(this);
-
+			this.actionArrow = new PP.ActionArrow(this);
+		},
+		initKeyboard: function() {
+			var self = this;
 			$(document).keyup(function(e) {
 				var views = self.player.views;
 				if (!e.isPropagationStopped()) {
@@ -654,96 +756,6 @@
 			});
 
 		},
-		/**
-		 * placeActionArrow
-		 * @param sourceMark The mark where the player is positionned
-		 * @param targetMark The mark on which the action is focused
-		 *
-		 * Calling this method with no params, will hide the arrow
-		 */
-		initActionArrow: function () {
-			var self = this,
-				ui = this.ui,
-				p = ui.paper,
-				b = ui.board;
-			var ActionArrow = new JS.Class({
-				ui: null,
-				shadowOffset: 5,
-				initialize: function () {
-					this.ui = {
-						set: p.set()
-					};
-					var set = this.ui.set,
-						path = "M0 0L0 0",
-						arrow,
-						shadow,
-						tip;
-					arrow = this.ui.arrow = p.path(path).hide();
-					shadow = this.ui.shadow = p.path(path).hide();
-					tip = this.ui.tip = p.image("images/icon-selected.png", 0, 0, 100, 100).hide();
-					set.push(arrow);
-					set.push(shadow);
-					set.push(tip);
-
-					// storing original coordinates
-					arrow.insertBefore(ui.marks);
-					shadow.insertBefore(arrow);
-					tip.insertAfter(arrow);
-
-					arrow.attr({
-						stroke: "#fff",
-						"stroke-linecap": "round",
-						"stroke-width": 10
-					});
-					shadow.attr({
-						stroke: "#000",
-						"opacity": 0.4,
-						"stroke-linecap": "round",
-						"stroke-width": 12
-					});
-					return this;
-				},
-				show: function () {
-					this.ui.set.show();
-					return this;
-				},
-				hide: function () {
-					this.ui.set.hide();
-					return this;
-				},
-				place: function (sourceMark, targetMark,  iconOffsetX, iconOffsetY, sourceOffsetX, sourceOffsetY) {
-					var x = 0,
-						y = 0,
-						x2 = 0,
-						y2 = 0,
-						path,
-						pathShadow;
-					if (sourceMark && targetMark) {
-						x = targetMark.x * 960 + (iconOffsetX);
-						y = targetMark.y * 540 + (iconOffsetY);
-						x2 = sourceMark.x * 960 + (sourceOffsetX * sourceMark.z);
-						y2 = sourceMark.y * 540 + (sourceOffsetY * sourceMark.z);
-						path = "M" + x + " " + y + "L" + x2 + " " + y2;
-						pathShadow = "M" + x + " " + (y+this.shadowOffset) + "L" + x2 + " " + (y2+this.shadowOffset);
-						this.ui.arrow.attr({ path: path });
-						this.ui.shadow.attr({ path: pathShadow });
-						this.ui.tip.attr({
-							x: x - 50,
-							y: y - 50
-						});
-					}
-					return this;
-				},
-				destroy: function () {
-					this.ui.set.remove();
-				}
-			});
-			if (ui.actionArrow) {
-				ui.actionArrow.destroy();
-				ui.actionArrow = null;
-			}
-			self.ui.actionArrow = new ActionArrow({});
-		},
 		showBackground: function () {
 			var board = this.location.board,
 				path = this.player.urlMapper.image(board.backgroundImage, this.location.setId);
@@ -752,7 +764,8 @@
 			});
 		},
 		showMarks: function () {
-			var location = this.location,
+			var player = this.player,
+				location = this.location,
 				self = this,
 				set = this.set,
 				p = this.paper;
@@ -784,20 +797,24 @@
 					"cursor": "pointer"
 				});
 				imgMark.mouseover(function(e){
+					var board = player.views.board;
 					self.hoveredMark = mark;
 					this.attr({
 						src: iconURL
 					});
-					player.views.board.statusBar.show();
-					player.views.board.actionArrow.place(player.characterMark, mark, iconOffsetX, iconOffsetY, 0, -200).show();
+					board.statusBar.show();
+					board.actionArrow.show().place(player.characterMark, mark, iconOffsetX, iconOffsetY, 0, -200);
 				});
+				player.views.board.actionArrow.show().place(player.characterMark, player.characterMark, 0, -200, 0, -200);
 				imgMark.mouseout(function(e){
 					var board = player.views.board;
 					this.attr({
 						src: iconURLSmall
 					});
 					self.hoveredMark = null;
-					board.actionArrow.hide();
+					board.actionArrow.place(player.characterMark, player.characterMark, 0, -200, 0, -200, function() {
+						board.actionArrow.hide();
+					});
 					if (!board.highlight.visible) {
 						board.statusBar.hide();
 					}
@@ -842,21 +859,10 @@
 	});
 
 	PP.PauseView = new JS.Class(PP.View, {
-		buildUI: function () {
+		initUI: function () {
 			var view = this,
 				player = this.player,
 				paper = this.paper;
-
-			$(document).keyup(function(e) {
-				if (!e.isPropagationStopped()) {
-					if (e.which == 27) {
-						if (view.visible) {
-							view.hide();
-							e.stopPropagation();
-						}
-					}
-				}
-			});
 
 			this.set.background = paper.rect(0, 0, 960, 540, 0).attr({
 				opacity: 0.8,
@@ -873,7 +879,7 @@
 			this.set.btnOptions = paper
 				.text(480, 150, "Options")
 				.attr({
-					"fill": "#bbb",
+					"fill": "#fff",
 					"font-size": "30px",
 					"text-anchor": "middle",
 					"cursor": "pointer"
@@ -886,7 +892,7 @@
 				})
 				.mouseout(function(){
 					this.attr({
-						"fill": "#bbb",
+						"fill": "#fff",
 						"font-size": "30px"
 					});
 				})
@@ -897,7 +903,7 @@
 			this.set.btnResume = paper
 				.text(480, 200, "Resume")
 				.attr({
-					"fill": "#bbb",
+					"fill": "#fff",
 					"font-size": "30px",
 					"text-anchor": "middle",
 					"cursor": "pointer"
@@ -910,7 +916,7 @@
 				})
 				.mouseout(function(){
 					this.attr({
-						"fill": "#bbb",
+						"fill": "#fff",
 						"font-size": "30px"
 					});
 				})
@@ -920,7 +926,7 @@
 			this.set.btnQuit = paper
 				.text(480, 250, "Quit")
 				.attr({
-					"fill": "#bbb",
+					"fill": "#fff",
 					"font-size": "30px",
 					"text-anchor": "middle",
 					"cursor": "pointer"
@@ -933,7 +939,7 @@
 				})
 				.mouseout(function(){
 					this.attr({
-						"fill": "#bbb",
+						"fill": "#fff",
 						"font-size": "30px"
 					});
 				})
@@ -941,6 +947,19 @@
 					view.hide();
 					player.views.welcome.show();
 				});
+		},
+		initKeyboard : function () {
+			var self = this;
+			$(document).keyup(function(e) {
+				if (!e.isPropagationStopped()) {
+					if (e.which == 27) {
+						if (self.view.visible) {
+							self.view.hide();
+							e.stopPropagation();
+						}
+					}
+				}
+			});
 		}
 	});
 
