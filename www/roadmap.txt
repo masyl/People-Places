@@ -1,7 +1,25 @@
 /*
 
 NOW DOING:
-	FINISH REFACTORING ALL CLASSES
+	- FINISH REFACTORING ALL PaperObject CLASSES
+		background
+		actionArrow
+		highlight
+		marks
+	- When clicking back from welcome\option goes back to welcome
+
+POSSIBLE REFACTORING:
+	- Mute buttons should be PaperObjects
+	- Menus should be structured PaperObjects
+
+POSSIBLE REFINEMENT
+	- MouseOver states for mute and pause icons
+	- Do something original when logo is clicked
+	- Javascript confirmation before reseting the game
+	- When focus is not on the board, dont should the mute and pause buttons
+	- Show a volume button on the welcome screen
+	- Pause and mute button should have a uniforme look (dark circle)
+	- Multiple games in progress: Dont start game right away when no game to resume. When quiting, flush current game and put it in save slot
 
 P&P ROADMAP
 
@@ -10,7 +28,7 @@ v0.1.1
 	+ Tweaked UI and interactions for iOS
 	+ Unobstrucsive version of markers as a small color dot, and the bigger icon is used only on mouse hover.
 	+ UI for highlighting markers before using them
-	+ click on the boards background will trigger the highlight on/off
+	+ Click on the boards background will trigger the highlight on/off
 	+ Only show detailed UI when in highligh mode (location, title bar, etc)
 	+ View system for showing in-game navigation
 	+ New welcome screen with logo

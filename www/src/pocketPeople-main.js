@@ -321,20 +321,16 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			};
 			return this;
 		},
-		load: function (data) {
-			console.info("Loading: ", data);
-			if (data.locationPath) this.current.location = new PP.Location(data.locationPath, this.world);
-			if (data.character) this.current.character = this.world.characters.get(data.character);
-			return this;
-		},
-		save: function () {
-			var data;
-			data = {
-				locationPath: this.current.location.path,
-				character: this.current.character.id
-			};
-			//console.info("Saving: ", data);
-			return data;
+		state: function (newState) {
+			if (newState) {
+				if (newState.locationPath) this.current.location = new PP.Location(newState.locationPath, this.world);
+				if (newState.character) this.current.character = this.world.characters.get(newState.character);
+			}
+			var state = {
+				locationPath: (this.current.location) ? this.current.location.path : "",
+				character: (this.current.character) ? this.current.character.id : ""
+			}
+			return state;
 		}
 	});
 
