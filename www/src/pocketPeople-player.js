@@ -347,6 +347,7 @@
 		paper: null,
 		root: null,
 		set: null,
+		visible: false,
 		initialize: function (rootId, player) {
 			this.player = player;
 			this.paper = Raphael(rootId, player.width, player.height);
@@ -360,10 +361,12 @@
 			return this;
 		},
 		show: function () {
+			this.visible = true;
 			this.root.fadeIn(250);
 			return this;
 		},
 		hide: function () {
+			this.visible = false;
 			this.root.fadeOut(350);
 			return this;
 		}
@@ -533,10 +536,27 @@
 		statusBar: null,
 		highlight: null,
 		buildUI: function () {
+			var self = this;
 			this.initBackground();
 			this.statusBar = new PP.StatusBar(this);
 			this.highlight = new PP.Highlight(this);
 //			this.actionArrow = new PP.ActionArrow(this);
+
+			$(document).keyup(function(e) {
+				var views = self.player.views;
+				if (!e.isPropagationStopped()) {
+					if (e.which == 27) {
+						if (!(
+								views.pause.visible ||
+								views.options.visible ||
+								views.welcome.visible
+							)) {
+							self.player.views.pause.show();
+							e.stopPropagation();
+						}
+					}
+				}
+			});
 		},
 		setLocation: function (location) {
 			this.location = location;
@@ -827,13 +847,24 @@
 				player = this.player,
 				paper = this.paper;
 
+			$(document).keyup(function(e) {
+				if (!e.isPropagationStopped()) {
+					if (e.which == 27) {
+						if (view.visible) {
+							view.hide();
+							e.stopPropagation();
+						}
+					}
+				}
+			});
+
 			this.set.background = paper.rect(0, 0, 960, 540, 0).attr({
 				opacity: 0.8,
 				fill: "#000"
 			});
 
 			this.set.title = paper
-				.text(480, 80, "PocketPeople")
+				.text(480, 80, "People & Places")
 				.attr({
 					"fill": "#fff",
 					"font-size": "40px",
