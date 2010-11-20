@@ -396,10 +396,16 @@
 					"cursor": "pointer"
 				})
 				.mouseover(function(){
-					this.attr("fill", "#ffff66");
+					this.attr({
+						"fill": "#ffff66",
+						"font-size": "34px"
+					});
 				})
 				.mouseout(function(){
-					this.attr("fill", "#bbb");
+					this.attr({
+						"fill": "#bbb",
+						"font-size": "30px"
+					});
 				})
 				.click(function(){
 					player.storage.set("pocketPeople.state", {});
@@ -416,10 +422,16 @@
 					"cursor": "pointer"
 				})
 				.mouseover(function(){
-					this.attr("fill", "#ffff66");
+					this.attr({
+						"fill": "#ffff66",
+						"font-size": "34px"
+					});
 				})
 				.mouseout(function(){
-					this.attr("fill", "#bbb");
+					this.attr({
+						"fill": "#bbb",
+						"font-size": "30px"
+					});
 				})
 				.click(function(){
 					view.hide();
@@ -463,10 +475,16 @@
 					"cursor": "pointer"
 				})
 				.mouseover(function(){
-					this.attr("fill", "#ffff66");
+					this.attr({
+						"fill": "#ffff66",
+						"font-size": "34px"
+					});
 				})
 				.mouseout(function(){
-					this.attr("fill", "#bbb");
+					this.attr({
+						"fill": "#bbb",
+						"font-size": "30px"
+					});
 				})
 				.click(function(){
 					view.hide();
@@ -481,10 +499,16 @@
 					"cursor": "pointer"
 				})
 				.mouseover(function(){
-					this.attr("fill", "#ffff66");
+					this.attr({
+						"fill": "#ffff66",
+						"font-size": "34px"
+					});
 				})
 				.mouseout(function(){
-					this.attr("fill", "#bbb");
+					this.attr({
+						"fill": "#bbb",
+						"font-size": "30px"
+					});
 				})
 				.click(function(){
 					view.hide();
@@ -824,10 +848,16 @@
 					"cursor": "pointer"
 				})
 				.mouseover(function(){
-					this.attr("fill", "#ffff66");
+					this.attr({
+						"fill": "#ffff66",
+						"font-size": "34px"
+					});
 				})
 				.mouseout(function(){
-					this.attr("fill", "#bbb");
+					this.attr({
+						"fill": "#bbb",
+						"font-size": "30px"
+					});
 				})
 				.click(function(){
 					view.hide();
@@ -842,10 +872,16 @@
 					"cursor": "pointer"
 				})
 				.mouseover(function(){
-					this.attr("fill", "#ffff66");
+					this.attr({
+						"fill": "#ffff66",
+						"font-size": "34px"
+					});
 				})
 				.mouseout(function(){
-					this.attr("fill", "#bbb");
+					this.attr({
+						"fill": "#bbb",
+						"font-size": "30px"
+					});
 				})
 				.click(function(){
 					view.hide();
@@ -859,10 +895,16 @@
 					"cursor": "pointer"
 				})
 				.mouseover(function(){
-					this.attr("fill", "#ffff66");
+					this.attr({
+						"fill": "#ffff66",
+						"font-size": "34px"
+					});
 				})
 				.mouseout(function(){
-					this.attr("fill", "#bbb");
+					this.attr({
+						"fill": "#bbb",
+						"font-size": "30px"
+					});
 				})
 				.click(function(){
 					view.hide();
