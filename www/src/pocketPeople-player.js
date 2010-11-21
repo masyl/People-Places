@@ -347,6 +347,56 @@
 		}
 	});
 
+	PP.ActingCharacter = new JS.Class(PP.PaperObject, {
+		character: null,
+		mark: null,
+		initUI: function () {
+			var self = this,
+				set = this.set,
+				paper = this.paper;
+			this.set.imgPose = paper
+				.image("", 0, 0, 0, 0)
+				.attr({
+					"cursor": "pointer"
+				});
+
+			set.push(set.imgPose);
+			return this;
+		},
+		place: function () {
+			var self = this,
+				player = this.player,
+				paper = this.paper,
+				location = this.player.timeline.current.location,
+				set = this.set,
+				imgPoseURL,
+				imgPose,
+				pose,
+				mark,
+				x,
+				y,
+				width,
+				height;
+			this.character = player.timeline.current.character;
+			pose = this.character.poses.get("standing");
+			imgPoseURL = player.urlMapper.image(pose.image, location.setId);
+			mark = this.mark = location.mark;
+			player.views.board.actionArrow.place(mark, mark, 0, -250, 0, -250).hide();
+			height = 400 * mark.z;
+			width = 200 * mark.z;
+			x = 960 * mark.x - (width / 2);
+			y = 540 * mark.y - height;
+			this.set.imgPose.attr({
+				"src": imgPoseURL,
+				"x": x,
+				"y": y,
+				"width": width,
+				"height": height
+			});
+			return this;
+		}
+	});
+
 	PP.MarkSet = new JS.Class(PP.PaperObject, {
 		marks: null,
 		initUI: function () {
@@ -368,9 +418,12 @@
 				location = player.timeline.current.location,
 				board = location.board;
 
+			this.marks.remove();
 			board.marks.forEachValue(function(mark) {
 				//console.log("Placing mark", mark);
-				var iconURL, iconURLSmall, imgMark;
+				var iconURL,
+					iconURLSmall,
+					imgMark;
 				var OSSizeRatio = 1,
 					iconOffsetX = 0,
 					iconOffsetY = 0;
@@ -394,28 +447,27 @@
 				});
 				imgMark.mouseover(function(e){
 					var board = player.views.board;
+					var characterMark = board.character.mark;
 					self.hoveredMark = mark;
 					this.attr({
 						src: iconURL
 					});
 					board.statusBar.show();
-					board.actionArrow.show().place(player.characterMark, mark, iconOffsetX, iconOffsetY, 0, -250);
+					board.actionArrow.show().place(characterMark, mark, iconOffsetX, iconOffsetY, 0, -250);
 				});
 				imgMark.mouseout(function(e){
 					var board = player.views.board;
+					var characterMark = board.character.mark;
 					this.attr({
 						src: iconURLSmall
 					});
 					self.hoveredMark = null;
-					board.actionArrow.place(player.characterMark, player.characterMark, 0, -250, 0, -250, function() {
+					board.actionArrow.place(characterMark, characterMark, 0, -250, 0, -250, function() {
 						board.actionArrow.hide();
 					});
 					if (!board.highlight.visible) {
 						board.statusBar.hide();
 					}
-				});
-				imgMark.attr({
-					"cursor": "pointer"
 				});
 				imgMark.click(function(e){
 					var path = location.setId + "/" + mark.destination;
@@ -721,6 +773,7 @@
 			this.highlight = new PP.Highlight(this);
 			this.actionArrow = new PP.ActionArrow(this);
 			this.marks = new PP.MarkSet(this);
+			this.character = new PP.ActingCharacter(this);
 		},
 		initKeyboard: function() {
 			var self = this;
@@ -746,7 +799,7 @@
 			this.startSoundtrack();
 			this.showBackground();
 			this.marks.place();
-			this.showCharacter()
+			this.character.place();
 		},
 		startSoundtrack: function () {
 			var board = this.location.board;
@@ -842,34 +895,6 @@
 			this.set.background.attr({
 				src: path
 			});
-		},
-		showCharacter: function () {
-			var location = this.location,
-				self = this,
-				set = this.set,
-				p = this.paper,
-				imgPoseURL,
-				imgPose;
-			var character = player.timeline.current.character;
-			if (!character) {
-				console.error("character definition not found for :", this.timeline.current.character);
-				return false;
-			}
-			var pose = character.poses.get("standing");
-			imgPoseURL = player.urlMapper.image(pose.image, location.setId);
-			//console.log("showCharacter ", character, imgPoseURL);
-			var mark = location.mark;
-			player.characterMark = mark;
-			player.views.board.actionArrow.show().place(player.characterMark, player.characterMark, 0, -250, 0, -250);
-			var height = 400 * mark.z;
-			var width = 200 * mark.z;
-			var x = 960 * mark.x - (width / 2);
-			var y = 540 * mark.y - height;
-			this.set.imgPose = p
-				.image(imgPoseURL, x, y, width, height)
-				.attr({
-					"cursor": "pointer"
-				});
 		}
 	});
 
