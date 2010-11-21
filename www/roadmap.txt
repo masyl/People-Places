@@ -4,13 +4,18 @@ NOW DOING:
 	- FINISH REFACTORING ALL PaperObject CLASSES
 		background
 	- When clicking back from welcome\option goes back to welcome
+	- Show specific icons inside action arrows tip instead of symbolic icons
 
 POSSIBLE REFACTORING:
 	- Mute buttons should be PaperObjects
 	- Menus should be structured PaperObjects
+	- Refactor: The character should be an class object
+		- Bug: Characters: When a character occupies a mark, the mark icon doesnt disapear
+	- Refactor: Put all static images into config... dont hardcode
 
 POSSIBLE REFINEMENT
 	- Action Arrow: The shadow under the path has opacity at 100% because the while set is animated in synch
+	- UI: Arrow icons to point thoward more directions and a way to specifiy which orientation to display
 	- MouseOver states for mute and pause icons
 	- Do something original when logo is clicked
 	- Javascript confirmation before reseting the game
@@ -34,30 +39,23 @@ v0.1.1
 	+ New pause screen
 	+ Mute button
 	+ UI: Show the marks title/action when hovering
+	+ Exit/Quit
 
 v0.1.2
 	- Ability to move to a specific character mark
-	- UI: Arrow icons to point thoward more directions and a way to specifiy which orientation to display
-	- Refactor: Put all static images into config... dont hardcode
-	- Refactor: The character should be an class object
-		- Bug: Characters: When a character occupies a mark, the mark icon doesnt disapear
-		- Bug: Characters: Draw Characters under mark... otherwise not clickable... and draw arrow under character
 
 v0.1.3
-	- Game Player UI
-		- Show Current Character with its icon
-		- Start New game with Character Selection
-		- Exit/Quit
-		- button to mute all soundes
-	- Continue game (game list showing basic state)
-		- High res icons characters
-		- High res icons for boards
-
-
-v0.1.4
 	- Game Events Scripting Engine
 	- Objects and Inventory
 	- Popup for gratifications (objects, etc)
+
+v0.1.4
+	- Game Player UI
+		- Show Current Character with its icon
+		- Start New game with Character Selection
+	- Continue game (game list showing basic state)
+		- High res icons characters
+		- High res icons for boards
 
 v0.3.0
 	- Time management and movement cost calculation
