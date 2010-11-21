@@ -161,7 +161,6 @@
 			return this;
 		},
 		save: function() {
-			console.log("saving");
 			var state = {
 				"game":  this.timeline.state(),
 				"player": this.state()
@@ -803,16 +802,15 @@
 						src: iconURL
 					});
 					board.statusBar.show();
-					board.actionArrow.show().place(player.characterMark, mark, iconOffsetX, iconOffsetY, 0, -200);
+					board.actionArrow.show().place(player.characterMark, mark, iconOffsetX, iconOffsetY, 0, -250);
 				});
-				player.views.board.actionArrow.show().place(player.characterMark, player.characterMark, 0, -200, 0, -200);
 				imgMark.mouseout(function(e){
 					var board = player.views.board;
 					this.attr({
 						src: iconURLSmall
 					});
 					self.hoveredMark = null;
-					board.actionArrow.place(player.characterMark, player.characterMark, 0, -200, 0, -200, function() {
+					board.actionArrow.place(player.characterMark, player.characterMark, 0, -250, 0, -250, function() {
 						board.actionArrow.hide();
 					});
 					if (!board.highlight.visible) {
@@ -824,7 +822,7 @@
 				});
 				imgMark.click(function(e){
 					var path = location.setId + "/" + mark.destination;
-					self.controller.run("goToLocation", {path: path});
+					player.controller.run("goToLocation", {path: path});
 				});
 				marks.push(imgMark);
 			});
@@ -846,6 +844,7 @@
 			//console.log("showCharacter ", character, imgPoseURL);
 			var mark = location.mark;
 			player.characterMark = mark;
+			player.views.board.actionArrow.show().place(player.characterMark, player.characterMark, 0, -250, 0, -250);
 			var height = 400 * mark.z;
 			var width = 200 * mark.z;
 			var x = 960 * mark.x - (width / 2);
