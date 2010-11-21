@@ -291,27 +291,54 @@
 				paper = this.paper;
 			set.background = paper
 				.image("images/statusBar-Background.png", 0, 0, 960, 111, 0);
+			set.iconBg = paper
+				.rect(5, 5, 86, 86, 22)
+				.attr({
+					"fill": "#000"
+				});
 			set.icon = paper
-				.image("", 8, 8, 44, 44);
+				.image("", 8, 8, 80, 80);
 			set.title = paper
-				.text(60, 22, "")
+				.text(100, 22, "")
 				.attr({
 					"fill": "#fff",
-					"font-size": "20px",
+					"font-size": "24px",
 					"text-anchor": "start"
 				});
 			set.description = paper
-				.text(60, 42, "")
+				.text(10, 47, "")
 				.attr({
 					"fill": "#fff",
-					"font-size": "14px",
+					"font-size": "16px",
 					"text-anchor": "start"
 				});
 			// todo: Can this be done in a single call ?
 			set.push(set.background);
+			set.push(set.iconBg);
 			set.push(set.icon);
 			set.push(set.title);
 			set.push(set.description);
+			return this;
+		},
+		placeMark: function(mark) {
+			var self = this,
+				set = this.set,
+				paper = this.paper,
+				location,
+				icon;
+
+			if (mark) {
+				icon = player.urlMapper.image(mark.icon, player.timeline.current.location.setId) || "";
+				if (mark.type === "destination") {
+					location = new PP.Location(mark.destination, self.player.world);
+					icon = player.urlMapper.image(location.board.icon, location.setId);
+				} else if (mark.type === "action") {
+				} else if (mark.type === "character") {
+				}
+				set.icon.attr("src", icon);
+				set.title.attr("text", mark.title);
+				set.description.attr("text", "");
+			}
 			return this;
 		},
 		refresh: function() {
@@ -321,8 +348,8 @@
 
 			if (location) {
 				set.icon.attr("src", player.urlMapper.image(location.board.icon, location.setId));
-				set.title.attr("text", location.title())
-				set.description.attr("text", location.board.description)
+				set.title.attr("text", location.title());
+				set.description.attr("text", location.board.description);
 			}
 			return this;
 		}
@@ -420,7 +447,6 @@
 
 			this.marks.remove();
 			board.marks.forEachValue(function(mark) {
-				//console.log("Placing mark", mark);
 				var iconURL,
 					iconURLSmall,
 					imgMark;
@@ -452,7 +478,10 @@
 					this.attr({
 						src: iconURL
 					});
-					board.statusBar.show();
+
+					//TODO: SHOW MARK INFO IN STATUS BAR
+					board.statusBar.placeMark(mark).show();
+
 					board.actionArrow.show().place(characterMark, mark, iconOffsetX, iconOffsetY, 0, -250);
 				});
 				imgMark.mouseout(function(e){
@@ -470,8 +499,7 @@
 					}
 				});
 				imgMark.click(function(e){
-					var path = location.setId + "/" + mark.destination;
-					player.controller.run("goToLocation", {path: path});
+					player.controller.run("goToLocation", {path: mark.destination});
 				});
 				self.marks.push(imgMark);
 			});

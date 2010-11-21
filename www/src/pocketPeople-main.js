@@ -201,6 +201,7 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		y: 0,
 		z: 0,
 		destination: "",
+		icon: null,
 		initialize: function (id, settings) {
 			$.extend(this.settings, settings);
 			this.id = id;
@@ -209,6 +210,7 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			this.x = settings.x;
 			this.y = settings.y;
 			this.z = settings.z;
+			this.icon = settings.icon;
 			this.destination = settings.destination;
 		}
 	});

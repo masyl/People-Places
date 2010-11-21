@@ -34,7 +34,7 @@
 			"description": "Description goes here...",
 			"backgroundImage": "locker.jpg",
 			"soundtrack": "gym-locker.mp3",
-			"icon": null,
+			"icon": "locker-icon.png",
 			"scale": 0,
 			"marks": {
 				"default" : {
@@ -50,7 +50,7 @@
 					"type": "destination",
 					"x": 0.6,
 					"y": 0.5,
-					"destination": "bathroom"
+					"destination": "stadium/bathroom"
 				}
 			}
 		},
@@ -59,7 +59,7 @@
 			"description": "Description goes here...",
 			"backgroundImage": "bathroom.jpg",
 			"soundtrack": "public-bathroom.mp3",
-			"icon": null,
+			"icon": "bathroom-icon.png",
 			"scale": 0,
 			"marks": {
 				"default" : {
@@ -75,18 +75,19 @@
 					"type": "destination",
 					"x": 0.45,
 					"y": 0.35,
-					"destination": "parkinglot"
+					"destination": "stadium/parkinglot"
 				},
 				"toLocker" : {
 					"title": "Go to the locker room",
 					"type": "destination",
 					"x": 0.35,
 					"y": 0.85,
-					"destination": "locker"
+					"destination": "stadium/locker"
 				},
 				"washHands" : {
 					"title": "Wash your hands",
 					"type": "action",
+					"icon": "icon-washHands.png", 
 					"x": 0.7,
 					"y": 0.5
 				}
@@ -97,7 +98,7 @@
 			"description": "Description goes here...",
 			"backgroundImage": "forest.jpg",
 			"soundtrack": "forest_birds.mp3",
-			"icon": null,
+			"icon": "forest-icon.png",
 			"scale": 0,
 			"marks": {
 				"default" : {
@@ -113,7 +114,7 @@
 					"type": "destination",
 					"x": 0.45,
 					"y": 0.35,
-					"destination": "locker"
+					"destination": "stadium/locker"
 				}
 			}
 		},
@@ -122,7 +123,7 @@
 			"description": "Description goes here...",
 			"backgroundImage": "parking-lot.jpg",
 			"soundtrack": "parking-garage.mp3",
-			"icon": null,
+			"icon": "parking-lot-icon.png",
 			"scale": 0,
 			"marks": {
 				"farBack" : {
@@ -141,11 +142,11 @@
 					"z": 0.3
 				},
 				"toForest" : {
-					"title": "Go to the Nurun",
+					"title": "Go to Nurun",
 					"type": "destination",
 					"x": 0.45,
 					"y": 0.35,
-					"destination": "nurun-flasheux"
+					"destination": "stadium/nurun-flasheux"
 				}
 			}
 		},
@@ -170,7 +171,7 @@
 					"type": "destination",
 					"x": 0.9,
 					"y": 0.55,
-					"destination": "forest"
+					"destination": "stadium/forest"
 				}
 			}
 		}

@@ -3,9 +3,7 @@
 NOW DOING:
 	- FINISH REFACTORING ALL PaperObject CLASSES
 		background
-		character
 	- When clicking back from welcome\option goes back to welcome
-	- UI: Show the marks title/action when hovering
 
 POSSIBLE REFACTORING:
 	- Mute buttons should be PaperObjects
@@ -35,6 +33,7 @@ v0.1.1
 	+ New options screen
 	+ New pause screen
 	+ Mute button
+	+ UI: Show the marks title/action when hovering
 
 v0.1.2
 	- Ability to move to a specific character mark
