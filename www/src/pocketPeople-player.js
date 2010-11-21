@@ -347,6 +347,85 @@
 		}
 	});
 
+	PP.MarkSet = new JS.Class(PP.PaperObject, {
+		marks: null,
+		initUI: function () {
+			var self = this,
+				set = this.set,
+				paper = this.paper,
+				player = this.player;
+
+			this.marks = paper.set();
+
+			set.push(set.background);
+			return this;
+		},
+		place: function () {
+			var self = this,
+				set = this.set,
+				paper = this.paper,
+				player = this.player,
+				location = player.timeline.current.location,
+				board = location.board;
+
+			board.marks.forEachValue(function(mark) {
+				//console.log("Placing mark", mark);
+				var iconURL, iconURLSmall, imgMark;
+				var OSSizeRatio = 1,
+					iconOffsetX = 0,
+					iconOffsetY = 0;
+				if (IsiPhone || IsiPod) OSSizeRatio = 1.5;
+				if (mark.type === "destination") {
+					iconURL = "images/icon-arrow.png";
+					iconURLSmall = "images/icon-arrow-dot.png";
+					imgMark = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+				} else if (mark.type === "character") {
+					iconURL = "images/icon-character.png";
+					iconURLSmall = "images/icon-character-small.png";
+					iconOffsetY = -20;
+					imgMark = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-40*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+				} else {
+					iconURL = "images/icon-questionMark.png";
+					iconURLSmall = "images/icon-questionMark-dot.png";
+					imgMark = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+				}
+				imgMark.attr({
+					"cursor": "pointer"
+				});
+				imgMark.mouseover(function(e){
+					var board = player.views.board;
+					self.hoveredMark = mark;
+					this.attr({
+						src: iconURL
+					});
+					board.statusBar.show();
+					board.actionArrow.show().place(player.characterMark, mark, iconOffsetX, iconOffsetY, 0, -250);
+				});
+				imgMark.mouseout(function(e){
+					var board = player.views.board;
+					this.attr({
+						src: iconURLSmall
+					});
+					self.hoveredMark = null;
+					board.actionArrow.place(player.characterMark, player.characterMark, 0, -250, 0, -250, function() {
+						board.actionArrow.hide();
+					});
+					if (!board.highlight.visible) {
+						board.statusBar.hide();
+					}
+				});
+				imgMark.attr({
+					"cursor": "pointer"
+				});
+				imgMark.click(function(e){
+					var path = location.setId + "/" + mark.destination;
+					player.controller.run("goToLocation", {path: path});
+				});
+				self.marks.push(imgMark);
+			});
+		}
+	});
+
 	PP.ActionArrow = new JS.Class(PP.PaperObject, {
 		ui: null,
 		shadowOffset: 5,
@@ -356,6 +435,7 @@
 				paper = this.paper,
 				path = "M0 0L0 0",
 				arrow,
+				arrow2,
 				shadow,
 				tip;
 			arrow = set.arrow = paper
@@ -363,9 +443,9 @@
 				.hide()
 				.insertAfter(this.view.highlight.set.background)
 				.attr({
-					stroke: "#fff",
+					"stroke": "#fff",
 					"stroke-linecap": "round",
-					"stroke-width": 10
+					"stroke-width": 8
 				});
 
 			shadow = set.shadow = paper
@@ -373,8 +453,8 @@
 				.hide()
 				.insertBefore(arrow)
 				.attr({
-					stroke: "#000",
-					"opacity": 0.4,
+					"stroke": "#000",
+					"opacity": 0,
 					"stroke-linecap": "round",
 					"stroke-width": 12
 				});
@@ -640,6 +720,7 @@
 			this.statusBar = new PP.StatusBar(this);
 			this.highlight = new PP.Highlight(this);
 			this.actionArrow = new PP.ActionArrow(this);
+			this.marks = new PP.MarkSet(this);
 		},
 		initKeyboard: function() {
 			var self = this;
@@ -664,7 +745,7 @@
 			this.statusBar.hide().refresh();
 			this.startSoundtrack();
 			this.showBackground();
-			this.showMarks();
+			this.marks.place();
 			this.showCharacter()
 		},
 		startSoundtrack: function () {
@@ -760,71 +841,6 @@
 				path = this.player.urlMapper.image(board.backgroundImage, this.location.setId);
 			this.set.background.attr({
 				src: path
-			});
-		},
-		showMarks: function () {
-			var player = this.player,
-				location = this.location,
-				self = this,
-				set = this.set,
-				p = this.paper;
-			if (set.marks) set.marks.remove();
-			var marks = set.marks = p.set();
-			//console.log(location.board, location.board.marks);
-			location.board.marks.forEachValue(function(mark) {
-				//console.log("Placing mark", mark);
-				var iconURL, iconURLSmall, imgMark;
-				var OSSizeRatio = 1,
-					iconOffsetX = 0,
-					iconOffsetY = 0;
-				if (IsiPhone || IsiPod) OSSizeRatio = 1.5;
-				if (mark.type === "destination") {
-					iconURL = "images/icon-arrow.png";
-					iconURLSmall = "images/icon-arrow-dot.png";
-					imgMark = p.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
-				} else if (mark.type === "character") {
-					iconURL = "images/icon-character.png";
-					iconURLSmall = "images/icon-character-small.png";
-					iconOffsetY = -20;
-					imgMark = p.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-40*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
-				} else {
-					iconURL = "images/icon-questionMark.png";
-					iconURLSmall = "images/icon-questionMark-dot.png";
-					imgMark = p.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
-				}
-				imgMark.attr({
-					"cursor": "pointer"
-				});
-				imgMark.mouseover(function(e){
-					var board = player.views.board;
-					self.hoveredMark = mark;
-					this.attr({
-						src: iconURL
-					});
-					board.statusBar.show();
-					board.actionArrow.show().place(player.characterMark, mark, iconOffsetX, iconOffsetY, 0, -250);
-				});
-				imgMark.mouseout(function(e){
-					var board = player.views.board;
-					this.attr({
-						src: iconURLSmall
-					});
-					self.hoveredMark = null;
-					board.actionArrow.place(player.characterMark, player.characterMark, 0, -250, 0, -250, function() {
-						board.actionArrow.hide();
-					});
-					if (!board.highlight.visible) {
-						board.statusBar.hide();
-					}
-				});
-				imgMark.attr({
-					"cursor": "pointer"
-				});
-				imgMark.click(function(e){
-					var path = location.setId + "/" + mark.destination;
-					player.controller.run("goToLocation", {path: path});
-				});
-				marks.push(imgMark);
 			});
 		},
 		showCharacter: function () {

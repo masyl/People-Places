@@ -3,16 +3,16 @@
 NOW DOING:
 	- FINISH REFACTORING ALL PaperObject CLASSES
 		background
-		actionArrow
-		highlight
-		marks
+		character
 	- When clicking back from welcome\option goes back to welcome
+	- UI: Show the marks title/action when hovering
 
 POSSIBLE REFACTORING:
 	- Mute buttons should be PaperObjects
 	- Menus should be structured PaperObjects
 
 POSSIBLE REFINEMENT
+	- Action Arrow: The shadow under the path has opacity at 100% because the while set is animated in synch
 	- MouseOver states for mute and pause icons
 	- Do something original when logo is clicked
 	- Javascript confirmation before reseting the game
@@ -35,7 +35,6 @@ v0.1.1
 	+ New options screen
 	+ New pause screen
 	+ Mute button
-	- UI: Show the marks title/action when hovering
 
 v0.1.2
 	- Ability to move to a specific character mark
