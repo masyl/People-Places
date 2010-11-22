@@ -1,6 +1,26 @@
 
 RELEASE HISTORY:
 
+v0.1.1
+	+ added Meta tags for iOS devices
+	+ Tweaked UI and interactions for iOS
+	+ Unobstrucsive version of markers as a small color dot, and the bigger icon is used only on mouse hover.
+	+ UI for highlighting markers before using them
+	+ Click on the boards background will trigger the highlight on/off
+	+ Only show detailed UI when in highligh mode (location, title bar, etc)
+	+ View system for showing in-game navigation
+	+ New welcome screen with logo
+	+ New options screen
+	+ New pause screen
+	+ Mute button
+	+ UI: Show the marks title/action when hovering
+	+ Exit/Quit
+	+ Music on the welcome screen
+	+ Show specific icons inside action arrows tip instead of symbolic icons
+	+ Added maps for the world and montreal
+	+ Ability to move to a specific character mark
+
+
 v0.1.0
 	- Game state persistence in HTML5
 	- Solve the ASYNC loading problem
