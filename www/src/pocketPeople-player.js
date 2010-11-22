@@ -34,10 +34,6 @@
 				pause: new PP.PauseView("pauseView", this),
 				welcome: new PP.WelcomeView("welcomeView", this)
 			};
-			this.views.options.hide();
-			this.views.pause.hide();
-			this.views.board.show();
-			this.views.welcome.show();
 			this.initStorage();
 			this.initSoundManager();
 			this.loadWorld(this.settings.world);
@@ -125,12 +121,12 @@
 			return this;
 		},
 		start: function() {
-			// Init the canvas
-			var defaultLocation,
-				sourceCode,
-				self = this;
+			this.views.welcome.show().startSoundtrack();
 			this.timeline = new PP.Timeline(this.world);
 			this.initController();
+			return this;
+		},
+		startGame: function() {
 			this.loadFromLocalStorage({
 				game: this.world.defaultState,
 				player: {}
@@ -142,6 +138,7 @@
 			} else {
 				alert("Oups, no location to start from!");
 			}
+			this.views.board.show();
 			return this;
 		},
 		load: function(data) {
@@ -292,21 +289,21 @@
 			set.background = paper
 				.image("images/statusBar-Background.png", 0, 0, 960, 111, 0);
 			set.iconBg = paper
-				.rect(5, 5, 86, 86, 22)
+				.rect(10, 10, 86, 86, 22)
 				.attr({
 					"fill": "#000"
 				});
 			set.icon = paper
-				.image("", 8, 8, 80, 80);
+				.image("", 13, 13, 80, 80);
 			set.title = paper
-				.text(100, 22, "")
+				.text(110, 27, "")
 				.attr({
 					"fill": "#fff",
 					"font-size": "24px",
 					"text-anchor": "start"
 				});
 			set.description = paper
-				.text(10, 47, "")
+				.text(110, 52, "")
 				.attr({
 					"fill": "#fff",
 					"font-size": "16px",
@@ -344,8 +341,7 @@
 		refresh: function() {
 			var set = this.set,
 				paper = this.paper,
-				location = this.player.timeline.location;
-
+				location = this.player.timeline.current.location;
 			if (location) {
 				set.icon.attr("src", player.urlMapper.image(location.board.icon, location.setId));
 				set.title.attr("text", location.title());
@@ -419,6 +415,10 @@
 				"y": y,
 				"width": width,
 				"height": height
+			}).click(function () {
+				var board = player.views.board
+				board.statusBar.refresh().show();
+				board.highlight.show();
 			});
 			return this;
 		}
@@ -426,6 +426,7 @@
 
 	PP.MarkSet = new JS.Class(PP.PaperObject, {
 		marks: null,
+		smallMarks: null,
 		initUI: function () {
 			var self = this,
 				set = this.set,
@@ -433,9 +434,17 @@
 				player = this.player;
 
 			this.marks = paper.set();
+			this.smallMarks = paper.set();
 
 			set.push(set.background);
 			return this;
+		},
+		unHook: function() {
+			var board = this.player.views.board;
+			this.marks.hide();
+			board.actionArrow.place(board.character.mark, board.character.mark, 0, -250, 0, -250, function() {
+				board.actionArrow.hide();
+			});
 		},
 		place: function () {
 			var self = this,
@@ -446,62 +455,65 @@
 				board = location.board;
 
 			this.marks.remove();
+			this.smallMarks.remove();
 			board.marks.forEachValue(function(mark) {
 				var iconURL,
 					iconURLSmall,
+					imgMarkSmall,
 					imgMark;
 				var OSSizeRatio = 1,
 					iconOffsetX = 0,
 					iconOffsetY = 0;
 				if (IsiPhone || IsiPod) OSSizeRatio = 1.5;
 				if (mark.type === "destination") {
-					iconURL = "images/icon-arrow.png";
+					var destination = new PP.Location(mark.destination, self.player.world);
+					var destinationIcon = player.urlMapper.image(destination.board.icon, destination.setId);
+					iconURL = destinationIcon || "images/icon-walk.png";
 					iconURLSmall = "images/icon-arrow-dot.png";
-					imgMark = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+					imgMarkSmall = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+					imgMark = paper.image(iconURL, 960*mark.x-31*OSSizeRatio, 540*mark.y-31*OSSizeRatio, 64*OSSizeRatio, 64*OSSizeRatio).hide();
 				} else if (mark.type === "character") {
-					iconURL = "images/icon-character.png";
+					iconURL = "images/icon-walk.png";
 					iconURLSmall = "images/icon-character-small.png";
-					iconOffsetY = -20;
-					imgMark = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-40*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+					imgMarkSmall = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-40*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+					imgMark = paper.image(iconURL, 960*mark.x-31*OSSizeRatio, 540*mark.y-31*OSSizeRatio, 64*OSSizeRatio, 64*OSSizeRatio).hide();
 				} else {
 					iconURL = "images/icon-questionMark.png";
 					iconURLSmall = "images/icon-questionMark-dot.png";
-					imgMark = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+					if (mark.icon) {
+						iconURL = player.urlMapper.image(mark.icon, location.setId);
+					}
+					imgMarkSmall = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+					imgMark = paper.image(iconURL, 960*mark.x-31*OSSizeRatio, 540*mark.y-31*OSSizeRatio, 64*OSSizeRatio, 64*OSSizeRatio).hide();
 				}
 				imgMark.attr({
 					"cursor": "pointer"
 				});
-				imgMark.mouseover(function(e){
+				imgMarkSmall.attr({
+					"cursor": "pointer"
+				});
+				imgMarkSmall.mouseover(function(e){
 					var board = player.views.board;
 					var characterMark = board.character.mark;
+					self.marks.hide();
+					imgMark.show();
 					self.hoveredMark = mark;
-					this.attr({
-						src: iconURL
-					});
-
-					//TODO: SHOW MARK INFO IN STATUS BAR
-					board.statusBar.placeMark(mark).show();
-
 					board.actionArrow.show().place(characterMark, mark, iconOffsetX, iconOffsetY, 0, -250);
 				});
-				imgMark.mouseout(function(e){
-					var board = player.views.board;
-					var characterMark = board.character.mark;
-					this.attr({
-						src: iconURLSmall
-					});
-					self.hoveredMark = null;
-					board.actionArrow.place(characterMark, characterMark, 0, -250, 0, -250, function() {
-						board.actionArrow.hide();
-					});
-					if (!board.highlight.visible) {
-						board.statusBar.hide();
+				imgMark.click(function(e){
+					if (mark.type === "destination") {
+						player.controller.run("goToLocation", {path: mark.destination});
+					} else if (mark.type === "character") {
+						var path = location.setId + "/" + location.boardId + "#" + mark.id;
+						player.controller.run("goToLocation", {path: path});
+					} else if (mark.type === "action") {
+						player.controller.run("doAction", {path: mark.destination});
+					} else {
+						alert("Oups... nothing here!");
 					}
 				});
-				imgMark.click(function(e){
-					player.controller.run("goToLocation", {path: mark.destination});
-				});
 				self.marks.push(imgMark);
+				self.smallMarks.push(imgMarkSmall);
 			});
 		}
 	});
@@ -517,7 +529,9 @@
 				arrow,
 				arrow2,
 				shadow,
-				tip;
+				tip,
+				label,
+				labelShadow;
 			arrow = set.arrow = paper
 				.path(path)
 				.hide()
@@ -544,8 +558,32 @@
 				.hide()
 				.insertAfter(arrow);
 
+			labelShadow = set.labelShadow = paper
+				.text("", 0, 0)
+				.hide()
+				.insertAfter(tip)
+				.attr({
+					"fill": "#000",
+					"font-size": "18px",
+				//	"font-weight": "bold",
+					"text-anchor": "middle",
+					"opacity": 0.5
+				});
+			label = set.label = paper
+				.text("", 0, 0)
+				.hide()
+				.insertAfter(labelShadow)
+				.attr({
+					"fill": "#fff",
+					"font-size": "18px",
+				//	"font-weight": "bold",
+					"text-anchor": "middle"
+				});
+
 			set.push(arrow);
 			set.push(shadow);
+			set.push(label);
+			set.push(labelShadow);
 			set.push(tip);
 			return this;
 		},
@@ -570,6 +608,16 @@
 				set.shadow.animate({
 					path: pathShadow
 				}, 200);
+				set.label.attr({
+					"text": targetMark.title,
+					"x": x,
+					"y": y + 50
+				});
+				set.labelShadow.attr({
+					"text": targetMark.title,
+					"x": x - 1,
+					"y": y + 52
+				});
 				set.tip.animate({
 					x: x - 50,
 					y: y - 50
@@ -592,6 +640,7 @@
 			this.paper = Raphael(rootId, player.width, player.height);
 			this.set = this.paper.set();
 			this.root = $("#" + rootId);
+			this.hide();
 			this.initUI();
 			return this;
 		},
@@ -680,6 +729,7 @@
 					player.views.pause.show();
 				});
 
+			return this;
 		}
 	});
 	PP.WelcomeView = new JS.Class(PP.View, {
@@ -688,8 +738,8 @@
 				player = this.player,
 				paper = this.paper;
 
-			this.set.background = paper.image("images/welcome.jpg", 0, 0, 960, 540, 0);
-
+			this.set.background = paper
+					.image("images/welcome.jpg", 0, 0, 960, 540, 0);
 			var title = "People & Places"
 			this.set.titleShadow = paper
 				.text(640, 113, title)
@@ -750,6 +800,8 @@
 				})
 				.click(function(){
 					view.hide();
+					view.stopSoundtrack()
+					player.startGame();
 				});
 
 			this.set.btnOptions = paper
@@ -787,8 +839,63 @@
 				})
 				.mouseout(function(){
 					this.animate({"scale": 1}, 150, ">");
-				})
+				});
 
+
+			function createMuteButton() {
+				var btnMute,
+					imgVolumeHigh = "images/volume-high.png",
+					imgVolumeMuted = "images/volume-muted.png";
+
+				btnMute = view.set.mute = paper.image(player.volumeMuted ? imgVolumeMuted : imgVolumeHigh, 900, 483, 50, 50)
+					.attr({
+						cursor: "pointer"
+					});
+				function mute() {
+					player
+						.mute()
+						.save();
+				}
+				function unmute() {
+					player
+						.unmute()
+						.save();
+				}
+				btnMute.click(function() {
+					if (player.volumeMuted) {
+						unmute();
+					} else {
+						mute();
+					}
+				});
+				player.subscribe("mute", function(){
+					btnMute.attr({ src: imgVolumeMuted });
+				});
+				player.subscribe("unmute", function(){
+					btnMute.attr({ src: imgVolumeHigh });
+				});
+			};
+			createMuteButton();
+
+
+			return this;
+		},
+		startSoundtrack: function () {
+			soundManager.destroySound("welcomeViewSoundtrack");
+			this.soundtrack = soundManager.createSound({
+				id: 'welcomeViewSoundtrack',
+				url: '/sounds/Toshinori-Murashima-apple.mp3',
+				autoLoad: true,
+				autoPlay: true,
+				multiShot: false,
+				loops: 999,
+				volume: 50
+			});
+			return this;
+		},
+		stopSoundtrack: function () {
+			this.soundtrack.stop();
+			return this;
 		}
 	});
 	PP.BoardView = new JS.Class(PP.View, {
@@ -802,6 +909,7 @@
 			this.actionArrow = new PP.ActionArrow(this);
 			this.marks = new PP.MarkSet(this);
 			this.character = new PP.ActingCharacter(this);
+			return this;
 		},
 		initKeyboard: function() {
 			var self = this;
@@ -820,6 +928,7 @@
 					}
 				}
 			});
+			return this;
 		},
 		setLocation: function (location) {
 			this.location = location;
@@ -866,7 +975,7 @@
 
 			// Create pause button if doesnt already exist
 			set.pause = set.pause || paper
-				.image("images/pause.png", 900, 480, 52, 52)
+				.image("images/pause.png", 833, 480, 52, 52)
 				.attr({
 					cursor: "pointer"
 				})
@@ -875,45 +984,49 @@
 				});
 			set.pause.toFront();
 
-			var btnMute,
-				imgVolumeHigh = "images/volume-high.png",
-				imgVolumeMuted = "images/volume-muted.png";
+			function createMuteButton() {
+				var btnMute,
+					imgVolumeHigh = "images/volume-high.png",
+					imgVolumeMuted = "images/volume-muted.png";
 
-			btnMute = this.set.mute = paper.image(player.volumeMuted ? imgVolumeMuted : imgVolumeHigh, 833, 483, 50, 50)
-				.attr({
-					cursor: "pointer"
-				});
-			function mute() {
-				player
-					.mute()
-					.save();
-			}
-			function unmute() {
-				player
-					.unmute()
-					.save();
-			}
-			btnMute.click(function() {
-				if (player.volumeMuted) {
-					unmute();
-				} else {
-					mute();
+				btnMute = set.mute = paper
+					.image(player.volumeMuted ? imgVolumeMuted : imgVolumeHigh, 900, 483, 50, 50)
+					.attr({
+						cursor: "pointer"
+					});
+				function mute() {
+					player
+						.mute()
+						.save();
 				}
-			});
-			player.subscribe("mute", function(){
-				btnMute.attr({ src: imgVolumeMuted });
-			});
-			player.subscribe("unmute", function(){
-				btnMute.attr({ src: imgVolumeHigh });
-			});
+				function unmute() {
+					player
+						.unmute()
+						.save();
+				}
+				btnMute.click(function() {
+					if (player.volumeMuted) {
+						unmute();
+					} else {
+						mute();
+					}
+				});
+				player.subscribe("mute", function(){
+					btnMute.attr({ src: imgVolumeMuted });
+				});
+				player.subscribe("unmute", function(){
+					btnMute.attr({ src: imgVolumeHigh });
+				});
+			};
+			createMuteButton();
 
 			// Add an empty mouseover for iOS
 			set.background.mouseover(function () {
 			});
 
 			set.background.click(function () {
-				player.views.board.statusBar.show();
-				player.views.board.highlight.show();
+				var board = player.views.board
+				board.marks.unHook();
 			});
 
 		},

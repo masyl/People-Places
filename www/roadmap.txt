@@ -3,8 +3,8 @@
 NOW DOING:
 	- FINISH REFACTORING ALL PaperObject CLASSES
 		background
-	- When clicking back from welcome\option goes back to welcome
-	- Show specific icons inside action arrows tip instead of symbolic icons
+	- Bug: Must load player and game state independently
+	- Bug: When clicking back from welcome\option goes back to welcome
 
 POSSIBLE REFACTORING:
 	- Mute buttons should be PaperObjects
@@ -40,6 +40,9 @@ v0.1.1
 	+ Mute button
 	+ UI: Show the marks title/action when hovering
 	+ Exit/Quit
+	+ Music on the welcome screen
+	+ Show specific icons inside action arrows tip instead of symbolic icons
+	+ Added maps for the world and montreal
 
 v0.1.2
 	- Ability to move to a specific character mark

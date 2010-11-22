@@ -29,6 +29,63 @@
 		}
 	},
 	"boards": {
+		"world": {
+			"title": "The World",
+			"description": "Yeah... the whole wide world",
+			"backgroundImage": "map-world.png",
+			"soundtrack": "",
+			"icon": "map-world-icon.png",
+			"scale": 0,
+			"marks": {
+				"default" : {
+					"isDefault": true,
+					"title": "Stand here!",
+					"type": "character",
+					"x": 0.1,
+					"y": 0.9,
+					"z": 0.5
+				},
+				"montreal" : {
+					"title": "Go to\nMontreal City",
+					"type": "destination",
+					"x": 0.3,
+					"y": 0.27,
+					"destination": "stadium/montrealCity"
+				}
+			}
+		},
+		"montrealCity": {
+			"title": "Montreal City",
+			"description": "Where you can find hockey, snow and millions of Quebecois shoving their mouth full of poutine.",
+			"backgroundImage": "map-montreal.png",
+			"soundtrack": "",
+			"icon": "map-montreal-icon.png",
+			"scale": 0,
+			"marks": {
+				"default" : {
+					"isDefault": true,
+					"title": "Stand here!",
+					"type": "character",
+					"x": 0.1,
+					"y": 0.9,
+					"z": 0.5
+				},
+				"nurun" : {
+					"title": "Go to\nNurun",
+					"type": "destination",
+					"x": 0.7,
+					"y": 0.72,
+					"destination": "stadium/nurun"
+				},
+				"worldMap" : {
+					"title": "Go to\nThe World",
+					"type": "destination",
+					"x": 0.1,
+					"y": 0.1,
+					"destination": "stadium/world"
+				}
+			}
+		},
 		"locker": {
 			"title": "Locker room",
 			"description": "Description goes here...",
@@ -39,14 +96,14 @@
 			"marks": {
 				"default" : {
 					"isDefault": true,
-					"title": "Stand next to the garbage can",
+					"title": "Stand next to\nthe garbage can",
 					"type": "character",
 					"x": 0.35,
 					"y": 0.94,
 					"z": 0.82
 				},
 				"bathroom" : {
-					"title": "Go to the bathroom",
+					"title": "Go to\nthe bathroom",
 					"type": "destination",
 					"x": 0.6,
 					"y": 0.5,
@@ -64,28 +121,28 @@
 			"marks": {
 				"default" : {
 					"isDefault": true,
-					"title": "Stand next to the sinks",
+					"title": "Stand near\nthe sinks",
 					"type": "character",
 					"x": 0.64,
 					"y": 0.72,
 					"z": 0.6
 				},
 				"toParkingLot" : {
-					"title": "Go to the parking lot",
+					"title": "Go to\nthe parking lot",
 					"type": "destination",
 					"x": 0.45,
 					"y": 0.35,
 					"destination": "stadium/parkinglot"
 				},
 				"toLocker" : {
-					"title": "Go to the locker room",
+					"title": "Go to\nthe locker room",
 					"type": "destination",
 					"x": 0.35,
 					"y": 0.85,
 					"destination": "stadium/locker"
 				},
 				"washHands" : {
-					"title": "Wash your hands",
+					"title": "Wash\nyour hands",
 					"type": "action",
 					"icon": "icon-washHands.png", 
 					"x": 0.7,
@@ -103,18 +160,25 @@
 			"marks": {
 				"default" : {
 					"isDefault": true,
-					"title": "Standing around",
+					"title": "Stand here",
 					"type": "character",
 					"x": 0.64,
 					"y": 0.72,
 					"z": 0.6
 				},
 				"locker" : {
-					"title": "Go to the locker room",
+					"title": "Go to\nthe locker room",
 					"type": "destination",
 					"x": 0.45,
 					"y": 0.35,
 					"destination": "stadium/locker"
+				},
+				"montreal" : {
+					"title": "Go somewhere\n in Montreal",
+					"type": "destination",
+					"x": 0.90,
+					"y": 0.75,
+					"destination": "stadium/montrealCity"
 				}
 			}
 		},
@@ -128,7 +192,7 @@
 			"marks": {
 				"farBack" : {
 					"isDefault": true,
-					"title": "Standing around",
+					"title": "Stand here",
 					"type": "character",
 					"x": 0.6,
 					"y": 0.8,
@@ -146,11 +210,11 @@
 					"type": "destination",
 					"x": 0.45,
 					"y": 0.35,
-					"destination": "stadium/nurun-flasheux"
+					"destination": "stadium/nurun"
 				}
 			}
 		},
-		"nurun-flasheux": {
+		"nurun": {
 			"title": "Cubicule des flasheux",
 			"description": "Ici ça travaille fort... et ça potine fort aussi!",
 			"backgroundImage": "nurun-flasheux.jpg",
@@ -160,14 +224,14 @@
 			"marks": {
 				"default" : {
 					"isDefault": true,
-					"title": "Standing around",
+					"title": "Stand here",
 					"type": "character",
 					"x": 0.66,
 					"y": 1.1,
 					"z": 1.4
 				},
 				"toForest" : {
-					"title": "Go to the forest",
+					"title": "Go to\nthe forest",
 					"type": "destination",
 					"x": 0.9,
 					"y": 0.55,

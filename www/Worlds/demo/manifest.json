@@ -4,7 +4,7 @@
 	"seed": "demo",
 	"sets": ["stadium"],
 	"defaultState": {
-		"locationPath": "stadium/forest#",
+		"locationPath": "stadium/world",
 		"character": "remi"
 	}
 }
