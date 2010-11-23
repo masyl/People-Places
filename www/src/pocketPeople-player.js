@@ -205,12 +205,12 @@
 					url = self.urlMapper.set(id);
 				//console.log("loading: ", url);
 				$.getJSON(url, function (data) {
-					//console.log("Set loaded");
 					set = new PP.Set(data);
 					self.world.sets.store(id, set);
 					//console.log("Set loaded: manifest: ", set, id);
 					self.world.boards.update(set.boards);
 					self.world.marks.update(set.marks);
+					self.world.artefacts.update(set.artefacts);
 					self.world.characters.update(set.characters);
 					self.setsToLoad = self.setsToLoad - 1;
 					if (self.setsToLoad <= 0) {
@@ -424,6 +424,62 @@
 		}
 	});
 
+	// todo: refactor: should be initialized with mark (with infered board and view from board)... not mark+view
+	PP.ActingArtefact = new JS.Class(PP.PaperObject, {
+		artefact: null,
+		mark: null,
+		initialize: function(mark, view) {
+			this.callSuper(view);
+			this.mark = mark;
+			//todo: could this be simplified by having artefact already loading in the mark
+			// like this:  artefact = this.mark.artefact
+			this.artefact = this.player.world.artefacts.get(mark.artefact);
+		},
+		initUI: function () {
+			var self = this,
+				set = this.set,
+				paper = this.paper;
+			this.set.imgPose = paper
+				.image("", 0, 0, 0, 0)
+				.attr({
+					"cursor": "pointer"
+				});
+			set.push(set.imgPose);
+			return this;
+		},
+		place: function () {
+			var self = this,
+				player = this.player,
+				paper = this.paper,
+				location = this.player.timeline.current.location,
+				set = this.set,
+				imgPoseURL,
+				imgPose,
+				pose,
+				board = player.views.board,
+				mark = this.mark,
+				x,
+				y,
+				width,
+				height;
+			pose = this.artefact.poses.get(mark.pose);
+			imgPoseURL = player.urlMapper.image(pose.image, this.artefact.set.id);
+			height = 200 * mark.z;
+			width = 200 * mark.z;
+			x = 960 * mark.x - (width / 2);
+			y = 540 * mark.y - height;
+			this.set.imgPose.attr({
+				"src": imgPoseURL,
+				"x": x,
+				"y": y,
+				"width": width,
+				"height": height
+			}).insertAfter(board.set.background);
+			return this;
+		}
+	});
+
+
 	PP.MarkSet = new JS.Class(PP.PaperObject, {
 		marks: null,
 		smallMarks: null,
@@ -476,6 +532,16 @@
 					iconURL = "images/icon-walk.png";
 					iconURLSmall = "images/icon-character-small.png";
 					imgMarkSmall = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-40*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+					imgMark = paper.image(iconURL, 960*mark.x-31*OSSizeRatio, 540*mark.y-31*OSSizeRatio, 64*OSSizeRatio, 64*OSSizeRatio).hide();
+				} else if (mark.type === "artefact") {
+					var artefact = player.world.artefacts.get(mark.artefact);
+					console.log("artefact: ", artefact, player.world);
+					var artefactIcon = player.urlMapper.image(artefact.icon, artefact.set.id);
+					console.log("artefactIcon: ", artefactIcon);
+					var actingArtefact = new PP.ActingArtefact(mark, this.player.views.board).place();
+					iconURL = artefactIcon || "images/icon-questionMark.png";
+					iconURLSmall = "images/icon-questionMark-dot.png";
+					imgMarkSmall = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
 					imgMark = paper.image(iconURL, 960*mark.x-31*OSSizeRatio, 540*mark.y-31*OSSizeRatio, 64*OSSizeRatio, 64*OSSizeRatio).hide();
 				} else {
 					iconURL = "images/icon-questionMark.png";
@@ -565,7 +631,6 @@
 				.attr({
 					"fill": "#000",
 					"font-size": "18px",
-				//	"font-weight": "bold",
 					"text-anchor": "middle",
 					"opacity": 0.5
 				});
@@ -576,7 +641,6 @@
 				.attr({
 					"fill": "#fff",
 					"font-size": "18px",
-				//	"font-weight": "bold",
 					"text-anchor": "middle"
 				});
 
@@ -594,14 +658,16 @@
 				x2 = 0,
 				y2 = 0,
 				path,
-				pathShadow;
+				pathShadow,
+				title;
 			if (sourceMark && targetMark) {
 				x = targetMark.x * 960 + (targetOffsetX * targetMark.z || 1);
 				y = targetMark.y * 540 + (targetOffsetY * targetMark.z || 1);
 				x2 = sourceMark.x * 960 + (sourceOffsetX * sourceMark.z);
 				y2 = sourceMark.y * 540 + (sourceOffsetY * sourceMark.z);
 				path = "M" + x + " " + y + "L" + x2 + " " + y2;
-				pathShadow = "M" + x + " " + (y+this.shadowOffset) + "L" + x2 + " " + (y2+this.shadowOffset);
+				pathShadow = "M" + x + " " + (y + this.shadowOffset) + "L" + x2 + " " + (y2 + this.shadowOffset);
+				title = targetMark.title;
 				set.arrow.animate({
 					path: path
 				}, 200);
@@ -609,12 +675,12 @@
 					path: pathShadow
 				}, 200);
 				set.label.attr({
-					"text": targetMark.title,
+					"text": title,
 					"x": x,
 					"y": y + 50
 				});
 				set.labelShadow.attr({
-					"text": targetMark.title,
+					"text": title,
 					"x": x - 1,
 					"y": y + 52
 				});
@@ -901,6 +967,10 @@
 	PP.BoardView = new JS.Class(PP.View, {
 		statusBar: null,
 		highlight: null,
+		actionArrow: null,
+		marks: null,
+		character: null,
+		artefacts: null,
 		initUI: function () {
 			var self = this;
 			this.initBackground();
@@ -909,7 +979,7 @@
 			this.actionArrow = new PP.ActionArrow(this);
 			this.marks = new PP.MarkSet(this);
 			this.character = new PP.ActingCharacter(this);
-			return this;
+			this.artefacts = new JS.Hash();
 		},
 		initKeyboard: function() {
 			var self = this;

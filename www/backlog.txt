@@ -1,0 +1,38 @@
+
+POSSIBLE REFACTORING:
+	- Mute buttons should be PaperObjects
+	- Menus should be structured PaperObjects
+	- Refactor: The character should be an class object
+		- Bug: Characters: When a character occupies a mark, the mark icon doesnt disapear
+	- Refactor: Put all static images into config... dont hardcode
+
+POSSIBLE REFINEMENT
+	- Action Arrow: The shadow under the path has opacity at 100% because the while set is animated in synch
+	- UI: Arrow icons to point thoward more directions and a way to specifiy which orientation to display
+	- Do something original when logo is clicked
+	- Javascript confirmation before reseting the game
+	- When focus is not on the board, dont should the mute and pause buttons
+	- Pause and mute button should have a uniforme look (dark circle)
+	- Multiple games in progress: Dont start game right away when no game to resume. When quiting, flush current game and put it in save slot
+	- ui: board: soundtrack: volume button (like on video plyers
+
+BIG FEATURES:
+	World/Sets Editor
+	Game Server (for persisting custom levels)
+	- Time management and movement cost calculation
+	- Transaction log
+	- Transaction Scheduler
+	- Navigation history (with player UI)
+
+
+
+Todo: Scripting Scenarios/Actions:
+	- Play a sound
+	- Obtain/Spend an item
+	- Gain knowledge of something
+	- Move time forward
+	- Set/Increment/Decrement game state variable
+	- Change the boards background image
+	- Change the boards soundtrack
+	- Gain access to a new mark on a board
+	-

@@ -2,12 +2,6 @@
 	"id": "stadium",
 	"title": "Stadium",
 	"seed": "stadium",
-	"objects": {
-		"gnome": {
-			"title": "Typical Garden gnome",
-			"image": "gnome.png"
-		}
-	},
 	"characters": {
 		"bob": {
 			"name": "Bob",
@@ -24,6 +18,28 @@
 			"poses": {
 				"standing": {
 					"image": "remi.png"
+				}
+			}
+		}
+	},
+	"artefacts": {
+		"sodaCan": {
+			"title": "Soda Can",
+			"descriptions": "A soda can you picked up in the garbage",
+			"icon": "sodaCan-icon.png",
+			"poses": {
+				"default": {
+					"image": "sodaCan.png"
+				}
+			}
+		},
+		"mushrooms": {
+			"title": "Mushrooms",
+			"descriptions": "Small green mushroom with weird blue dots",
+			"icon": "mushrooms-icon.png",
+			"poses": {
+				"default": {
+					"image": "mushrooms.png"
 				}
 			}
 		}
@@ -167,7 +183,7 @@
 					"z": 0.6
 				},
 				"locker" : {
-					"title": "Go to\nthe locker room",
+					"title": "Go to\n the locker room",
 					"type": "destination",
 					"x": 0.45,
 					"y": 0.35,
@@ -178,6 +194,16 @@
 					"type": "destination",
 					"x": 0.90,
 					"y": 0.75,
+					"destination": "stadium/montrealCity"
+				},
+				"mushrooms" : {
+					"title": "Some mushrooms",
+					"type": "artefact",
+					"artefact": "mushrooms",
+					"pose": "default",
+					"x": 0.35,
+					"y": 0.73,
+					"z": 0.3,
 					"destination": "stadium/montrealCity"
 				}
 			}

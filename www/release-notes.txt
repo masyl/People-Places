@@ -22,5 +22,5 @@ v0.1.1
 
 
 v0.1.0
-	- Game state persistence in HTML5
-	- Solve the ASYNC loading problem
+	+ Game state persistence in HTML5
+	+ Solve the ASYNC loading problem

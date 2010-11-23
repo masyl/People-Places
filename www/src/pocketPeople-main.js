@@ -122,12 +122,20 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		title: "",
 		seed: "",
 		defaultState: "",
-		sets: new JS.Hash(),
-		boards: new JS.Hash(),
-		marks: new JS.Hash(),
-		characters: new JS.Hash(),
+		sets: null,
+		boards: null,
+		marks: null,
+		characters: null,
+		artefacts: null,
 		initialize: function (settings) {
 			$.extend(this.settings, settings);
+
+			this.sets = new JS.Hash();
+			this.boards = new JS.Hash();
+			this.marks = new JS.Hash();
+			this.characters = new JS.Hash();
+			this.artefacts = new JS.Hash();
+
 			this.id = settings.id;
 			this.title = settings.title;
 			this.seed = settings.seed;
@@ -143,11 +151,13 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		boards: null,
 		marks: null,
 		characters: null,
+		artefacts: null,
 		initialize: function (settings) {
 			var self = this;
 			this.boards = new JS.Hash();
 			this.marks = new JS.Hash();
 			this.characters = new JS.Hash();
+			this.artefacts = new JS.Hash();
 			$.extend(this.settings, settings);
 			this.id = settings.id;
 			this.title = settings.title;
@@ -156,11 +166,14 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 				var board = new PP.Board(id, this);
 				self.boards.store(board.id, board);
 				self.marks.update(board.marks);
-
 			});
 			$.each(this.settings.characters, function (id) {
 				var character = new PP.Character(id, this);
 				self.characters.store(character.id, character);
+			});
+			$.each(this.settings.artefacts, function (id) {
+				var artefact = new PP.Artefact(id, self, this);
+				self.artefacts.store(artefact.id, artefact);
 			});
 		}
 	});
@@ -187,7 +200,6 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			$.each(this.settings.marks, function (markId) {
 				var mark = new PP.Mark(markId, this);
 				self.marks.store(markId, mark);
-				//console.log(self.marks.size, id, markId, mark, self.marks);
 			});
 		}
 	});
@@ -200,6 +212,8 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		x: 0,
 		y: 0,
 		z: 0,
+		artefact: null,
+		pose: null,
 		destination: "",
 		icon: null,
 		initialize: function (id, settings) {
@@ -211,18 +225,33 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			this.y = settings.y;
 			this.z = settings.z;
 			this.icon = settings.icon;
+			this.artefact = settings.artefact;
+			this.pose = settings.pose;
 			this.destination = settings.destination;
 		}
 	});
 
-	PP.Object = new JS.Class({
+	PP.Artefact = new JS.Class({
 		settings: {},
 		id: null,
 		title: "",
-		initialize: function(settings) {
+		description: "",
+		icon: "",
+		poses: null,
+		set: null,
+		initialize: function(id, set, settings) {
+			var self = this;
+			this.set = set;
+			this.poses = new JS.Hash();
 			$.extend(this.settings, settings);
-			this.id = settings.id;
+			this.id = id;
 			this.title = settings.title;
+			this.description = settings.description;
+			this.icon = settings.icon;
+			$.each(this.settings.poses, function (id) {
+				var pose = new PP.Pose(id, this);
+				self.poses.store(id, pose);
+			});
 		}
 	});
 
@@ -247,6 +276,9 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		}
 	});
 
+	/**
+	 * Poses are used for both characters and artefcts
+	 */
 	PP.Pose = new JS.Class({
 		settings: {},
 		id: null,
@@ -291,7 +323,6 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 					location: location
 				}
 			};
-			//console.log("New controller created", this.world, this.timeline);
 		},
 		run: function (commandId, args) {
 			var command,
@@ -324,15 +355,16 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			return this;
 		},
 		state: function (newState) {
+			var returnState;
 			if (newState) {
 				if (newState.locationPath) this.current.location = new PP.Location(newState.locationPath, this.world);
 				if (newState.character) this.current.character = this.world.characters.get(newState.character);
 			}
-			var state = {
+			returnState = {
 				locationPath: (this.current.location) ? this.current.location.path : "",
 				character: (this.current.character) ? this.current.character.id : ""
-			}
-			return state;
+			};
+			return returnState;
 		}
 	});
 
