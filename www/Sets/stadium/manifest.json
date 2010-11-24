@@ -114,7 +114,7 @@
 					"isDefault": true,
 					"title": "Stand next to\nthe garbage can",
 					"type": "character",
-					"x": 0.35,
+					"x": 0.45,
 					"y": 0.94,
 					"z": 0.82
 				},
@@ -124,6 +124,13 @@
 					"x": 0.6,
 					"y": 0.5,
 					"destination": "stadium/bathroom"
+				},
+				"lookinGarbageCan" : {
+					"title": "Look in the\n garbage can",
+					"type": "macro",
+					"x": 0.23,
+					"y": 0.78,
+					"macro": "findCrushedSodaCan"
 				}
 			}
 		},
@@ -264,6 +271,17 @@
 					"destination": "stadium/forest"
 				}
 			}
+		}
+	},
+	"macros": {
+		"findCrushedSodaCan": {
+			"title": "player finds a crushed soda can",
+			"sequence": [
+				["findArtefact", {
+					"message": "You have found a crushed and sticky soda can!",
+					"artefact": "sodaCan"
+				}]
+			]
 		}
 	}
 }
