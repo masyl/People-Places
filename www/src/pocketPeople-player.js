@@ -115,6 +115,8 @@
 			findArtefact: function (result) {
 				console.log("ARTEFACT FOUND!", result.artefact.id, result.artefact);
 				var icon = this.urlMapper.image(result.artefact.icon, result.artefact.set.id);
+				console.log("refreshing bar")
+				this.views.board.inventoryBar.refresh();
 				this.views.notifications.notify(icon, result.notification.title, result.notification.message, "Great!").show();
 			}
 		},
@@ -264,8 +266,12 @@
 		paper: null,
 		set: null,
 		view: null,
-		initialize: function (view) {
+		x: 0,
+		y: 0,
+		initialize: function (view, x, y) {
 			this.callSuper();
+			this.x = x || 0;
+			this.y = y || 0;
 			this.view = view;
 			this.player = view.player;
 			this.paper = view.paper;
@@ -283,8 +289,9 @@
 			/* to be overriden */
 		},
 		show: function () {
+			console.log(this.set.length);
 			if (!this.visible) {
-				this.set
+				this.set.length && this.set
 					.attr({
 						opacity: 0
 					})
@@ -737,6 +744,92 @@
 			return this;
 		}
 	});
+	PP.InventoryBar = new JS.Class(PP.PaperObject, {
+		character: null,
+		itemsPerPage: 5,
+		iconsSize: 50,
+		iconsInterval: 15,
+		initUI: function () {
+			var self = this,
+				set = this.set,
+				paper = this.paper;
+
+			return this;
+		},
+		databind: function(character) {
+			this.character = character || null;
+			this.refresh();
+			return this;
+		},
+		refresh: function () {
+			var self = this,
+				paper = this.paper,
+				set = this.set,
+				inventory = this.character.inventory,
+				inventoryItem,
+				count,
+				x,
+				y,
+				icon,
+				width,
+				height;
+
+			set.remove();
+
+			inventory = this.character && this.character.inventory;
+
+			if (inventory) {
+				if (inventory.length > 0) {
+					height = this.iconsSize + 20;
+					width = ((inventory.length) * (self.iconsSize + self.iconsInterval)) - self.iconsInterval + 20;
+					set.background = paper
+						.rect(self.x, self.y, width, height, 10)
+						.attr({
+							"fill": "#000",
+							"opacity": 0.6
+						});
+					set.push(set.background);
+				}
+				count = 0;
+				inventory.forEach(function (item) {
+					var artefact = item.value;
+
+					count = count + 1;
+					x = self.x + ((count-1) * (self.iconsSize + self.iconsInterval)) + 10;
+					y = self.y + 10;
+					icon = self.player.urlMapper.image(artefact.icon, artefact.set.id);
+
+					inventoryItem = paper
+						.image(icon, x, y, self.iconsSize, self.iconsSize)
+						.attr({
+							"cursor": "pointer"
+						})
+							.mouseover(function () {
+								this.attr({
+									scale: 1.05,
+									rotation: 5,
+									x: this.attr("x") + 3,
+									y: this.attr("y") - 3
+								});
+							})
+							.mouseout(function () {
+								this.attr({
+									scale: 1,
+									rotation: 0,
+									x: this.attr("x") - 3,
+									y: this.attr("y") + 3
+								});
+							})
+							.click(function () {
+								alert("must show item here...");
+							});
+					set.push(inventoryItem);
+				});
+			};
+
+			return this;
+		}
+	});
 
 	PP.View = new JS.Class({
 		player: null,
@@ -1014,6 +1107,7 @@
 		marks: null,
 		character: null,
 		artefacts: null,
+		inventoryBar: null,
 		initUI: function () {
 			var self = this;
 			this.initBackground();
@@ -1023,6 +1117,14 @@
 			this.marks = new PP.MarkSet(this);
 			this.character = new PP.ActingCharacter(this);
 			this.artefacts = new JS.Hash();
+			this.inventoryBar = new PP.InventoryBar(this, 20, 460);
+		},
+		databind: function() {
+			this.inventoryBar
+					.databind(this.player.timeline.current.character)
+					.refresh()
+					.show();
+			return this;
 		},
 		initKeyboard: function() {
 			var self = this;
@@ -1045,6 +1147,7 @@
 		},
 		setLocation: function (location) {
 			this.location = location;
+			this.databind();
 			this.statusBar.hide().refresh();
 			this.startSoundtrack();
 			this.showBackground();
