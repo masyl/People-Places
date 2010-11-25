@@ -127,6 +127,7 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		marks: null,
 		characters: null,
 		artefacts: null,
+		macros: null,
 		initialize: function (settings) {
 			$.extend(this.settings, settings);
 
@@ -135,6 +136,7 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			this.marks = new JS.Hash();
 			this.characters = new JS.Hash();
 			this.artefacts = new JS.Hash();
+			this.macros = new JS.Hash();
 
 			this.id = settings.id;
 			this.title = settings.title;
@@ -152,18 +154,20 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		marks: null,
 		characters: null,
 		artefacts: null,
+		macros: null,
 		initialize: function (settings) {
 			var self = this;
 			this.boards = new JS.Hash();
 			this.marks = new JS.Hash();
 			this.characters = new JS.Hash();
 			this.artefacts = new JS.Hash();
+			this.macros = new JS.Hash();
 			$.extend(this.settings, settings);
 			this.id = settings.id;
 			this.title = settings.title;
 			this.seed = settings.seed;
 			$.each(this.settings.boards, function (id) {
-				var board = new PP.Board(id, this);
+				var board = new PP.Board(self, id, this);
 				self.boards.store(board.id, board);
 				self.marks.update(board.marks);
 			});
@@ -174,6 +178,10 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			$.each(this.settings.artefacts, function (id) {
 				var artefact = new PP.Artefact(id, self, this);
 				self.artefacts.store(artefact.id, artefact);
+			});
+			$.each(this.settings.macros, function (id) {
+				var macro = new PP.Macro(id, self, this);
+				self.macros.store(macro.id, macro);
 			});
 		}
 	});
@@ -187,8 +195,10 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		marks: null,
 		backgroundImage: "",
 		soundtrack: "",
-		initialize: function (id, settings) {
+		set: null,
+		initialize: function (set, id, settings) {
 			var self = this;
+			this.set = set;
 			this.marks = new JS.Hash();
 			$.extend(this.settings, settings);
 			this.id = id;
@@ -198,7 +208,7 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			this.backgroundImage = settings.backgroundImage;
 			this.soundtrack = settings.soundtrack;
 			$.each(this.settings.marks, function (markId) {
-				var mark = new PP.Mark(markId, this);
+				var mark = new PP.Mark(self.set, markId, this);
 				self.marks.store(markId, mark);
 			});
 		}
@@ -212,13 +222,16 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		x: 0,
 		y: 0,
 		z: 0,
-		artefact: null,
-		pose: null,
-		destination: "",
+		artefact: null, // for type artefact
+		pose: null, // for type character
+		destination: "", // for type destination
 		icon: null,
-		initialize: function (id, settings) {
+		macro: null, // for type action
+		set: null,
+		initialize: function (set, id, settings) {
 			$.extend(this.settings, settings);
 			this.id = id;
+			this.set = set;
 			this.title = settings.title;
 			this.type = settings.type;
 			this.x = settings.x;
@@ -228,6 +241,7 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			this.artefact = settings.artefact;
 			this.pose = settings.pose;
 			this.destination = settings.destination;
+			this.macro = settings.macro;
 		}
 	});
 
@@ -255,6 +269,21 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		}
 	});
 
+	PP.Macro = new JS.Class({
+		settings: {},
+		id: null,
+		title: "",
+		sequence: null,
+		set: null,
+		initialize: function(id, set, settings) {
+			var self = this;
+			this.set = set;
+			$.extend(this.settings, settings);
+			this.id = id;
+			this.title = settings.title;
+			this.sequence = settings.sequence;
+		}
+	});
 
 	PP.Character = new JS.Class({
 		settings: {},
@@ -262,6 +291,7 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		name: "",
 		fullname: "",
 		poses: null,
+		inventory: null,
 		initialize: function (id, settings) {
 			var self = this;
 			this.poses = new JS.Hash();
@@ -269,6 +299,7 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			this.id = id;
 			this.name = settings.name;
 			this.fullname = settings.fullname;
+			this.inventory = new JS.Hash();
 			$.each(this.settings.poses, function (poseId) {
 				var pose = new PP.Pose(poseId, this);
 				self.poses.store(poseId, pose);
@@ -303,13 +334,12 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 		commands: null,
 		observer: null,
 		initialize: function (_world, _timeline) {
-			var controller,
+			var self = this,
 				world,
 				timeline,
 				commands,
 				observer;
 
-			this.controller = controller = this;
 			this.world = world = _world;
 			this.timeline = timeline = _timeline;
 			this.commands = commands = {};
@@ -323,15 +353,46 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 					location: location
 				}
 			};
+			commands.findArtefact = function(args) {
+				console.log("artefact added to inventory", args);
+				var artefact = world.artefacts.get(args.artefact);
+				var character = self.timeline.current.character;
+				console.log("inventory: ", character.inventory);
+				character.inventory.store(artefact.id, artefact);
+				return {
+					character: character,
+					artefact: artefact,
+					notification: args.notification
+				}
+			};
 		},
+		// todo: refactor: provide a runObject to cut down of id resolving
+		// or use method overloading
 		run: function (commandId, args) {
+			console.log(commandId, args);
 			var command,
 				value;
 			command = this.commands[commandId];
 			if (command) {
 				value = command(args) || {};
-				this.controller.observer.publish("goToLocation", [value]);
-				this.controller.observer.publish("run", [commandId, args]);
+				this.observer.publish(commandId, [value]);
+				this.observer.publish("run", [commandId, args]);
+			}
+			return this;
+		},
+		// todo: refactor: provide a runMacroObject to cut down of id resolving
+		// or use method overloading
+		runMacro: function (macroId, args) {
+			var macro, iCommand, command;
+			macro = this.world.macros.get(macroId);
+			console.log("Macro object found: ", macro);
+			if (macro) {
+				this.observer.publish("startMacro", [macroId, args]);
+				for (iCommand in macro.sequence) {
+					command = macro.sequence[iCommand];
+					this.run(command[0], command[1]);
+				}
+				this.observer.publish("endMacro", [macroId, args]);
 			}
 			return this;
 		}

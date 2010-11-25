@@ -1,10 +1,22 @@
 /*
 
 NOW DOING:
+	+ Macro execution system
 	- Obtain a soda can from looking into the garbage can in the locker
-		- Actions
+		+ Unhook action arrow after running a macro
+		+ Friendly popup for showing message to user (Icon, title, message, ok button with custom prompt)
+		- View for inventory list and Items
+		- "Discardable" attribute on Artefact
+		- Discard artefact from inventory list
+		- Play sound effect on "obtainItem"
+		- Play sound effect when closing notification notification panel
+		- Items with 2 to X quantity
+		- Artefact specific message when quantity limit is obtained
+		- Depletable object sources... or link findObject macro to a statefull counter
+		- Ability to put back items into a location
 		- ...
 	- bug: muted button is broken
+	- bug: mushrooms dont disapear
 
 P&P ROADMAP
 

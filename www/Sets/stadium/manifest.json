@@ -211,7 +211,8 @@
 					"x": 0.35,
 					"y": 0.73,
 					"z": 0.3,
-					"destination": "stadium/montrealCity"
+					"destination": "stadium/montrealCity",
+					"macro": "findMushroomsInForest"
 				}
 			}
 		},
@@ -264,7 +265,7 @@
 					"z": 1.4
 				},
 				"toForest" : {
-					"title": "Go to\nthe forest",
+					"title": "Go to\n the forest",
 					"type": "destination",
 					"x": 0.9,
 					"y": 0.55,
@@ -278,8 +279,23 @@
 			"title": "player finds a crushed soda can",
 			"sequence": [
 				["findArtefact", {
-					"message": "You have found a crushed and sticky soda can!",
-					"artefact": "sodaCan"
+					"artefact": "sodaCan",
+					"notification": {
+						"title": "Found garbage! Woot!",
+						"message": "You have obtained a crushed and sticky soda can. There is some left... but you probably shouldn't drink this."
+					}
+				}]
+			]
+		},
+		"findMushroomsInForest": {
+			"title": "player finds mushrooms in the forest",
+			"sequence": [
+				["findArtefact", {
+					"artefact": "mushrooms",
+					"notification": {
+						"title": "Shroooooms!",
+						"message": "You have found fresh mushrooms. Never have enough mushrooms!"
+					}
 				}]
 			]
 		}

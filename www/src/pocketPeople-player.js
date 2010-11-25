@@ -32,7 +32,8 @@
 				board: new PP.BoardView("boardView", this),
 				options: new PP.OptionsView("optionsView", this),
 				pause: new PP.PauseView("pauseView", this),
-				welcome: new PP.WelcomeView("welcomeView", this)
+				welcome: new PP.WelcomeView("welcomeView", this),
+				notifications: new PP.NotificationsView("notificationsView", this)
 			};
 			this.initStorage();
 			this.initSoundManager();
@@ -56,14 +57,26 @@
 			var player = this;
 			function subscribe (commandId) {
 				player.controller.observer.subscribe(commandId, function(result) {
-					player.controllerHooks[commandId].call(player, result);
+					var command = player.controllerHooks[commandId]
+					if (command) {
+						command.call(player, result);
+					} else {
+						console.error("Macro command not found: ", commandId);
+					}
 				});
 			}
 			subscribe("goToLocation");
+			subscribe("findArtefact");
 
 			/* Generic hook for all transactions/commands */
 			player.controller.observer.subscribe("run", function(commandId, args) {
 				player.controllerHooks.OnRun.call(player, commandId, args);
+			});
+			player.controller.observer.subscribe("startMacro", function(macroId, args) {
+				player.controllerHooks.OnStartMacro.call(player, macroId, args);
+			});
+			player.controller.observer.subscribe("endMacro", function(macroId, args) {
+				player.controllerHooks.OnEndMacro.call(player, macroId, args);
 			});
 			return this;
 		},
@@ -89,9 +102,20 @@
 			OnRun: function (commandId, args) {
 				this.save();
 			},
+			OnStartMacro: function (macroId, args) {
+				console.info("Macro started: ", macroId, args);
+			},
+			OnEndMacro: function (macroId, args) {
+				console.info("Macro ended: ", macroId, args);
+			},
 			goToLocation: function (result) {
 				var location = result.location;
 				this.views.board.setLocation(location);
+			},
+			findArtefact: function (result) {
+				console.log("ARTEFACT FOUND!", result.artefact.id, result.artefact);
+				var icon = this.urlMapper.image(result.artefact.icon, result.artefact.set.id);
+				this.views.notifications.notify(icon, result.notification.title, result.notification.message, "Great!").show();
 			}
 		},
 		urlMapper: {
@@ -212,6 +236,7 @@
 					self.world.marks.update(set.marks);
 					self.world.artefacts.update(set.artefacts);
 					self.world.characters.update(set.characters);
+					self.world.macros.update(set.macros);
 					self.setsToLoad = self.setsToLoad - 1;
 					if (self.setsToLoad <= 0) {
 						self.nowReady("worldData").startIfReady();
@@ -278,7 +303,7 @@
 			return this;
 		},
 		destroy: function() {
-			this.ui.set.remove();
+			this.set.remove();
 		}
 	});
 
@@ -329,7 +354,7 @@
 				if (mark.type === "destination") {
 					location = new PP.Location(mark.destination, self.player.world);
 					icon = player.urlMapper.image(location.board.icon, location.setId);
-				} else if (mark.type === "action") {
+				} else if (mark.type === "macro") {
 				} else if (mark.type === "character") {
 				}
 				set.icon.attr("src", icon);
@@ -483,6 +508,7 @@
 	PP.MarkSet = new JS.Class(PP.PaperObject, {
 		marks: null,
 		smallMarks: null,
+		artefacts: null,
 		initUI: function () {
 			var self = this,
 				set = this.set,
@@ -491,6 +517,7 @@
 
 			this.marks = paper.set();
 			this.smallMarks = paper.set();
+			this.artefacts = new JS.Hash();
 
 			set.push(set.background);
 			return this;
@@ -508,16 +535,22 @@
 				paper = this.paper,
 				player = this.player,
 				location = player.timeline.current.location,
+				boardView = player.views.board,
 				board = location.board;
 
 			this.marks.remove();
 			this.smallMarks.remove();
+
+			this.artefacts.forEach(function(artefact){
+				console.log("artefact: ", artefact.value);
+				artefact.value.destroy();
+			});
 			board.marks.forEachValue(function(mark) {
 				var iconURL,
 					iconURLSmall,
 					imgMarkSmall,
-					imgMark;
-				var OSSizeRatio = 1,
+					imgMark,
+					OSSizeRatio = 1,
 					iconOffsetX = 0,
 					iconOffsetY = 0;
 				if (IsiPhone || IsiPod) OSSizeRatio = 1.5;
@@ -539,7 +572,13 @@
 					var artefactIcon = player.urlMapper.image(artefact.icon, artefact.set.id);
 					console.log("artefactIcon: ", artefactIcon);
 					var actingArtefact = new PP.ActingArtefact(mark, this.player.views.board).place();
+					self.artefacts.store(mark.id, actingArtefact);
 					iconURL = artefactIcon || "images/icon-questionMark.png";
+					iconURLSmall = "images/icon-questionMark-dot.png";
+					imgMarkSmall = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
+					imgMark = paper.image(iconURL, 960*mark.x-31*OSSizeRatio, 540*mark.y-31*OSSizeRatio, 64*OSSizeRatio, 64*OSSizeRatio).hide();
+				} else if (mark.type === "macro") {
+					iconURL = "images/icon-questionMark.png";
 					iconURLSmall = "images/icon-questionMark-dot.png";
 					imgMarkSmall = paper.image(iconURLSmall, 960*mark.x-20*OSSizeRatio, 540*mark.y-20*OSSizeRatio, 40*OSSizeRatio, 40*OSSizeRatio);
 					imgMark = paper.image(iconURL, 960*mark.x-31*OSSizeRatio, 540*mark.y-31*OSSizeRatio, 64*OSSizeRatio, 64*OSSizeRatio).hide();
@@ -559,24 +598,28 @@
 					"cursor": "pointer"
 				});
 				imgMarkSmall.mouseover(function(e){
-					var board = player.views.board;
-					var characterMark = board.character.mark;
+					var characterMark = boardView.character.mark;
 					self.marks.hide();
 					imgMark.show();
 					self.hoveredMark = mark;
-					board.actionArrow.show().place(characterMark, mark, iconOffsetX, iconOffsetY, 0, -250);
+					boardView.actionArrow.show().place(characterMark, mark, iconOffsetX, iconOffsetY, 0, -250);
 				});
 				imgMark.click(function(e){
 					if (mark.type === "destination") {
 						player.controller.run("goToLocation", {path: mark.destination});
 					} else if (mark.type === "character") {
 						var path = location.setId + "/" + location.boardId + "#" + mark.id;
+						self.unHook();
 						player.controller.run("goToLocation", {path: path});
-					} else if (mark.type === "action") {
-						player.controller.run("doAction", {path: mark.destination});
+						if (mark.macro) player.controller.runMacro(mark.macro, {});
+					} else if (mark.type === "macro") {
+						self.unHook();
+						if (mark.macro) player.controller.runMacro(mark.macro, {});
 					} else {
-						alert("Oups... nothing here!");
+						self.unHook();
+						if (mark.macro) player.controller.runMacro(mark.macro, {});
 					}
+
 				});
 				self.marks.push(imgMark);
 				self.smallMarks.push(imgMarkSmall);
@@ -677,12 +720,12 @@
 				set.label.attr({
 					"text": title,
 					"x": x,
-					"y": y + 50
+					"y": y + 60
 				});
 				set.labelShadow.attr({
 					"text": title,
 					"x": x - 1,
-					"y": y + 52
+					"y": y + 62
 				});
 				set.tip.animate({
 					x: x - 50,
@@ -1211,6 +1254,160 @@
 					}
 				}
 			});
+		}
+	});
+
+	PP.NotificationsView = new JS.Class(PP.View, {
+		initUI: function () {
+			var view = this,
+				player = this.player,
+				paper = this.paper;
+
+
+
+			function GlowEffect(x, y, size, speed, paper) {
+				var w = 295 * size,
+					h = 295 * size,
+					centerX = x - (w/2),
+					centerY = y - (h/2);
+
+				Raphael.el.glowEffectTurn = function (timespan, clockwise) {
+					var degrees = 360 * ((clockwise) ? 1 : -1);
+
+					this.animate({
+						"rotation": degrees
+					}, timespan, function(){
+						this.attr({
+							"rotation": 0
+						});
+						this.glowEffectTurn(timespan, clockwise);
+						return this;
+					});
+					return this;
+				};
+				Raphael.el.dim = function (opacity) {
+					this.attr({
+						"opacity": opacity
+					});
+					return this;
+				};
+				this.burstA = paper
+						.image("images/glow/burstA.png", centerX, centerY, w, h)
+						.dim(0.6);
+				this.burstB = paper
+						.image("images/glow/burstB.png", centerX, centerY, w, h)
+						.dim(0.6);
+				this.burstC = paper
+						.image("images/glow/burstB.png", centerX, centerY, w, h)
+						.dim(0.6);
+
+				this.stop = function() {
+					this.burstA.stop();
+					this.burstB.stop();
+					this.burstC.stop();
+				};
+				this.turn = function () {
+					this.burstA.glowEffectTurn(70000/speed, false);
+					this.burstB.glowEffectTurn(50000/speed, true);
+					this.burstC.glowEffectTurn(110000/speed, false);
+				};
+
+//				this.glow = paper
+//					.image("images/glow/glow.png", x, y, w, h);
+			}
+
+
+			this.set.background = paper
+				.rect(0, 0, 960, 540, 0).attr({
+					opacity: 0.4,
+					fill: "#000"
+				});
+			this.set.backgroundImage = paper
+				.image("images/highlight.png", 0, 0, 960, 540, 0)
+
+			this.set.glowEffect = new GlowEffect(310, 155, 0.9, 0.7, paper);
+			
+			this.set.icon = paper
+				.image("", 250, 80, 130, 130, 0);
+
+			this.set.details = $("<div class='ppPanel'></div>").css({
+				color: "#fff",
+				top: "80px",
+				left: "400px",
+				width: "400px"
+			}).appendTo(this.root);
+
+			this.set.title = $("<h2>title</h2>")
+				.css({
+					"font-size": "26px",
+					"margin": "0px 0px 15px 0px"
+				})
+				.appendTo(this.set.details);
+
+			this.set.message = $("<div>descr</div>")
+				.css({
+					"font-size": "18px",
+					"margin": "0px 0px 15px 0px"
+				})
+				.appendTo(this.set.details);
+
+			this.set.btnOk = $("<button>Ok</button>")
+				.css({
+					"font-size": "18px"
+				})
+				.click(function () {
+					view.hide();
+				})
+				.appendTo(this.set.details);
+
+			this.set.push(this.set.icon);
+			this.set.push(this.set.background);
+			this.set.push(this.set.backgroundImage);
+
+
+		},
+		notify: function(iconURL, title, message, btnOkLabel) {
+			this.set.icon.attr({
+				src: iconURL
+			});
+			this.set.title.html(title);
+			this.set.message.html(message);
+			this.set.btnOk.html(btnOkLabel);
+			return this
+		},
+		initKeyboard : function () {
+			var self = this;
+			$(document).keyup(function(e) {
+				if (!e.isPropagationStopped()) {
+					if (e.which == 27) {
+						if (self.view.visible) {
+							self.view.hide();
+							e.stopPropagation();
+						}
+					}
+				}
+			});
+		},
+		show: function () {
+			this.visible = true;
+			this.set.details.css({
+				"margin-top": -50,
+				"opacity": 0
+			})
+			this.set.glowEffect.turn();
+			this.root.fadeIn(150);
+			this.set.details
+				.animate({
+					"margin-top": 0,
+					"opacity": 1
+				}, 500);
+			return this;
+		},
+		hide: function () {
+			if (this.set.glowEffect) this.set.glowEffect.stop();
+			this.visible = false;
+			this.root.fadeOut(150);
+			return this;
 		}
 	});
 
