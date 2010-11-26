@@ -937,7 +937,6 @@
 			return this;
 		},
 		show: function () {
-			console.log("showing", this.root);
 			this.visible = true;
 			this.root.fadeIn(250);
 			this.publish("onShow");
@@ -1453,8 +1452,6 @@
 				player = this.player,
 				paper = this.paper;
 
-			//			if (this.set.glowEffect) this.set.glowEffect.stop();
-
 			function GlowEffect(x, y, size, speed, paper) {
 				var w = 295 * size,
 					h = 295 * size,
@@ -1555,7 +1552,6 @@
 					this.set.background,
 					this.set.backgroundImage);
 
-
 		},
 		notify: function(iconURL, title, message, btnOkLabel) {
 			this.set.icon.attr({
@@ -1581,7 +1577,12 @@
 			});
 			return this;
 		},
-		showz: function () {
+		hide: function () {
+			if (this.set.glowEffect) this.set.glowEffect.stop();
+			this.callSuper();
+		},
+		show: function () {
+			this.callSuper();
 			this.visible = true;
 			this.set.details.css({
 				"margin-top": -50,
@@ -1594,6 +1595,7 @@
 					"margin-top": 0,
 					"opacity": 1
 				}, 500);
+			this.publish("onShow");
 			return this;
 		}
 	});
