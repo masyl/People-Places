@@ -25,7 +25,7 @@
 	"artefacts": {
 		"sodaCan": {
 			"title": "Soda Can",
-			"descriptions": "A soda can you picked up in the garbage",
+			"description": "A soda can you picked up in the garbage",
 			"icon": "sodaCan-icon.png",
 			"poses": {
 				"default": {
@@ -35,7 +35,7 @@
 		},
 		"mushrooms": {
 			"title": "Mushrooms",
-			"descriptions": "Small green mushroom with weird blue dots",
+			"description": "Small green mushroom with weird blue dots",
 			"icon": "mushrooms-icon.png",
 			"poses": {
 				"default": {

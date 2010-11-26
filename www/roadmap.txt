@@ -5,9 +5,12 @@ NOW DOING:
 	- Obtain a soda can from looking into the garbage can in the locker
 		+ Unhook action arrow after running a macro
 		+ Friendly popup for showing message to user (Icon, title, message, ok button with custom prompt)
-		- View for inventory list and Items
-		- "Discardable" attribute on Artefact
-		- Discard artefact from inventory list
+		+ View for inventory list
+1		- Automaticly resume a game if it was still "playing" ... but dont if the user has quit
+2		- Inventory Item class with persistance for each character
+3		- View for inventory Items
+		- Show tooltip when hovering inventory items
+		- Discard artefact from inventory list by 
 		- Play sound effect on "obtainItem"
 		- Play sound effect when closing notification notification panel
 		- Items with 2 to X quantity
@@ -16,7 +19,8 @@ NOW DOING:
 		- Ability to put back items into a location
 		- ...
 	- bug: muted button is broken
-	- bug: mushrooms dont disapear
+		- Unload a game if you quit
+		- Only show resume if there is a game to resume
 
 P&P ROADMAP
 

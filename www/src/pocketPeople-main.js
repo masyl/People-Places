@@ -36,9 +36,13 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 			//		with a function signature like: function(a,b,c){ ... }
 			//
 			//	|		$.publish("/some/topic", ["a","b","c"]);
-			$.each(this.cache[topic], function(){
-				this.apply($, args || []);
-			});
+			var subscription = this.cache[topic];
+			if (subscription) {
+				$.each(subscription, function(){
+					this.apply($, args || []);
+				});
+			}
+			return this;
 		},
 		subscribe: function(/* String */topic, /* Function */callback){
 			// summary:
@@ -60,7 +64,7 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 				this.cache[topic] = [];
 			}
 			this.cache[topic].push(callback);
-			return [topic, callback]; // Array
+			return this; // Array
 		},
 		unsubscribe: function(/* Array */handle){
 			// summary:
@@ -78,6 +82,7 @@ IsiPhoneOS = IsiPhone || IsiPad || IsiPod;
 					cache[t].splice(idx, 1);
 				}
 			});
+			return this;
 		}
 	});
 

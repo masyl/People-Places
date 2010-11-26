@@ -20,8 +20,10 @@
 		hoveredMark: null,
 		characterMark: null,
 		volumeMuted: false,
+		focusStack: null,
 		initialize: function(options) {
 			this.callSuper();
+			this.focusStack = [];
 			this.settings = $.extend({}, this.defaultSettings, options);
 			this.readyIndicators = {
 				"storage": false,
@@ -32,9 +34,69 @@
 				board: new PP.BoardView("boardView", this),
 				options: new PP.OptionsView("optionsView", this),
 				pause: new PP.PauseView("pauseView", this),
-				welcome: new PP.WelcomeView("welcomeView", this),
-				notifications: new PP.NotificationsView("notificationsView", this)
+				notifications: new PP.NotificationsView("notificationsView", this),
+				welcome: new PP.WelcomeView("welcomeView", this)
 			};
+
+			var focusStack = this.focusStack;
+			bindViewsFocusEvents(this.views);
+
+			function bindViewsFocusEvents(views) {
+				for (var view in views) {
+					bindViewFocusEvent(views[view], views);
+				}
+			}
+			function bindViewFocusEvent(view, views) {
+				view
+					.subscribe("onShow", function() { onShowView(view, views) })
+					.subscribe("onHide", function(keepFocus) { onHideView(view, views, keepFocus) });
+			}
+			function onShowView(view, views) {
+				blurAllExcept(view, views);
+				var currentFocus = focusStack.pop();
+				if (currentFocus) {
+					focusStack.push(currentFocus);
+					if (currentFocus !== view) {
+						focusStack.push(view);
+					}
+				} else {
+					focusStack.push(view);
+				}
+				view.focus();
+				console.log(focusStack);
+			}
+			function onHideView(view, views, keepFocus) {
+				console.log("keepFocus", keepFocus);
+				if (!keepFocus) {
+					blurAllExcept(view, views);
+					var currentFocus = focusStack.pop();
+					// if the view that got hidden was not in focus
+					if (currentFocus) {
+						if (currentFocus !== view) {
+							// put back the currentFocus on the stack
+							focusStack.push(currentFocus);
+						} else {
+							// otherwise, leave it popped unless it was said to keep the focus
+							// and move the next focus if there is one left in the stack
+							var nextFocus = focusStack.pop();
+							if (nextFocus) nextFocus.show();
+						}
+					} else {
+						console.log("no focusStack")
+					}
+				}
+				console.log(focusStack);
+			}
+			function blurAllExcept(exceptView, views) {
+				var view;
+				for (view in views) {
+					view = views[view];
+					if (view !== exceptView) {
+						view.blur();
+					}
+				}
+			}
+
 			this.initStorage();
 			this.initSoundManager();
 			this.loadWorld(this.settings.world);
@@ -284,9 +346,11 @@
 		},
 		initKeyboard: function () {
 			/* to be overriden */
+			return this;
 		},
 		initUI: function () {
 			/* to be overriden */
+			return this;
 		},
 		show: function () {
 			console.log(this.set.length);
@@ -388,15 +452,14 @@
 			var self = this,
 				set = this.set,
 				paper = this.paper;
-				set.background = paper
-					.image("images/highlight.png", 0, 0, 960, 540, 0)
-					.hide()
-					.click(function () {
-						self.hide();
-						self.view.statusBar.hide();
-					})
-					.insertAfter(this.view.set.background);
-				self.hide();
+			set.background = paper
+				.image("images/highlight.png", 0, 0, 960, 540, 0)
+				.hide()
+				.click(function () {
+					self.hide();
+					self.view.statusBar.hide();
+				})
+				.insertAfter(this.view.set.background);
 			set.push(set.background);
 			return this;
 		}
@@ -821,7 +884,11 @@
 								});
 							})
 							.click(function () {
-								alert("must show item here...");
+									self.player.views.notifications
+											.notify(icon, artefact.title, artefact.description, "Close")
+											.show();
+
+//								alert("must show item here...");
 							});
 					set.push(inventoryItem);
 				});
@@ -831,33 +898,56 @@
 		}
 	});
 
-	PP.View = new JS.Class({
+	PP.View = new JS.Class(PP.Observer, {
 		player: null,
 		paper: null,
 		root: null,
 		set: null,
 		visible: false,
+		inFocus: false,
 		initialize: function (rootId, player) {
+			this.callSuper();
 			this.player = player;
 			this.paper = Raphael(rootId, player.width, player.height);
 			this.set = this.paper.set();
 			this.root = $("#" + rootId);
 			this.hide();
 			this.initUI();
+			if (!IsiPhoneOS) {
+				this.initKeyboard();
+			}
+			return this;
+		},
+		initKeyboard: function () {
+			/* to be overriden */
 			return this;
 		},
 		initUI: function() {
 			/* to be overriden */
 			return this;
 		},
-		show: function () {
-			this.visible = true;
-			this.root.fadeIn(250);
+		focus: function () {
+			this.inFocus = true;
+			this.publish("onFocus");
 			return this;
 		},
-		hide: function () {
+		blur: function () {
+			this.inFocus = false;
+			this.publish("onBlur");
+			return this;
+		},
+		show: function () {
+			console.log("showing", this.root);
+			this.visible = true;
+			this.root.fadeIn(250);
+			this.publish("onShow");
+			return this;
+		},
+		hide: function (keepFocus) {
+			console.log("hidding", this.root);
 			this.visible = false;
 			this.root.fadeOut(350);
+			this.publish("onHide", [keepFocus]);
 			return this;
 		}
 	});
@@ -903,7 +993,6 @@
 				.click(function(){
 					player.storage.set("pocketPeople.state", {});
 					window.location = window.location;
-					view.hide();
 				});
 
 			this.set.btnBack = paper
@@ -928,7 +1017,6 @@
 				})
 				.click(function(){
 					view.hide();
-					player.views.pause.show();
 				});
 
 			return this;
@@ -1001,7 +1089,7 @@
 					});
 				})
 				.click(function(){
-					view.hide();
+					view.hide(true);
 					view.stopSoundtrack()
 					player.startGame();
 				});
@@ -1027,7 +1115,6 @@
 					});
 				})
 				.click(function(){
-					view.hide();
 					player.views.options.show();
 				});
 
@@ -1132,11 +1219,7 @@
 				var views = self.player.views;
 				if (!e.isPropagationStopped()) {
 					if (e.which == 27) {
-						if (!(
-								views.pause.visible ||
-								views.options.visible ||
-								views.welcome.visible
-							)) {
+						if (self.inFocus) {
 							self.player.views.pause.show();
 							e.stopPropagation();
 						}
@@ -1294,7 +1377,7 @@
 					});
 				})
 				.click(function(){
-					view.hide();
+					view.hide(true);
 					player.views.options.show();
 				});
 			this.set.btnResume = paper
@@ -1350,23 +1433,27 @@
 			$(document).keyup(function(e) {
 				if (!e.isPropagationStopped()) {
 					if (e.which == 27) {
-						if (self.view.visible) {
-							self.view.hide();
+						if (self.inFocus) {
+							self.hide();
 							e.stopPropagation();
 						}
 					}
 				}
 			});
+			return this;
 		}
 	});
 
 	PP.NotificationsView = new JS.Class(PP.View, {
+		initialize: function(rootId, player) {
+			this.callSuper(rootId, player);
+		},
 		initUI: function () {
 			var view = this,
 				player = this.player,
 				paper = this.paper;
 
-
+			//			if (this.set.glowEffect) this.set.glowEffect.stop();
 
 			function GlowEffect(x, y, size, speed, paper) {
 				var w = 295 * size,
@@ -1463,9 +1550,10 @@
 				})
 				.appendTo(this.set.details);
 
-			this.set.push(this.set.icon);
-			this.set.push(this.set.background);
-			this.set.push(this.set.backgroundImage);
+			this.set.push(
+					this.set.icon,
+					this.set.background,
+					this.set.backgroundImage);
 
 
 		},
@@ -1473,25 +1561,27 @@
 			this.set.icon.attr({
 				src: iconURL
 			});
-			this.set.title.html(title);
-			this.set.message.html(message);
-			this.set.btnOk.html(btnOkLabel);
-			return this
+			this.set.title.html(title || "");
+			this.set.message.html(message || "");
+			this.set.btnOk.html(btnOkLabel || "");
+			return this;
 		},
 		initKeyboard : function () {
 			var self = this;
 			$(document).keyup(function(e) {
 				if (!e.isPropagationStopped()) {
 					if (e.which == 27) {
-						if (self.view.visible) {
-							self.view.hide();
+						console.log(self);
+						if (self.inFocus) {
+							self.hide();
 							e.stopPropagation();
 						}
 					}
 				}
 			});
+			return this;
 		},
-		show: function () {
+		showz: function () {
 			this.visible = true;
 			this.set.details.css({
 				"margin-top": -50,
@@ -1504,12 +1594,6 @@
 					"margin-top": 0,
 					"opacity": 1
 				}, 500);
-			return this;
-		},
-		hide: function () {
-			if (this.set.glowEffect) this.set.glowEffect.stop();
-			this.visible = false;
-			this.root.fadeOut(150);
 			return this;
 		}
 	});
