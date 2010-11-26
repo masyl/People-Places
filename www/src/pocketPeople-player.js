@@ -855,7 +855,7 @@
 				}
 				count = 0;
 				inventory.forEach(function (item) {
-					var artefact = item.value;
+					var x, y, artefact = item.value;
 
 					count = count + 1;
 					x = self.x + ((count-1) * (self.iconsSize + self.iconsInterval)) + 10;
@@ -874,6 +874,7 @@
 									x: this.attr("x") + 3,
 									y: this.attr("y") - 3
 								});
+								showTooltip(artefact.title, x, y);
 							})
 							.mouseout(function () {
 								this.attr({
@@ -882,6 +883,7 @@
 									x: this.attr("x") - 3,
 									y: this.attr("y") + 3
 								});
+								hideTooltip();
 							})
 							.click(function () {
 									self.player.views.notifications
@@ -892,6 +894,22 @@
 							});
 					set.push(inventoryItem);
 				});
+				var tooltip = paper.text("", 0, 0)
+						.attr({
+							fill: "#fff",
+							"font-size": "16px",
+							"text-anchor": "middle"
+						}).hide();
+				function showTooltip(label, x, y) {
+					tooltip.attr({
+						text: label,
+						x: x + 30,
+						y: y - 15
+					}).show();
+				}
+				function hideTooltip() {
+					tooltip.hide();
+				}
 			};
 
 			return this;

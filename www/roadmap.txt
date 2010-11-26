@@ -6,11 +6,11 @@ NOW DOING:
 		+ Unhook action arrow after running a macro
 		+ Friendly popup for showing message to user (Icon, title, message, ok button with custom prompt)
 		+ View for inventory list
+		+ View for inventory Items (using notification view)
+		+ Show tooltip when hovering inventory items
 1		- Automaticly resume a game if it was still "playing" ... but dont if the user has quit
 2		- Inventory Item class with persistance for each character
-3		- View for inventory Items
-		- Show tooltip when hovering inventory items
-		- Discard artefact from inventory list by 
+		- Discard artefact from inventory list by
 		- Play sound effect on "obtainItem"
 		- Play sound effect when closing notification notification panel
 		- Items with 2 to X quantity
@@ -64,7 +64,6 @@ v0.6 - Goal: Make it solid (find and fix all bugs)
 		background
 		marks
 	- Bug: Must load player and game state independently
-	- Bug: When clicking back from welcome\option goes back to welcome
 	- Bug: if muted is pressed on welcome screen, state is lost
 	- Rafactor: iOS detection (Modernizr?)
 
