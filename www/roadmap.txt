@@ -1,7 +1,16 @@
 /*
 
 NOW DOING:
+	- Create a utility class to get object by ref from inventory... and with friendly error handling
+
+	+ New ModelCollection class for simpler loading of typed object collections
+	+ Better class modeling for model objects
+	+ Serialization pattern across all model objects
+	+ New global object inventory on world object
+	+ Class for icons
 	+ Macro execution system
+	+ Focus and blur event handling on views, with a focus stack
+	- Class modeling for Icons resources
 	- Obtain a soda can from looking into the garbage can in the locker
 		+ Unhook action arrow after running a macro
 		+ Friendly popup for showing message to user (Icon, title, message, ok button with custom prompt)

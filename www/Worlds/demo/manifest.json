@@ -2,9 +2,9 @@
 	"id": "demo",
 	"title": "Demo",
 	"seed": "demo",
-	"sets": ["stadium"],
+	"includeSets": ["stadium"],
 	"defaultState": {
 		"locationPath": "stadium/world",
-		"character": "remi"
+		"character": "character:remi@stadium"
 	}
 }

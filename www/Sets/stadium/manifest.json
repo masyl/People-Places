@@ -2,6 +2,38 @@
 	"id": "stadium",
 	"title": "Stadium",
 	"seed": "stadium",
+	"icons": {
+		"washHands": {
+			"url": "icon-washHands.png"
+		},
+		"sodaCan": {
+			"url": "sodaCan-icon.png"
+		},
+		"mushrooms": {
+			"url": "mushrooms-icon.png"
+		},
+		"theWorld": {
+			"url": "map-world-icon.png"
+		},
+		"montrealCity": {
+			"url": "map-montreal-icon.png"
+		},
+		"locker": {
+			"url": "locker-icon.png"
+		},
+		"bathroom": {
+			"url": "bathroom-icon.png"
+		},
+		"forest": {
+			"url": "forest-icon.png"
+		},
+		"parkingLot": {
+			"url": "parking-lot-icon.png"
+		},
+		"nurunFlasheux": {
+			"url": "nurun-flasheux-icon.png"
+		}
+	},
 	"characters": {
 		"bob": {
 			"name": "Bob",
@@ -26,7 +58,7 @@
 		"sodaCan": {
 			"title": "Soda Can",
 			"description": "A soda can you picked up in the garbage",
-			"icon": "sodaCan-icon.png",
+			"icon": "icon:sodaCan@stadium",
 			"poses": {
 				"default": {
 					"image": "sodaCan.png"
@@ -36,7 +68,7 @@
 		"mushrooms": {
 			"title": "Mushrooms",
 			"description": "Small green mushroom with weird blue dots",
-			"icon": "mushrooms-icon.png",
+			"icon": "icon:mushrooms@stadium",
 			"poses": {
 				"default": {
 					"image": "mushrooms.png"
@@ -50,20 +82,20 @@
 			"description": "Yeah... the whole wide world",
 			"backgroundImage": "map-world.png",
 			"soundtrack": "",
-			"icon": "map-world-icon.png",
+			"icon": "icon:theWorld@stadium",
 			"scale": 0,
 			"marks": {
 				"default" : {
 					"isDefault": true,
 					"title": "Stand here!",
-					"type": "character",
+					"markType": "character",
 					"x": 0.1,
 					"y": 0.9,
 					"z": 0.5
 				},
 				"montreal" : {
 					"title": "Go to\nMontreal City",
-					"type": "destination",
+					"markType": "destination",
 					"x": 0.3,
 					"y": 0.27,
 					"destination": "stadium/montrealCity"
@@ -75,27 +107,27 @@
 			"description": "Where you can find hockey, snow and millions of Quebecois shoving their mouth full of poutine.",
 			"backgroundImage": "map-montreal.png",
 			"soundtrack": "",
-			"icon": "map-montreal-icon.png",
+			"icon": "icon:montrealCity@stadium",
 			"scale": 0,
 			"marks": {
 				"default" : {
 					"isDefault": true,
 					"title": "Stand here!",
-					"type": "character",
+					"markType": "character",
 					"x": 0.1,
 					"y": 0.9,
 					"z": 0.5
 				},
 				"nurun" : {
 					"title": "Go to\nNurun",
-					"type": "destination",
+					"markType": "destination",
 					"x": 0.7,
 					"y": 0.72,
 					"destination": "stadium/nurun"
 				},
 				"worldMap" : {
 					"title": "Go to\nThe World",
-					"type": "destination",
+					"markType": "destination",
 					"x": 0.1,
 					"y": 0.1,
 					"destination": "stadium/world"
@@ -107,30 +139,30 @@
 			"description": "Description goes here...",
 			"backgroundImage": "locker.jpg",
 			"soundtrack": "gym-locker.mp3",
-			"icon": "locker-icon.png",
+			"icon": "icon:locker@stadium",
 			"scale": 0,
 			"marks": {
 				"default" : {
 					"isDefault": true,
 					"title": "Stand next to\nthe garbage can",
-					"type": "character",
+					"markType": "character",
 					"x": 0.45,
 					"y": 0.94,
 					"z": 0.82
 				},
 				"bathroom" : {
 					"title": "Go to\nthe bathroom",
-					"type": "destination",
+					"markType": "destination",
 					"x": 0.6,
 					"y": 0.5,
 					"destination": "stadium/bathroom"
 				},
 				"lookinGarbageCan" : {
 					"title": "Look in the\n garbage can",
-					"type": "macro",
+					"markType": "macro",
 					"x": 0.23,
 					"y": 0.78,
-					"macro": "findCrushedSodaCan"
+					"macro": "macro:findCrushedSodaCan@stadium"
 				}
 			}
 		},
@@ -139,37 +171,38 @@
 			"description": "Description goes here...",
 			"backgroundImage": "bathroom.jpg",
 			"soundtrack": "public-bathroom.mp3",
-			"icon": "bathroom-icon.png",
+			"icon": "icon:bathroom@stadium",
 			"scale": 0,
 			"marks": {
 				"default" : {
 					"isDefault": true,
 					"title": "Stand near\nthe sinks",
-					"type": "character",
+					"markType": "character",
 					"x": 0.64,
 					"y": 0.72,
 					"z": 0.6
 				},
 				"toParkingLot" : {
 					"title": "Go to\nthe parking lot",
-					"type": "destination",
+					"markType": "destination",
 					"x": 0.45,
 					"y": 0.35,
 					"destination": "stadium/parkinglot"
 				},
 				"toLocker" : {
 					"title": "Go to\nthe locker room",
-					"type": "destination",
+					"markType": "destination",
 					"x": 0.35,
 					"y": 0.85,
 					"destination": "stadium/locker"
 				},
 				"washHands" : {
 					"title": "Wash\nyour hands",
-					"type": "action",
-					"icon": "icon-washHands.png", 
+					"markType": "action",
+					"icon": "icon:washHands@stadium",
 					"x": 0.7,
-					"y": 0.5
+					"y": 0.5,
+					"macro": "macro:youHaveWasehdYourHands@stadium"
 				}
 			}
 		},
@@ -178,41 +211,41 @@
 			"description": "Description goes here...",
 			"backgroundImage": "forest.jpg",
 			"soundtrack": "forest_birds.mp3",
-			"icon": "forest-icon.png",
+			"icon": "icon:forest@stadium",
 			"scale": 0,
 			"marks": {
 				"default" : {
 					"isDefault": true,
 					"title": "Stand here",
-					"type": "character",
+					"markType": "character",
 					"x": 0.64,
 					"y": 0.72,
 					"z": 0.6
 				},
 				"locker" : {
 					"title": "Go to\n the locker room",
-					"type": "destination",
+					"markType": "destination",
 					"x": 0.45,
 					"y": 0.35,
 					"destination": "stadium/locker"
 				},
 				"montreal" : {
 					"title": "Go somewhere\n in Montreal",
-					"type": "destination",
+					"markType": "destination",
 					"x": 0.90,
 					"y": 0.75,
 					"destination": "stadium/montrealCity"
 				},
 				"mushrooms" : {
 					"title": "Some mushrooms",
-					"type": "artefact",
-					"artefact": "mushrooms",
-					"pose": "default",
+					"markType": "artefact",
+					"artefact": "artefact:mushrooms@stadium",
+					"pose": "pose:default@mushrooms",
 					"x": 0.35,
 					"y": 0.73,
 					"z": 0.3,
 					"destination": "stadium/montrealCity",
-					"macro": "findMushroomsInForest"
+					"macro": "macro:findMushroomsInForest@stadium"
 				}
 			}
 		},
@@ -221,27 +254,27 @@
 			"description": "Description goes here...",
 			"backgroundImage": "parking-lot.jpg",
 			"soundtrack": "parking-garage.mp3",
-			"icon": "parking-lot-icon.png",
+			"icon": "icon:parkingLot@stadium",
 			"scale": 0,
 			"marks": {
 				"farBack" : {
 					"isDefault": true,
 					"title": "Stand here",
-					"type": "character",
+					"markType": "character",
 					"x": 0.6,
 					"y": 0.8,
 					"z": 0.8
 				},
 				"default" : {
 					"title": "Far back",
-					"type": "character",
+					"markType": "character",
 					"x": 0.23,
 					"y": 0.5,
 					"z": 0.3
 				},
 				"toForest" : {
 					"title": "Go to Nurun",
-					"type": "destination",
+					"markType": "destination",
 					"x": 0.45,
 					"y": 0.35,
 					"destination": "stadium/nurun"
@@ -253,20 +286,20 @@
 			"description": "Ici ça travaille fort... et ça potine fort aussi!",
 			"backgroundImage": "nurun-flasheux.jpg",
 			"soundtrack": "parking-garage.mp3",
-			"icon": "nurun-flasheux-icon.png",
+			"icon": "icon:nurunFlasheux@stadium",
 			"scale": 0,
 			"marks": {
 				"default" : {
 					"isDefault": true,
 					"title": "Stand here",
-					"type": "character",
+					"markType": "character",
 					"x": 0.66,
 					"y": 1.1,
 					"z": 1.4
 				},
 				"toForest" : {
 					"title": "Go to\n the forest",
-					"type": "destination",
+					"markType": "destination",
 					"x": 0.9,
 					"y": 0.55,
 					"destination": "stadium/forest"
@@ -275,11 +308,24 @@
 		}
 	},
 	"macros": {
+		"youHaveWasehdYourHands": {
+			"title": "Player washes his hands",
+			"sequence": [
+				["symbolicAction", {
+					"notification": {
+						"icon": "icon:washHands@stadium",
+						"title": "Lather, rub, rinse",
+						"message": "You have washed your hands... this doesnt really change anything in the game, but at least you hands are clean.",
+						"okLabel": "Meh"
+					}
+				}]
+			]
+		},
 		"findCrushedSodaCan": {
 			"title": "player finds a crushed soda can",
 			"sequence": [
 				["findArtefact", {
-					"artefact": "sodaCan",
+					"artefact": "artefact:sodaCan@stadium",
 					"notification": {
 						"title": "Found garbage! Woot!",
 						"message": "You have obtained a crushed and sticky soda can. There is some left... but you probably shouldn't drink this."
@@ -291,7 +337,7 @@
 			"title": "player finds mushrooms in the forest",
 			"sequence": [
 				["findArtefact", {
-					"artefact": "mushrooms",
+					"artefact": "artefact:mushrooms@stadium",
 					"notification": {
 						"title": "Shroooooms!",
 						"message": "You have found fresh mushrooms. Never have enough mushrooms!"
