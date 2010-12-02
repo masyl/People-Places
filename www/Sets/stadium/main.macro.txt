@@ -1,0 +1,46 @@
+
+//MACRO
+//	SEQUENCE
+//		COMMAND (id, name of the macro command)
+//			ARGUMENTS (recursive serialization to attribute/objects)
+
+
+macro:dialogWithRemiBeforeLunch
+	begin[]
+		otherSetCharacter
+			poil: remi@stadium
+		otherSay1
+			text: aHey... yé 11h45! Lunch time?
+		otherSay2
+			text: bHey... yé 11h45! Lunch time?
+		otherSay3
+			text: cHey... yé 11h45! Lunch time?
+		addReply4
+			text: Ok, on va diner où?
+			next: onVaMangerOu
+		prompt
+
+	onVaMangerOu[]
+		otherSay
+			text=On pourrait aller manger chez Luigi, mais il faudrait se dépêcher... sinon il restera plus de place et on va devoir se contenter du Méga-Bytes.
+		addReply
+			text: Ho, laisse faire alors... je dois attendre Billy, on va se contenter d’aller chercher du take-out au Café Pasta.
+			next: aTantotAlors
+		addReply
+			text: Dac... allons y tout de suite.
+			next: going_out_to_lunch_with_remi
+		addReply
+			text: Attend je vais demander à Billy.
+			next: okJeTAttent
+		prompt
+
+
+macro:remi_goes_out_to_lunch_alone
+	begin[]
+		end
+
+macro:going_out_to_lunch_with_remi
+	begin[]
+		end
+
+

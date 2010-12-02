@@ -162,7 +162,7 @@
 					"markType": "macro",
 					"x": 0.23,
 					"y": 0.78,
-					"macro": "macro:findCrushedSodaCan@stadium"
+					"macro": "macro:find_crushed_soda_can@stadium"
 				}
 			}
 		},
@@ -202,7 +202,7 @@
 					"icon": "icon:washHands@stadium",
 					"x": 0.7,
 					"y": 0.5,
-					"macro": "macro:youHaveWasehdYourHands@stadium"
+					"macro": "macro:you_have_washed_your_hands@stadium"
 				}
 			}
 		},
@@ -245,7 +245,7 @@
 					"y": 0.73,
 					"z": 0.3,
 					"destination": "stadium/montrealCity",
-					"macro": "macro:findMushroomsInForest@stadium"
+					"macro": "macro:find_mushrooms_in_forest@stadium"
 				}
 			}
 		},
@@ -307,43 +307,9 @@
 			}
 		}
 	},
-	"macros": {
-		"youHaveWasehdYourHands": {
-			"title": "Player washes his hands",
-			"sequence": [
-				["symbolicAction", {
-					"notification": {
-						"icon": "icon:washHands@stadium",
-						"title": "Lather, rub, rinse",
-						"message": "You have washed your hands... this doesnt really change anything in the game, but at least you hands are clean.",
-						"okLabel": "Meh"
-					}
-				}]
-			]
-		},
-		"findCrushedSodaCan": {
-			"title": "player finds a crushed soda can",
-			"sequence": [
-				["findArtefact", {
-					"artefact": "artefact:sodaCan@stadium",
-					"notification": {
-						"title": "Found garbage! Woot!",
-						"message": "You have obtained a crushed and sticky soda can. There is some left... but you probably shouldn't drink this."
-					}
-				}]
-			]
-		},
-		"findMushroomsInForest": {
-			"title": "player finds mushrooms in the forest",
-			"sequence": [
-				["findArtefact", {
-					"artefact": "artefact:mushrooms@stadium",
-					"notification": {
-						"title": "Shroooooms!",
-						"message": "You have found fresh mushrooms. Never have enough mushrooms!"
-					}
-				}]
-			]
+	"macroSets": {
+		"main": {
+			"url": "main.macro"
 		}
 	}
 }

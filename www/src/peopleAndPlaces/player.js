@@ -64,7 +64,7 @@
 				view.focus();
 			}
 			function onHideView(view, views, keepFocus) {
-				console.log("keepFocus", keepFocus);
+				//console.log("keepFocus", keepFocus);
 				if (!keepFocus) {
 					blurAllExcept(view, views);
 					var currentFocus = focusStack.pop();
@@ -193,6 +193,9 @@
 			set: function(id) {
 				return "Sets/" + id + "/manifest.json";
 			},
+			macroSet: function(id, setId) {
+				return "Sets/" + setId + "/" + id + ".macro.txt";
+			},
 			image: function(path, setId) {
 				return "Sets/" + setId + "/" + path;
 			}
@@ -297,7 +300,17 @@
 					url = self.urlMapper.set(id);
 				//console.log("loading: ", url);
 				$.getJSON(url, function (data) {
-					set = new Model.Set(id, data, self.world);
+					set = new Model.Set(id, data, self.world, function (){
+						this.subscribe("onNewMacroSet", function(macroSetCollection, macroSet) {
+							var url = self.urlMapper.macroSet(macroSet.id, id);
+							$.get(url, function (data) {
+								macroSet.compile(data);
+							});
+						});
+					});
+
+					//todo: trigger loading/compiling of macros
+
 					self.world.inventory.store(set.hash(), set);
 					console.log("Set loaded: manifest: ", set, set.hash());
 					self.world.inventory.update(set.inventory);

@@ -160,7 +160,7 @@
 				autoPlay: true,
 				multiShot: false,
 				loops: 999,
-				volume: 50
+				volume: 0
 			});
 			return this;
 		},

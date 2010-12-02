@@ -2,7 +2,7 @@
 
 NOW DOING:
 	- Create a utility class to get object by ref from inventory... and with friendly error handling
-
+	- Rename the "stadium" set to "demo"
 	+ New ModelCollection class for simpler loading of typed object collections
 	+ Better class modeling for model objects
 	+ Serialization pattern across all model objects
@@ -10,14 +10,15 @@ NOW DOING:
 	+ Class for icons
 	+ Macro execution system
 	+ Focus and blur event handling on views, with a focus stack
-	- Class modeling for Icons resources
+1	- Automaticly resume a game if it was still "playing" ... but dont if the user has quit
+	- Unload a game if you quit
+	- Only show resume if there is a game to resume
 	- Obtain a soda can from looking into the garbage can in the locker
 		+ Unhook action arrow after running a macro
 		+ Friendly popup for showing message to user (Icon, title, message, ok button with custom prompt)
 		+ View for inventory list
 		+ View for inventory Items (using notification view)
 		+ Show tooltip when hovering inventory items
-1		- Automaticly resume a game if it was still "playing" ... but dont if the user has quit
 2		- Inventory Item class with persistance for each character
 		- Discard artefact from inventory list by
 		- Play sound effect on "obtainItem"
@@ -26,10 +27,8 @@ NOW DOING:
 		- Artefact specific message when quantity limit is obtained
 		- Depletable object sources... or link findObject macro to a statefull counter
 		- Ability to put back items into a location
-		- ...
-	- bug: muted button is broken
-		- Unload a game if you quit
-		- Only show resume if there is a game to resume
+
+	- bug: muted button from welcome screen and inGame dont follow same state
 
 P&P ROADMAP
 
@@ -95,3 +94,57 @@ v0.9
 		- Darken/HIghligh when clicking on the board background or when having dialogs
 			(this also shows more UI.. character, mark titles, board title, stats, time...)
 
+
+		"allerDinerAvecRemi": {
+			"title": "Choisir ou aller diner avec Rémi",
+			"character": "character:remi@stadium",
+			"first": "hey",
+			"statements": {
+				"hey": {
+					"text": "Hey.. yé 11h45! Lunch time?",
+					"replies": {
+						"onVaDinerOu?": {
+							"text": "Ok, on va diner où ?",
+							"next": {
+								"statement": "onVaMangerOu?"
+							}
+						}
+					}
+				},
+				"onVaMangerOu?": {
+					"text": "On pourrait aller manger chez Luigi, mais il faudrait se dépêcher... sinon il restera plus de place et on va devoir se contenter du Méga-Bytes.",
+					"replies": {
+						"laisseFaire": {
+							"text": "Ho, laisse faire alors... je dois attendre Billy, on va se contenter d’aller chercher du take-out au Café Pasta.",
+							"next": {
+								"statement": "aTantotAlors"
+							}
+						},
+						"dac": {
+							"text": "Dac... allons y tout de suite.",
+							"next": {
+								"macro": "macro:goingOutToLunchWithRemi@stadium"
+							}
+						},
+						"attend": {
+							"text": "Attend je vais demander à Billy.",
+							"next": {
+								"statement": "okJeTAttend"
+							}
+						}
+					}
+				},
+				"okJeTAttend" : {
+					"text": "Ok... je t'attend.",
+					"next": {
+						"stop": true
+					}
+				},
+				"aTantotAlors" : {
+					"text": "Dac, à tantot alors.",
+					"next": {
+						"macro": "macro:remiGoesOutToLunchAlone@stadium"
+					}
+				}
+			}
+		}

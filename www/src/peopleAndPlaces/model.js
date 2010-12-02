@@ -28,12 +28,19 @@
 		load: function (data) {
 			if (data) {
 				for (var member in data) {
-					console.log("member: ", member);
+//					console.log("member: ", member);
 					var newObject = new this.classConstructor(member, data[member], this.parent);
-					console.log("newObject: ", newObject);
+//					console.log("newObject: ", newObject);
 					this.store(newObject.hash(), newObject);
 					if (this.parent.inventory) {
 						this.parent.inventory.store(newObject.hash(), newObject);
+					}
+					function capitaliseFirstLetter(string) {
+						return string.charAt(0).toUpperCase() + string.slice(1);
+					}
+
+					if (this.parent.publish) {
+						this.parent.publish("onNew" + capitaliseFirstLetter(newObject.type), [this, newObject]);
 					}
 				}
 			}
@@ -42,15 +49,18 @@
 
 	Model.ModelObject = new JS.Class({
 		type: "modelObject",
-		include: [Model.Serializable, PP.Subscriber],
+		include: [Model.Serializable, PP.Observer],
 		id: null,
 		parent: null,
 		inventory: null,
-		initialize: function(id, state, parent) {
+		initialize: function(id, state, parent, onInitialize) {
 			this.inventory = new JS.Hash();
 			this.parent = parent;
 			this.id = id;
+			this.callSuper();
+			if (onInitialize) onInitialize.call(this);
 			this.setState(state);
+			return this;
 		},
 		equals: function(other) {
             return (other instanceof this.klass) &&
@@ -69,25 +79,8 @@
 		defaultState: "",
 		includeSets: null,
 		inventory: null,
-		/*
-		sets: null,
-		boards: null,
-		marks: null,
-		characters: null,
-		artefacts: null,
-		macros: null,
-		*/
 		initialize: function (id, state, parent) {
 			this.inventory = new JS.Hash();
-/*
-			this.sets = new JS.Hash();
-			this.boards = new JS.Hash();
-			this.marks = new JS.Hash();
-			this.characters = new JS.Hash();
-			this.artefacts = new JS.Hash();
-			this.macros = new JS.Hash();
-*/
-
 			this.callSuper(id, state, parent);
 		},
 		setState: function (state) {
@@ -158,6 +151,7 @@
 			this.marks = new Model.ModelCollection(Model.Mark, this);
 			this.characters = new Model.ModelCollection(Model.Character, this);
 			this.artefacts = new Model.ModelCollection(Model.Artefact, this);
+			this.macroSets = new Model.ModelCollection(Model.MacroSet, this);
 			this.macros = new Model.ModelCollection(Model.Macro, this);
 			this.callSuper(id, state, parent);
 		},
@@ -169,8 +163,11 @@
 			this.boards.load(state.boards);
 			this.characters.load(state.characters);
 			this.artefacts.load(state.artefacts);
+			this.macroSets.load(state.macroSets);
 			this.macros.load(state.macros);
 			return this;
+		},
+		loadMacros: function () {
 		},
 		getState: function () {
 		}
@@ -260,17 +257,155 @@
 		}
 	});
 
+	Model.MacroSet = new JS.Class(Model.ModelObject, {
+		type: "macroSet",
+		url: "",
+		source: "",
+		scripts: null,
+		macros: null,
+		initialize: function(id, state, parent) {
+			this.macros = {};
+			this.callSuper(id, state, parent);
+		},
+		setState: function (state) {
+			this.url = state.url;
+			return this;
+		},
+		compile: function(source) {
+			this.source = source;
+			var i,
+				macro,
+				macroId = "",
+				macroBuffer = [],
+				line,
+				lines = source.split("\n");
+			for (i = 0; i<lines.length; i = i + 1) {
+				line = lines[i];
+				if (line.substring(0,6) === "macro:") {
+					if (macroId) {
+						macro = new Model.Macro(macroId, {
+							source: macroBuffer
+						}, this);
+						macroBuffer = [];
+					}
+					macroId = line.substring(6, 999);
+					macroBuffer = [];
+				} else {
+					macroBuffer.push(line);
+				}
+
+			}
+			// todo : create multiple macros from the source code
+			return this;
+		}
+	});
 	Model.Macro = new JS.Class(Model.ModelObject, {
 		type: "macro",
 		title: "",
-		sequence: null,
+		script: null,
 		initialize: function(id, state, parent) {
+			this.script = {};
 			this.callSuper(id, state, parent);
 		},
 		setState: function (state) {
 			this.title = state.title;
-			this.sequence = state.sequence;
+			this.compile(state.source);
 			return this;
+		},
+		compile: function(source) {
+			this.source = source;
+			this.script = {
+				test: "test"
+			};
+
+			var IndentParser = function (lines) {
+				this.parse = function () {
+					this.linesBuffer = lines;
+					this.obj = {};
+					this.cursor = {
+						stack: [this.obj],
+						parent: this.obj,
+						last: this.obj,
+						indent: null
+					};
+					while (this.linesBuffer.length > 0 ) {
+						this.parseLine(this.linesBuffer.splice(0,1)[0] || "", this.cursor);
+					}
+
+					console.dir(this.obj);
+				};
+				this.parseLine = function (_line, c) {
+					var i,
+						type,
+						newLabel,
+						newIndent,
+						tokens,
+						tokenA,
+						tokenB,
+						indentOffset,
+						oldParent,
+						newValue,
+						lastTwoChars,
+						line = _line.trim();
+
+					if (line && line.substring(0,2) !== "//") {
+						// Set indentation markers
+						newIndent = (_line.match(/^\t+/g) || [""])[0].length;
+						if (c.indent === null) c.indent = newIndent;
+						indentOffset =  c.indent - newIndent;
+						c.indent = newIndent;
+
+						//console.log("tick");
+						tokens = line.split(":");
+						tokenA = tokens[0];
+						tokenB = tokens[1];
+
+						// determine the nature of the new element
+						if (tokenB) {
+							// line is a property
+							type = "property";
+							newLabel = tokenA;
+							newValue = tokenB;
+						} else {
+							// line is an object or an array
+							lastTwoChars = tokenA.substring(tokenA.length - 2);
+							if (lastTwoChars === "[]") {
+								type = "array";
+								newLabel = tokenA.substring(0, tokenA.length - 2);
+								newValue = [];
+							} else {
+								type = "object";
+								newLabel = tokenA;
+								newValue = {};
+							}
+						}
+						// determines where this new element should be place
+						// according to the indentation
+						if (indentOffset >= 0) {
+							// If the indent has moved back, the stack is popped
+							// according to the number of tab offest
+							for (i = indentOffset; i > 0; i = i - 1) {
+								oldParent = c.parent;
+								c.stack.pop();
+								c.parent = c.stack[c.stack.length - 1];
+							}
+						} else {
+							c.stack.push(c.parent = c.last);
+						}
+						if (type !== "property" && c.parent.pop) {
+							c.parent.push([newLabel, newValue]);
+						} else {
+							c.parent[newLabel] = newValue;
+						}
+						c.last = newValue;
+					}
+				};
+				this.parse();
+			};
+			var p = new IndentParser(this.source);
+		},
+		run: function (id) {
+			this.script[id].call();
 		}
 	});
 
