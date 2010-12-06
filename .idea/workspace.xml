@@ -2,318 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5c1e5eb0-9e45-46d4-abfb-6d02812eaa93" name="Default" comment="First step of the macro parser">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/Sets/canyons/gnome.png" afterPath="$PROJECT_DIR$/www/Sets/canyons/gnome.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/Sets/canyons/jardin-quetaine.jpg" afterPath="$PROJECT_DIR$/www/Sets/canyons/jardin-quetaine.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/Sets/stadium/forest_birds.mp3" afterPath="$PROJECT_DIR$/www/Sets/stadium/forest_birds.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/Sets/stadium/gym-locker.mp3" afterPath="$PROJECT_DIR$/www/Sets/stadium/gym-locker.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/Sets/stadium/parking-garage.mp3" afterPath="$PROJECT_DIR$/www/Sets/stadium/parking-garage.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/Sets/stadium/public-bathroom.mp3" afterPath="$PROJECT_DIR$/www/Sets/stadium/public-bathroom.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/images/glow/Glow.png" afterPath="$PROJECT_DIR$/www/images/glow/Glow.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/images/glow/burstA.png" afterPath="$PROJECT_DIR$/www/images/glow/burstA.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/images/glow/burstB.png" afterPath="$PROJECT_DIR$/www/images/glow/burstB.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/images/icon-selected.psd" afterPath="$PROJECT_DIR$/www/images/icon-selected.psd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/images/pause.psd" afterPath="$PROJECT_DIR$/www/images/pause.psd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/JS.Class/CHANGELOG" afterPath="$PROJECT_DIR$/www/libs/JS.Class/CHANGELOG" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/JS.Class/MIT-LICENSE" afterPath="$PROJECT_DIR$/www/libs/JS.Class/MIT-LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/README.rdoc" afterPath="$PROJECT_DIR$/www/libs/soundmanager/README.rdoc" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360 button.psd" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360 button.psd" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-pause-light.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-pause-light.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-pause-light.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-pause-light.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-pause.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-pause.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-pause.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-pause.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-play-light.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-play-light.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-play-light.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-play-light.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-play.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-play.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-play.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360-button-play.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/empty.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/empty.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/icon_loading_dots.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/icon_loading_dots.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/icon_loading_spinner.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/icon_loading_spinner.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/icon_loading_spinner_bigger.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/icon_loading_spinner_bigger.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/360ui-screenshot1.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/360ui-screenshot1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/360ui-screenshot2.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/360ui-screenshot2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/360ui-screenshot3.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/360ui-screenshot3.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/360ui-screenshot4.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/360ui-screenshot4.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/8tracks-logo.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/8tracks-logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/discogs.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/discogs.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/flash9-dark.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/flash9-dark.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/flash9.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/flash9.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/getsatisfaction-icon.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/getsatisfaction-icon.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/hue_thumb.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/hue_thumb.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/lastfm.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/lastfm.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/mixcrate.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/mixcrate.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/muxtape-logo.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/muxtape-logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/new-bw.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/new-bw.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/new-dark.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/new-dark.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/new.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/new.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/opera.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/opera.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/picker_thumb.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/picker_thumb.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/slider-1.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/slider-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/slider-bar.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/slider-bar.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/slider.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/slider.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/soundcloud-thecloudplayer-logo.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/soundcloud-thecloudplayer-logo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/speaker.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/speaker.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/wedge.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_image/wedge.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/1hz-10khz-sweep.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/1hz-10khz-sweep.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/440hz.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/440hz.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/880hz.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/880hz.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/background0.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/background0.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/background1.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/background1.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/background2.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/background2.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/bass.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/bass.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/button-0.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/button-0.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/button-1.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/button-1.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/click-high.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/click-high.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/click-low.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/click-low.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/coins.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/coins.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/fancy-beer-bottle-pop.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/fancy-beer-bottle-pop.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/mak.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/mak.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/mouseover.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/mouseover.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/mouseover2.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/mouseover2.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/mouseover3.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/mouseover3.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/select.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/select.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/sine, square, sawtooth, rando.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/_mp3/sine, square, sawtooth, rando.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/image/ball.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/image/ball.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/bg-land.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/bg-land.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/bg-sky.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/bg-sky.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-10.cur" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-10.cur" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-11.cur" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-11.cur" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-3.cur" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-3.cur" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-4.cur" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-4.cur" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-5.cur" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-5.cur" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-6.cur" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-6.cur" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-7.cur" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-7.cur" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-8.cur" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-8.cur" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-9.cur" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-9.cur" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-shadow.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/cursor-shadow.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/dot.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/dot.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/audio/bonk.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/audio/bonk.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/audio/fingerplop.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/audio/fingerplop.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/audio/fingerplop2.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/audio/fingerplop2.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/image/ball.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/image/ball.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/image/point.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/image/point.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation/audio/bonk.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation/audio/bonk.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation/audio/fingerplop.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation/audio/fingerplop.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation/audio/fingerplop2.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation/audio/fingerplop2.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bg-strip-dark.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bg-strip-dark.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/blank.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/blank.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-32x32-bottom.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-32x32-bottom.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-32x32-left.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-32x32-left.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-32x32-right.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-32x32-right.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-32x32-top.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-32x32-top.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-50x50-bottom.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-50x50-bottom.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-50x50-fragments.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-50x50-fragments.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-50x50-left.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-50x50-left.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-50x50-right.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-50x50-right.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-50x50-top.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-50x50-top.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-50x50.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-50x50.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-64x64-bottom.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-64x64-bottom.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-64x64-left.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-64x64-left.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-64x64-right.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-64x64-right.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-64x64-top.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-64x64-top.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-72x72-bottom.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-72x72-bottom.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-72x72-left.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-72x72-left.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-72x72-right.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-72x72-right.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-72x72-top.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-72x72-top.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-96x96-bottom.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-96x96-bottom.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-96x96-left.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-96x96-left.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-96x96-right.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-96x96-right.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-96x96-top.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/image/bulbs-96x96-top.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/sound/glass0.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/sound/glass0.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/sound/glass1.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/sound/glass1.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/sound/glass2.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/sound/glass2.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/sound/glass3.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/sound/glass3.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/sound/glass4.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/sound/glass4.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/sound/glass5.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/sound/glass5.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/audio/going_outside.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/audio/going_outside.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/audio/office_lobby.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/audio/office_lobby.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/audio/rain.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/audio/rain.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/audio/walking.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/audio/walking.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/backgrounds/bg1.jpg" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/backgrounds/bg1.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/backgrounds/bg2.jpg" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/backgrounds/bg2.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/backgrounds/bg3.jpg" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/backgrounds/bg3.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/data/null.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/data/null.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-next-1.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-next-1.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-next-1.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-next-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-next.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-next.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-next.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-next.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-prev-1.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-prev-1.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-prev-1.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-prev-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-prev.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-prev.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-prev.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/btn-prev.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/loop-light.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/loop-light.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/loop.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/loop.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/notreallyajaxandyouknowit-dark.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/notreallyajaxandyouknowit-dark.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/notreallyajaxandyouknowit-light.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/notreallyajaxandyouknowit-light.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-arr0.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-arr0.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-arr0.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-arr0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-arr1.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-arr1.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-arr1.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-arr1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-arr2.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-arr2.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-pause-1.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-pause-1.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-pause.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-left-pause.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-mid-loaded-dark.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-mid-loaded-dark.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-mid-loaded-light.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-mid-loaded-light.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-mid-loaded-light.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-mid-loaded-light.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-mid-loaded.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-mid-loaded.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-mid-loaded.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-mid-loaded.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-right-arr0.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-right-arr0.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-right-arr0.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-right-arr0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-right-arr1.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/sec-right-arr1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/shade-left.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/shade-left.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/shade-right.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/shade-right.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/shuffle-0-light.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/shuffle-0-light.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/shuffle-0.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/shuffle-0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/shuffle-1-light.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/shuffle-1-light.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/shuffle-1.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/shuffle-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-0-ui.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-0-ui.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-0-ui.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-0-ui.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-0-ui__.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-0-ui__.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-1-ui.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-1-ui.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-2-ui.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-2-ui.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-3-ui.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-3-ui.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-3-ui.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-3-ui.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-4-ui.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/skin-4-ui.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/slider-1.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/slider-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/slider-light.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/slider-light.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/slider-light.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/slider-light.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/slider.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/slider.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/slider.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/slider.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/speaker-light.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/speaker-light.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/speaker.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/speaker.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/ui-highlight-0.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/ui-highlight-0.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/ui-highlight-0.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/ui-highlight-0.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/ui-highlight-1.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/ui-highlight-1.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/ui-highlight-1.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/ui-highlight-1.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/ui-highlight-2.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/ui-highlight-2.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/ui-highlight-2.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/ui-highlight-2.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/volume-light.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/volume-light.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/volume.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/volume.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/whiteout.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/image/whiteout.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/image/arrow-right-black.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/image/arrow-right-black.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/image/arrow-right-black.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/image/arrow-right-black.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/image/arrow-right-white.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/image/arrow-right-white.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/image/arrow-right-white.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/image/arrow-right-white.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_BD_1.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_BD_1.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_FTM2.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_FTM2.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_HHCL.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_HHCL.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_HHOP.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_HHOP.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_HHPD.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_HHPD.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_HTM.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_HTM.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_LTM2.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_LTM2.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_MTM.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_MTM.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_RIM1.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_RIM1.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_SN13.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_SN13.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_SN_5.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/AMB_SN_5.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/CHINA_1.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/CHINA_1.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/CRASH_1.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/CRASH_1.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/CRASH_5.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/CRASH_5.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/CRASH_6.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/CRASH_6.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/RIDE_1.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/RIDE_1.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/RIDE_3.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/RIDE_3.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/SPLASH_1.mp3" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/audio/SPLASH_1.mp3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/image/progress.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/image/progress.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/image/divot-bottom.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/image/divot-bottom.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/image/divot.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/image/divot.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/image/top-highlight.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/image/top-highlight.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/image/icon_pause.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/image/icon_pause.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/image/icon_pause.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/image/icon_pause.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/image/icon_play.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/image/icon_play.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/image/icon_play.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/image/icon_play.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/image/test.gif" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/image/test.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/swf/soundmanager2.swf" afterPath="$PROJECT_DIR$/www/libs/soundmanager/swf/soundmanager2.swf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/swf/soundmanager2_debug.swf" afterPath="$PROJECT_DIR$/www/libs/soundmanager/swf/soundmanager2_debug.swf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/swf/soundmanager2_flash9.swf" afterPath="$PROJECT_DIR$/www/libs/soundmanager/swf/soundmanager2_flash9.swf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/swf/soundmanager2_flash9_debug.swf" afterPath="$PROJECT_DIR$/www/libs/soundmanager/swf/soundmanager2_flash9_debug.swf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/swf/soundmanager2_flash_xdomain.zip" afterPath="$PROJECT_DIR$/www/libs/soundmanager/swf/soundmanager2_flash_xdomain.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/fpgss-add-location.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/fpgss-add-location.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/fpgss-added-location.png" afterPath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/fpgss-added-location.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/sounds/Toshinori-Murashima-apple.mp3" afterPath="$PROJECT_DIR$/www/sounds/Toshinori-Murashima-apple.mp3" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/pocketgolem.iml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360player-visualization.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360player-visualization.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360player.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360player.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/canvas-visualization-basic.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/canvas-visualization-basic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/canvas-visualization.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/canvas-visualization.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/demo-slider-controls.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/demo-slider-controls.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/demo-slider-controls.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/demo-slider-controls.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/demo.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/demo.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/script/360player.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/script/360player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/script/berniecode-animator.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/script/berniecode-animator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/script/excanvas.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/script/excanvas.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/css/animation.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/css/animation.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/script/animation.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/script/animation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/css/animation.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/css/animation.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/script/animation.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/script/animation.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/api/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/api/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/christmaslights-home.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/christmaslights-home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/christmaslights.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/christmaslights.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/christmaslights.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/christmaslights.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/yahoo-dom-event-animation-260.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/yahoo-dom-event-animation-260.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/debug.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/debug.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/basic.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/basic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/flashblock.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/flashblock.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/method1/flashblock.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/method1/flashblock.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/method1/flashblock.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/method1/flashblock.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/method1/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/method1/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/index.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/index.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/css/player-light.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/css/player-light.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/css/player.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/css/player.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/php notes.txt" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/php notes.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/script/jsamp-preview.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/script/jsamp-preview.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/basic.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/basic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/css/mp3-player-button.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/css/mp3-player-button.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/script/mp3-player-button.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/script/mp3-player-button.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/acoustic-drumkit.xml" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/acoustic-drumkit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/css/mpc.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/css/mpc.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/script/mpc.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/script/mpc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/basic.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/basic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/demo.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/demo.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/optional-annotations.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/optional-annotations.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/optional-themes.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/optional-themes.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/page-player.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/page-player.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/script/page-player.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/script/page-player.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/basic.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/basic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/css/inlineplayer.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/css/inlineplayer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/script/inlineplayer.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/script/inlineplayer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/deferred-example.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/deferred-example.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/html5-dtd-test.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/html5-dtd-test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/template.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/template.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/xhtml-test.xhtml" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/xhtml-test.xhtml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/doc/download/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/doc/download/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/doc/getstarted/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/doc/getstarted/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/doc/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/doc/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/doc/resources/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/doc/resources/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/doc/technotes/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/doc/technotes/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/license.txt" afterPath="$PROJECT_DIR$/www/libs/soundmanager/license.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/script/soundmanager2-jsmin.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/script/soundmanager2-jsmin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/script/soundmanager2-nodebug-jsmin.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/script/soundmanager2-nodebug-jsmin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/script/soundmanager2-nodebug.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/script/soundmanager2-nodebug.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/script/soundmanager2.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/script/soundmanager2.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/src/SoundManager2.as" afterPath="$PROJECT_DIR$/www/libs/soundmanager/src/SoundManager2.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/src/SoundManager2_AS3.as" afterPath="$PROJECT_DIR$/www/libs/soundmanager/src/SoundManager2_AS3.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/src/SoundManager2_SMSound_AS3.as" afterPath="$PROJECT_DIR$/www/libs/soundmanager/src/SoundManager2_SMSound_AS3.as" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/src/make-flash8.bat" afterPath="$PROJECT_DIR$/www/libs/soundmanager/src/make-flash8.bat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/src/make-flash8.sh" afterPath="$PROJECT_DIR$/www/libs/soundmanager/src/make-flash8.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/src/make-flash9.bat" afterPath="$PROJECT_DIR$/www/libs/soundmanager/src/make-flash9.bat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/src/make-flash9.sh" afterPath="$PROJECT_DIR$/www/libs/soundmanager/src/make-flash9.sh" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/debug.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/debug.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/debug.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/debug.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/Sets/stadium/main.macro.backup.txt" afterPath="$PROJECT_DIR$/www/Sets/stadium/main.macro.backup.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/Sets/stadium/main.macro.txt" afterPath="$PROJECT_DIR$/www/Sets/stadium/main.macro.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/src/peopleAndPlaces/model.js" afterPath="$PROJECT_DIR$/www/src/peopleAndPlaces/model.js" />
     </list>
     <list id="e5a68e5e-8cad-4e8f-8028-c2c9062891ab" name="MUST FIND WAY TO IGNORE AND REMOVE FROM GIT" comment="MUST FIND WAY TO IGNORE AND REMOVE FROM GIT" />
     <ignored path="pocketpeople.iws" />
@@ -356,10 +51,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.macro.txt" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.macro.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/Sets/stadium/main.macro.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.140553">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workspace.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="10" selection-start="1888" selection-end="1888" vertical-scroll-proportion="0.48387095">
               <folding />
             </state>
           </provider>
@@ -368,7 +72,7 @@
       <file leaf-file-name="model.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="457" column="33" selection-start="11326" selection-end="11326" vertical-scroll-proportion="0.0">
+            <state line="527" column="33" selection-start="13693" selection-end="13693" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -407,7 +111,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/views/pause.js" />
         <option value="$PROJECT_DIR$/www/Worlds/demo/manifest.json" />
         <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/main.js" />
         <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/views/notifications.js" />
@@ -420,9 +123,10 @@
         <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/views/welcome.js" />
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/Sets/stadium/main.macro.backup.txt" />
-        <option value="$PROJECT_DIR$/www/Sets/stadium/main.macro.txt" />
         <option value="$PROJECT_DIR$/www/Sets/stadium/manifest.json" />
         <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/model.js" />
+        <option value="$PROJECT_DIR$/www/Sets/stadium/main.macro.txt" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
       </list>
     </option>
   </component>
@@ -452,92 +156,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane />
-        <subPane subId="Problems" />
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="pocketpeople">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="pocketpeople">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="pocketpeople">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="pocketpeople">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="www">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="pocketpeople">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="pocketpeople">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="www">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Sets">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="stadium">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="pocketpeople">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="pocketpeople">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="www">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Sets">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -736,6 +354,26 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane />
+        <subPane subId="Problems" />
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Favorites" />
     </panes>
   </component>
@@ -753,28 +391,16 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="103" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="888" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="884" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="888" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="100" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="132" />
     <property name="GoToClass.includeJavaFiles" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="132" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/www/Sets/stadium" />
-      <recent name="$PROJECT_DIR$/www/src/peopleAndPlaces/views" />
-      <recent name="$PROJECT_DIR$/www/src" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/www/src/peopleAndPlaces/views" />
-      <recent name="$PROJECT_DIR$/www/src/PP" />
-      <recent name="$PROJECT_DIR$/www/src/views" />
-    </key>
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
@@ -819,26 +445,6 @@
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TodoView" selected-index="0">
-    <todo-panel id="selected-file">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="false" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="false" />
-    </todo-panel>
-    <todo-panel id="default-changelist">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="false" />
-    </todo-panel>
-  </component>
   <component name="ToolWindowManager">
     <frame x="4" y="22" width="1276" height="778" extended-state="0" />
     <editor active="false" />
@@ -846,7 +452,6 @@
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32863188" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5895628" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31709266" sideWeight="0.6713681" order="0" side_tool="false" content_ui="tabs" />
@@ -856,6 +461,7 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -914,13 +520,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/ui.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="433" column="44" selection-start="12306" selection-end="12306" vertical-scroll-proportion="0.35085008">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/views/welcome.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="162" column="24" selection-start="3503" selection-end="3503" vertical-scroll-proportion="0.0">
@@ -983,9 +582,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/model.js">
+    <entry file="file://$PROJECT_DIR$/www/libs/underscrore/underscore.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="457" column="33" selection-start="11326" selection-end="11326" vertical-scroll-proportion="0.0">
+        <state line="689" column="4" selection-start="24412" selection-end="24412" vertical-scroll-proportion="0.39597315">
           <folding />
         </state>
       </provider>
@@ -997,13 +596,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/libs/underscrore/underscore.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="689" column="4" selection-start="24412" selection-end="24412" vertical-scroll-proportion="0.39597315">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/player.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="219" column="28" selection-start="6327" selection-end="6327" vertical-scroll-proportion="0.0">
@@ -1011,9 +603,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="527" column="33" selection-start="13693" selection-end="13693" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/Sets/stadium/main.macro.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.140553">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="10" selection-start="1888" selection-end="1888" vertical-scroll-proportion="0.48387095">
           <folding />
         </state>
       </provider>

@@ -8,32 +8,42 @@
 macro:dialogWithRemiBeforeLunch
 	begin[]
 		otherSetCharacter
+			characer: remi@stadium
+			patate: remi@stadium
 			poil: remi@stadium
-		otherSay1
-			text: aHey... yé 11h45! Lunch time?
-		otherSay2
-			text: bHey... yé 11h45! Lunch time?
-		otherSay3
-			text: cHey... yé 11h45! Lunch time?
-		addReply4
-			text: Ok, on va diner où?
+		otherSay
+			text: "Hey... yé 11h45! Lunch time?"
+		addReply
+			text: "Ok, on va diner où?"
 			next: onVaMangerOu
 		prompt
 
 	onVaMangerOu[]
 		otherSay
-			text=On pourrait aller manger chez Luigi, mais il faudrait se dépêcher... sinon il restera plus de place et on va devoir se contenter du Méga-Bytes.
+			text: "On pourrait aller manger chez Luigi, mais il faudrait se dépêcher... sinon il restera plus de place et on va devoir se contenter du Méga-Bytes."
 		addReply
-			text: Ho, laisse faire alors... je dois attendre Billy, on va se contenter d’aller chercher du take-out au Café Pasta.
+			text: "Ho, laisse faire alors... je dois attendre Billy, on va se contenter d’aller chercher du take-out au Café Pasta."
 			next: aTantotAlors
 		addReply
-			text: Dac... allons y tout de suite.
+			text: "Dac... allons y tout de suite."
 			next: going_out_to_lunch_with_remi
 		addReply
-			text: Attend je vais demander à Billy.
+			text: "Attend je vais demander à Billy."
 			next: okJeTAttent
 		prompt
 
+	okJeTAttent[]
+		otherSay
+			text: "Ok... je t'attend."
+		end
+
+	aTantotAlors[]
+		// do some macro commands here...
+		end
+
+	going_out_to_lunch_with_remi[]
+		// do some macro commands here...
+		end
 
 macro:remi_goes_out_to_lunch_alone
 	begin[]
@@ -43,4 +53,32 @@ macro:going_out_to_lunch_with_remi
 	begin[]
 		end
 
+macro:you_have_washed_your_hands
+	begin[]
+		symbolicAction
+			notification
+				icon: washHands@stadium
+				title: "Lather, rub, rinse"
+				message: "You have washed your hands... this doesnt really change anything in the game, but at least you hands are clean."
+				okLabel: "Meh"
+
+macro:find_crushed_soda_can
+	title: player finds a crushed soda can
+	begin[]
+		sequence
+			findArtefact
+				artefact: sodaCan@stadium
+				notification
+					title: "Found garbage! Woot!"
+					message: "You have obtained a crushed and sticky soda can. There is some left... but you probably shouldn't drink this."
+
+macro:find_mushrooms_in_forest
+	begin[]
+		title: "player finds mushrooms in the forest"
+		sequence
+			findArtefact
+				artefact: artefact:mushrooms@stadium
+				notification
+					title: "Shroooooms!"
+					message: "You have found fresh mushrooms. Never have enough mushrooms!"
 

@@ -20,7 +20,7 @@ macro:dialogWithRemiBeforeLunch
 
 	onVaMangerOu[]
 		otherSay
-			text=On pourrait aller manger chez Luigi, mais il faudrait se dépêcher... sinon il restera plus de place et on va devoir se contenter du Méga-Bytes.
+			text: On pourrait aller manger chez Luigi, mais il faudrait se dépêcher... sinon il restera plus de place et on va devoir se contenter du Méga-Bytes.
 		addReply
 			text: Ho, laisse faire alors... je dois attendre Billy, on va se contenter d’aller chercher du take-out au Café Pasta.
 			next: aTantotAlors

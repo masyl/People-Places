@@ -319,6 +319,7 @@
 			};
 
 			var IndentParser = function (lines) {
+				this.macroMethods = {};
 				this.parse = function () {
 					this.linesBuffer = lines;
 					this.obj = {};
@@ -331,24 +332,24 @@
 					while (this.linesBuffer.length > 0 ) {
 						this.parseLine(this.linesBuffer.splice(0,1)[0] || "", this.cursor);
 					}
+					this.macroMethods = this.parseObject();
 
-					console.dir(this.obj);
+//					console.dir(this.macroMethods);
 				};
 				this.parseLine = function (_line, c) {
 					var i,
 						type,
 						newLabel,
 						newIndent,
-						tokens,
+						newValue,
+						splitTokens,
 						tokenA,
 						tokenB,
 						indentOffset,
-						oldParent,
-						newValue,
 						lastTwoChars,
-						line = _line.trim();
+						trimmedLine = _line.trim();
 
-					if (line && line.substring(0,2) !== "//") {
+					if (trimmedLine && trimmedLine.substring(0,2) !== "//") {
 						// Set indentation markers
 						newIndent = (_line.match(/^\t+/g) || [""])[0].length;
 						if (c.indent === null) c.indent = newIndent;
@@ -356,14 +357,15 @@
 						c.indent = newIndent;
 
 						//console.log("tick");
-						tokens = line.split(":");
-						tokenA = tokens[0];
-						tokenB = tokens[1];
+						splitTokens = trimmedLine.split(":");
+						tokenA = splitTokens[0];
+						tokenB = splitTokens[1] || "";
 
 						// determine the nature of the new element
 						if (tokenB) {
 							// line is a property
 							type = "property";
+
 							newLabel = tokenA;
 							newValue = tokenB;
 						} else {
@@ -385,7 +387,6 @@
 							// If the indent has moved back, the stack is popped
 							// according to the number of tab offest
 							for (i = indentOffset; i > 0; i = i - 1) {
-								oldParent = c.parent;
 								c.stack.pop();
 								c.parent = c.stack[c.stack.length - 1];
 							}
@@ -399,6 +400,75 @@
 						}
 						c.last = newValue;
 					}
+				};
+				this.parseObject = function() {
+					console.log("parseObject");
+					// Parse each sequences
+					function parseSequences(items) {
+						var methods = {};
+						_(items).each(function (value, key, list) {
+							//console.log(value, "||", key, "||", list);
+							var fn = parseCommands(value);
+							methods[key] = fn;
+							console.log(key, fn.toString());
+						});
+						return methods;
+					}
+					function parseCommands(items) {
+						var fnString = "";
+						fnString = fnString.concat("return function (env) {\n");
+						_(items).each(function (value, key, list) {
+							var command = value[0],
+								args = value[1],
+								argString = parseArguments(args);
+							fnString = fnString.concat("env.", command, "(", argString, ");\n");
+						});
+						fnString = fnString.concat("};");
+						console.log(fnString);
+						return new Function(fnString)();
+					}
+					function parseArguments(items) {
+						var argString = "";
+						_(items).each(function (value, key, list) {
+							var valueString = parseValue(value);
+							argString = argString.concat("\t", key, ": ", valueString, ",\n");
+						});
+						if (_(items).size()>0) {
+							argString = "".concat("{\n", argString.substring(0, argString.length-2) ,"\n}");
+						}
+						return argString;
+					}
+					function IsNumeric(input) {
+					   return (input - 0) == input && input.length > 0;
+					}
+					function parseValue(_value) {
+						var value = _value.trim();
+						if (_(value).isArray()) {
+							return parseArray(value);
+						} else if (typeof(value) === "undefined") {
+							return parseObject(value);
+						} else if (value[0] === '"' && value[value.length-1] === '"') {
+							// escape illegal characters
+							return new String(value.length);
+						} else if (IsNumeric(value)) {
+							return value - 0;
+						} else {
+							return "'[unknown type or reference]'";
+						}
+					}
+					function parseObject(items) {
+						_(items).each(function (value, key, list) {
+							console.log(value, "||", key, "||", list);
+						});
+						return "[object]";
+					}
+					function parseArray(items) {
+						_(items).each(function (value, key, list) {
+							console.log(value, "||", key, "||", list);
+						});
+						return "[array]";
+					}
+					return parseSequences(this.obj);
 				};
 				this.parse();
 			};
