@@ -430,6 +430,7 @@
 					function parseArguments(items) {
 						var argString = "";
 						_(items).each(function (value, key, list) {
+							console.log("value: ", value);
 							var valueString = parseValue(value);
 							argString = argString.concat("\t", key, ": ", valueString, ",\n");
 						});
@@ -441,32 +442,40 @@
 					function IsNumeric(input) {
 					   return (input - 0) == input && input.length > 0;
 					}
-					function parseValue(_value) {
-						var value = _value.trim();
+					function parseValue(value) {
+						var returnValue;
 						if (_(value).isArray()) {
-							return parseArray(value);
+							returnValue = parseArray(value);
+						} else if (typeof(value) === "object") {
+							returnValue = parseObject(value);
+						} else if (typeof(value) === "string") {
+							returnValue = parseString(value);
 						} else if (typeof(value) === "undefined") {
-							return parseObject(value);
-						} else if (value[0] === '"' && value[value.length-1] === '"') {
-							// escape illegal characters
-							return new String(value.length);
-						} else if (IsNumeric(value)) {
-							return value - 0;
+							returnValue = "'[undefined value]'";
 						} else {
-							return "'[unknown type or reference]'";
+							returnValue = "'[unknown type or reference]'";
 						}
+						return returnValue
 					}
-					function parseObject(items) {
-						_(items).each(function (value, key, list) {
-							console.log(value, "||", key, "||", list);
-						});
-						return "[object]";
+					function parseObject(value) {
+						return "'[object]'";
 					}
-					function parseArray(items) {
-						_(items).each(function (value, key, list) {
-							console.log(value, "||", key, "||", list);
-						});
-						return "[array]";
+					function parseArray(value) {
+						return "'[array]'";
+					}
+					function parseString(_value) {
+						var returnValue,
+							value = _value.trim();
+						if (value[0] === '"' && value[value.length-1] === '"') {
+							// todo: escape illegal characters
+							returnValue = new String(value.substring(1,value.length-1));
+							returnValue = "".concat('"', returnValue, '"');
+						} else if (IsNumeric(value)) {
+							returnValue = value - 0;
+						} else {
+							returnValue = "'[unknown type or reference]'";
+						}
+						return returnValue;
 					}
 					return parseSequences(this.obj);
 				};

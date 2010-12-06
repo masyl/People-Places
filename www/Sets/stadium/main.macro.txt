@@ -63,7 +63,7 @@ macro:you_have_washed_your_hands
 				okLabel: "Meh"
 
 macro:find_crushed_soda_can
-	title: player finds a crushed soda can
+//	title: player finds a crushed soda can
 	begin[]
 		sequence
 			findArtefact
