@@ -303,6 +303,7 @@
 		type: "macro",
 		title: "",
 		script: null,
+		parser: null,
 		initialize: function(id, state, parent) {
 			this.script = {};
 			this.callSuper(id, state, parent);
@@ -310,6 +311,8 @@
 		setState: function (state) {
 			this.title = state.title;
 			this.compile(state.source);
+			console.log("----");
+			//console.dir(this);
 			return this;
 		},
 		compile: function(source) {
@@ -346,7 +349,6 @@
 						tokenA,
 						tokenB,
 						indentOffset,
-						lastTwoChars,
 						trimmedLine = _line.trim();
 
 					if (trimmedLine && trimmedLine.substring(0,2) !== "//") {
@@ -370,10 +372,9 @@
 							newValue = tokenB;
 						} else {
 							// line is an object or an array
-							lastTwoChars = tokenA.substring(tokenA.length - 2);
-							if (lastTwoChars === "[]") {
+							if (tokenA.trim()[0] === '[' && tokenA.trim()[tokenA.length-1] === ']') {
 								type = "array";
-								newLabel = tokenA.substring(0, tokenA.length - 2);
+								newLabel = tokenA.substring(1, tokenA.trim().length - 1);
 								newValue = [];
 							} else {
 								type = "object";
@@ -408,13 +409,15 @@
 						var methods = {};
 						_(items).each(function (value, key, list) {
 							//console.log(value, "||", key, "||", list);
-							var fn = parseCommands(value);
+							var fn = parseValue(value, {
+								array: parseMacroCommands
+							});
 							methods[key] = fn;
 							console.log(key, fn.toString());
 						});
 						return methods;
 					}
-					function parseCommands(items) {
+					function parseMacroCommands(items) {
 						var fnString = "";
 						fnString = fnString.concat("return function (env) {\n");
 						_(items).each(function (value, key, list) {
@@ -442,10 +445,13 @@
 					function IsNumeric(input) {
 					   return (input - 0) == input && input.length > 0;
 					}
-					function parseValue(value) {
-						var returnValue;
+					function parseValue(value, _handlers) {
+						var handler,
+							handlers = _handlers || {},
+							returnValue;
 						if (_(value).isArray()) {
-							returnValue = parseArray(value);
+							handler = handlers.array || parseArray;
+							returnValue = handler(value);
 						} else if (typeof(value) === "object") {
 							returnValue = parseObject(value);
 						} else if (typeof(value) === "string") {
@@ -453,12 +459,21 @@
 						} else if (typeof(value) === "undefined") {
 							returnValue = "'[undefined value]'";
 						} else {
-							returnValue = "'[unknown type or reference]'";
+							returnValue = "'[unknown type]'";
 						}
 						return returnValue
 					}
-					function parseObject(value) {
-						return "'[object]'";
+					function parseObject(items) {
+						var argString = "";
+						_(items).each(function (value, key, list) {
+//							console.log("value: ", value);
+							var valueString = parseValue(value, {});
+							argString = argString.concat("\t", key, ": ", valueString, ",\n");
+						});
+						if (_(items).size()>0) {
+							argString = "".concat("{\n", argString.substring(0, argString.length-2) ,"\n}");
+						}
+						return argString;
 					}
 					function parseArray(value) {
 						return "'[array]'";
@@ -472,6 +487,10 @@
 							returnValue = "".concat('"', returnValue, '"');
 						} else if (IsNumeric(value)) {
 							returnValue = value - 0;
+						} else if (value.indexOf(" ") < 0 && value.indexOf("@") >= 0) {
+							returnValue = "".concat('env.getObjectFromInventory("', value, '")');
+						} else if (value.substring(value.length - 2) === "()") {
+							returnValue = "".concat('env.callMacroLabel(this, "', value.substring(0, value.length - 2) ,'")');
 						} else {
 							returnValue = "'[unknown type or reference]'";
 						}
@@ -481,7 +500,7 @@
 				};
 				this.parse();
 			};
-			var p = new IndentParser(this.source);
+			this.parser = new IndentParser(this.source);
 		},
 		run: function (id) {
 			this.script[id].call();
