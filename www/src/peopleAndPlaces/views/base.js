@@ -46,7 +46,6 @@
 			return this;
 		},
 		hide: function (keepFocus) {
-			console.log("hidding", this.root);
 			this.visible = false;
 			this.root.fadeOut(350);
 			this.publish("onHide", [keepFocus]);

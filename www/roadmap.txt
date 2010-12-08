@@ -1,8 +1,10 @@
 /*
 
 NOW DOING:
+
+	- Connect new macro system to sample macros
 	- Create a utility class to get object by ref from inventory... and with friendly error handling
-	- Rename the "stadium" set to "demo"
+
 	+ New ModelCollection class for simpler loading of typed object collections
 	+ Better class modeling for model objects
 	+ Serialization pattern across all model objects
@@ -10,7 +12,9 @@ NOW DOING:
 	+ Class for icons
 	+ Macro execution system
 	+ Focus and blur event handling on views, with a focus stack
-1	- Automaticly resume a game if it was still "playing" ... but dont if the user has quit
+	+ Human friendly macro script compiled in javascript
+	- Rename the "stadium" set to "demo"
+	- Automaticly resume a game if it was still "playing" ... but dont if the user has quit
 	- Unload a game if you quit
 	- Only show resume if there is a game to resume
 	- Obtain a soda can from looking into the garbage can in the locker

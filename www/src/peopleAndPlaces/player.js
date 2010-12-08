@@ -5,7 +5,9 @@
 		Views = PP.Views;
 
 	PP.Player = new JS.Class(PP.Observer, {
-		defaultSettings: {},
+		defaultSettings: {
+			debugMode: false
+		},
 		settings: null,
 		views: null,
 		width: 960,
@@ -48,6 +50,7 @@
 			function bindViewFocusEvent(view, views) {
 				view
 					.subscribe("onShow", function() { onShowView(view, views) })
+					.subscribe("onShow", function() { onShowView(view, views) })
 					.subscribe("onHide", function(keepFocus) { onHideView(view, views, keepFocus) });
 			}
 			function onShowView(view, views) {
@@ -80,7 +83,7 @@
 							if (nextFocus) nextFocus.show();
 						}
 					} else {
-						console.log("no focusStack")
+						console.error("no focusStack")
 					}
 				}
 			}
@@ -116,9 +119,9 @@
 			if (soundManager) {
 				soundManager.url = '/libs/soundmanager/swf/';
 				soundManager.flashVersion = 9;
-				soundManager.useFlashBlock = false;
-				soundManager.debugMode = false;
-				soundManager.onready(function(){
+				soundManager.debugMode = this.settings.debugMode;
+				soundManager.onready(function(result){
+					if (!result.success) console.warn("Sound Manage could not load properly!");
 					self.nowReady("soundManager").startIfReady();
 				});
 			} else {
@@ -131,7 +134,7 @@
 			var player = this;
 			function subscribe (commandId) {
 				player.controller.observer.subscribe(commandId, function(result) {
-					var command = player.controllerHooks[commandId]
+					var command = player.controllerHooks[commandId];
 					if (command) {
 						command.call(player, result);
 					} else {
@@ -271,18 +274,15 @@
 					}
 				}
 			}
-			var state = {
+			return {
 				"volumeMuted": this.volumeMuted
-			}
-			return state;
+			};
 		},
 		loadWorld: function (id) {
-			//console.log("loadWorld: ", url);
 			var self = this,
 				url = this.urlMapper.world(id);
 			$.getJSON(url, function (data) {
 				self.world = new Model.World(id, data, this);
-				//console.log("World loaded: manifest: ", data);
 				self.loadSets();
 			});
 			return this;
@@ -312,7 +312,7 @@
 					//todo: trigger loading/compiling of macros
 
 					self.world.inventory.store(set.hash(), set);
-					console.log("Set loaded: manifest: ", set, set.hash());
+					//console.log("Set loaded: manifest: ", set, set.hash());
 					self.world.inventory.update(set.inventory);
 /*
 					self.world.inventory.update(set.boards);

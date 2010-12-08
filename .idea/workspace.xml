@@ -1,19 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5c1e5eb0-9e45-46d4-abfb-6d02812eaa93" name="Default" comment="First step of the macro parser">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/pocketgolem.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/Sets/stadium/main.macro.backup.txt" afterPath="$PROJECT_DIR$/www/Sets/stadium/main.macro.backup.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/Sets/stadium/main.macro.txt" afterPath="$PROJECT_DIR$/www/Sets/stadium/main.macro.txt" />
+    <list default="true" id="5c1e5eb0-9e45-46d4-abfb-6d02812eaa93" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/src/peopleAndPlaces/model/macro.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360player-visualization.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360player-visualization.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360player.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/360player.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/canvas-visualization-basic.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/canvas-visualization-basic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/canvas-visualization.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/canvas-visualization.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/demo-slider-controls.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/demo-slider-controls.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/demo-slider-controls.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/demo-slider-controls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/demo.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/demo.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/script/360player.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/script/360player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/script/berniecode-animator.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/script/berniecode-animator.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/script/excanvas.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/360-player/script/excanvas.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/css/animation.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/css/animation.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/script/animation.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-1/script/animation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2a/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/css/animation.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/css/animation.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/script/animation.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation-2b/script/animation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/animation/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/api/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/api/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/christmaslights-home.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/christmaslights-home.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/christmaslights.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/christmaslights.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/christmaslights.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/christmaslights.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/yahoo-dom-event-animation-260.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/christmas-lights/yahoo-dom-event-animation-260.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/debug.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/debug.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/flashblock.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/flashblock.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/method1/flashblock.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/method1/flashblock.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/method1/flashblock.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/method1/flashblock.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/method1/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/flashblock/method1/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/index.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/index.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/index.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/css/player-light.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/css/player-light.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/css/player.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/css/player.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/php notes.txt" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/php notes.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/script/jsamp-preview.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/jsAMP-preview/script/jsamp-preview.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/basic.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/basic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/script/mp3-player-button.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mp3-player-button/script/mp3-player-button.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/acoustic-drumkit.xml" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/acoustic-drumkit.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/css/mpc.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/css/mpc.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/script/mpc.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/mpc/script/mpc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/basic.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/basic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/demo.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/demo.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/optional-annotations.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/optional-annotations.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/optional-themes.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/optional-themes.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/page-player.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/css/page-player.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/script/page-player.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/page-player/script/page-player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/basic.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/basic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/css/inlineplayer.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/css/inlineplayer.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/script/inlineplayer.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/play-mp3-links/script/inlineplayer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/deferred-example.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/deferred-example.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/html5-dtd-test.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/html5-dtd-test.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/template.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/template.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/xhtml-test.xhtml" afterPath="$PROJECT_DIR$/www/libs/soundmanager/demo/template/xhtml-test.xhtml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/doc/download/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/doc/download/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/doc/getstarted/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/doc/getstarted/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/doc/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/doc/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/doc/resources/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/doc/resources/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/doc/technotes/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/doc/technotes/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/license.txt" afterPath="$PROJECT_DIR$/www/libs/soundmanager/license.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/src/SoundManager2.as" afterPath="$PROJECT_DIR$/www/libs/soundmanager/src/SoundManager2.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/src/SoundManager2_AS3.as" afterPath="$PROJECT_DIR$/www/libs/soundmanager/src/SoundManager2_AS3.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/src/SoundManager2_SMSound_AS3.as" afterPath="$PROJECT_DIR$/www/libs/soundmanager/src/SoundManager2_SMSound_AS3.as" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/debug.css" afterPath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/debug.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/debug.js" afterPath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/debug.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/index.html" afterPath="$PROJECT_DIR$/www/libs/soundmanager/troubleshoot/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/roadmap.txt" afterPath="$PROJECT_DIR$/www/roadmap.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/src/peopleAndPlaces/model.js" afterPath="$PROJECT_DIR$/www/src/peopleAndPlaces/model.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/src/peopleAndPlaces/player.js" afterPath="$PROJECT_DIR$/www/src/peopleAndPlaces/player.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/src/peopleAndPlaces/views/base.js" afterPath="$PROJECT_DIR$/www/src/peopleAndPlaces/views/base.js" />
     </list>
-    <list id="e5a68e5e-8cad-4e8f-8028-c2c9062891ab" name="MUST FIND WAY TO IGNORE AND REMOVE FROM GIT" comment="MUST FIND WAY TO IGNORE AND REMOVE FROM GIT" />
+    <list id="e5a68e5e-8cad-4e8f-8028-c2c9062891ab" name="MUST FIND WAY TO IGNORE AND REMOVE FROM GIT" comment="MUST FIND WAY TO IGNORE AND REMOVE FROM GIT">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="pocketpeople.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/" />
+    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="5c1e5eb0-9e45-46d4-abfb-6d02812eaa93" time="1291688268690" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +122,34 @@
       <file leaf-file-name="player.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="219" column="28" selection-start="6327" selection-end="6327" vertical-scroll-proportion="0.0">
+            <state line="73" column="44" selection-start="1970" selection-end="1970" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/views/base.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="33" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="release-notes.txt" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/release-notes.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="roadmap.txt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/roadmap.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="0" selection-start="15" selection-end="15" vertical-scroll-proportion="0.14685315">
               <folding />
             </state>
           </provider>
@@ -54,16 +158,7 @@
       <file leaf-file-name="main.macro.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/Sets/stadium/main.macro.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="10" selection-start="1888" selection-end="1888" vertical-scroll-proportion="0.48387095">
+            <state line="53" column="4" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -72,7 +167,25 @@
       <file leaf-file-name="model.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/model.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="527" column="33" selection-start="13693" selection-end="13693" vertical-scroll-proportion="0.0">
+            <state line="277" column="9" selection-start="7050" selection-end="7050" vertical-scroll-proportion="-82.30769">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="0" selection-start="1106" selection-end="1106" vertical-scroll-proportion="-11.652174">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="macro.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/model/macro.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="256" column="0" selection-start="6953" selection-end="6953" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -105,28 +218,33 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <array>
+        <option value="Mathieu Sylvain" />
+      </array>
+    </option>
     <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
     <option name="UPDATE_CHANGES_POLICY" value="STASH" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/www/Worlds/demo/manifest.json" />
-        <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/main.js" />
-        <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/views/notifications.js" />
         <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/ui.js" />
-        <option value="$PROJECT_DIR$/www/roadmap.txt" />
         <option value="$PROJECT_DIR$/www/Sets/stadium/dialog.js" />
         <option value="$PROJECT_DIR$/www/Sets/stadium/dialog.macro" />
         <option value="$PROJECT_DIR$/www/Sets/stadium/main.macro" />
-        <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/player.js" />
         <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/views/welcome.js" />
-        <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/Sets/stadium/main.macro.backup.txt" />
         <option value="$PROJECT_DIR$/www/Sets/stadium/manifest.json" />
-        <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/model.js" />
-        <option value="$PROJECT_DIR$/www/Sets/stadium/main.macro.txt" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/www/Sets/stadium/main.macro.txt" />
+        <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/model/model.js" />
+        <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/model.js" />
+        <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/model/macro.js" />
+        <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/player.js" />
+        <option value="$PROJECT_DIR$/www/src/peopleAndPlaces/views/base.js" />
+        <option value="$PROJECT_DIR$/www/roadmap.txt" />
       </list>
     </option>
   </component>
@@ -146,14 +264,14 @@
   <component name="ProjectView">
     <navigator currentView="Scope" currentSubView="Project Files" proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
-      <showMembers />
+      <showMembers Scope="true" />
       <showModules />
       <showLibraryContents />
       <hideEmptyPackages />
       <abbreviatePackageNames />
       <autoscrollToSource />
       <autoscrollFromSource />
-      <sortByType />
+      <sortByType Scope="true" />
     </navigator>
     <panes>
       <pane id="ProjectPane">
@@ -372,6 +490,210 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="www">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="www">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="www">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="peopleAndPlaces">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="www">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="peopleAndPlaces">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="views">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="www">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="peopleAndPlaces">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="model">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="www">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="libs">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="www">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="libs">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="soundmanager">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="pocketpeople">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="www">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="libs">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="soundmanager">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="swf">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Favorites" />
@@ -379,28 +701,33 @@
   </component>
   <component name="PropertiesComponent">
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="83" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="136" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="86" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="139" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="recentsLimit" value="5" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="94" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="97" />
     <property name="options.lastSelected" value="reference.settingsdialog.IDE.editor.colors.JavaScript" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="103" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="884" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="888" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="100" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="107" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="891" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="887" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="104" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="135" />
     <property name="GoToClass.includeJavaFiles" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="132" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/www/src/peopleAndPlaces/model" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugSession" factoryName="Local">
@@ -449,19 +776,19 @@
     <frame x="4" y="22" width="1276" height="778" extended-state="0" />
     <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32863188" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32770744" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5895628" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31709266" sideWeight="0.6713681" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31709266" sideWeight="0.48945147" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5119887" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.51054853" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32863188" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -481,7 +808,7 @@
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="First step of the macro parser" />
+    <option name="LAST_COMMIT_MESSAGE" value="Working macro compiler, but without runtime environment." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -515,51 +842,17 @@
     <MESSAGE value="+ Show tooltip when hovering inventory items&#10;" />
     <MESSAGE value="+ New ModelCollection class for simpler loading of typed object collections&#10;+ Better class modeling for model objects&#10;+ Serialization pattern across all model objects&#10;+ New global object inventory on world object&#10;+ Class for icons&#10;" />
     <MESSAGE value="First step of the macro parser" />
+    <MESSAGE value="Basic workings of the macro compiler" />
+    <MESSAGE value="Partial working implementation of the Macro compiler" />
+    <MESSAGE value="Working macro compiler, but without runtime environment." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/views/welcome.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="162" column="24" selection-start="3503" selection-end="3503" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="82" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.71532845">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/Worlds/demo/manifest.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="32" selection-start="161" selection-end="161" vertical-scroll-proportion="0.21923937">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/init.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/views/board.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="28" selection-start="1427" selection-end="1427" vertical-scroll-proportion="0.55480987">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/Sets/stadium/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="151" column="18" selection-start="3063" selection-end="3063" vertical-scroll-proportion="-2.9505248">
-          <folding />
-        </state>
+        <state line="151" column="18" selection-start="3063" selection-end="3063" vertical-scroll-proportion="-2.9505248" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/Sets/stadium/map-montreal.png">
@@ -584,42 +877,69 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/libs/underscrore/underscore.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="689" column="4" selection-start="24412" selection-end="24412" vertical-scroll-proportion="0.39597315">
-          <folding />
-        </state>
+        <state line="689" column="4" selection-start="24412" selection-end="24412" vertical-scroll-proportion="0.39597315" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="37" selection-start="1546" selection-end="1546" vertical-scroll-proportion="0.3568216" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="67" selection-start="1751" selection-end="1751" vertical-scroll-proportion="0.0">
+        <state line="60" column="67" selection-start="1751" selection-end="1751" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/Sets/stadium/main.macro.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="4" selection-start="1245" selection-end="1245" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/model.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="277" column="9" selection-start="7050" selection-end="7050" vertical-scroll-proportion="-82.30769">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/model/macro.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="256" column="0" selection-start="6953" selection-end="6953" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="0" selection-start="1106" selection-end="1106" vertical-scroll-proportion="-11.652174">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="219" column="28" selection-start="6327" selection-end="6327" vertical-scroll-proportion="0.0">
+        <state line="73" column="44" selection-start="1970" selection-end="1970" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/model.js">
+    <entry file="file://$PROJECT_DIR$/www/src/peopleAndPlaces/views/base.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="527" column="33" selection-start="13693" selection-end="13693" vertical-scroll-proportion="0.0">
+        <state line="24" column="33" selection-start="534" selection-end="534" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/Sets/stadium/main.macro.txt">
+    <entry file="file://$PROJECT_DIR$/www/release-notes.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+    <entry file="file://$PROJECT_DIR$/www/roadmap.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="10" selection-start="1888" selection-end="1888" vertical-scroll-proportion="0.48387095">
+        <state line="3" column="0" selection-start="15" selection-end="15" vertical-scroll-proportion="0.14685315">
           <folding />
         </state>
       </provider>
